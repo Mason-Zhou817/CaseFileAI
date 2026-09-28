@@ -64,7 +64,7 @@ wheel 内包含迁移、Alembic env / template、网页资源与 CLI metadata，
 
 ## 架构与接口入口
 
-GUI / HTTP、CLI 和开发 MCP adapter 统一调用 application/service。检索、事实判断和引用校验不能复制到界面。稳定 ID、引用链、缓存版本原则与 service contract 保持既定规则。
+GUI / HTTP、CLI 和正式 stdio MCP Server 统一调用 application/service。检索、事实判断和引用校验不能复制到界面。稳定 ID、引用链、缓存版本原则与 service contract 保持既定规则。
 
 - [需求与 MVP 范围](requirements.md)
 - [内部架构](architecture.md)
@@ -80,4 +80,4 @@ GUI / HTTP、CLI 和开发 MCP adapter 统一调用 application/service。检索
 
 常用 HTTP 路径包括 `/api/cases`、案件下的 `/documents`、`/materials`、`/index`、`/search`、`/ask`、`/answers`、`/claims`、`/conflict-candidates`、`/contradictions`、`/timeline`。备份 / 恢复位于 `/api/data/`，单案件分析导出位于 `/api/cases/{case_id}/exports/{json|markdown}`，下载仅用受控 artifact ID。
 
-MCP Python SDK 锁定为 2.2.0，adapter contract 与 stdio 方向属于开发范围；正式 `casefile-ai-mcp` 入口尚未接通，不能对用户宣称可用。普通用户操作、错误及隐私解释以用户手册为入口，不需要理解这些内部名称。
+MCP Python SDK 锁定为 2.2.0；正式 `casefile-ai-mcp` 入口通过 stdio 对接标准 MCP Client。导入允许目录和工具边界见 [MCP 手册](mcp.md)。普通用户操作、错误及隐私解释仍以用户手册为入口。

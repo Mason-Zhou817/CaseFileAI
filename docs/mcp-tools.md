@@ -1,40 +1,5 @@
-# MCP MVP tool contracts
+# MCP 工具契约
 
-SDK: exact `mcp[cli]==2.2.0`. Transport: local `stdio`.
+本文档曾记录 v1.0 的六工具开发草稿，其中 `get_document_page` 缺少案件归属校验，`import_document` 尚未限制路径。该草稿不是当前运行接口。
 
-All tools delegate to application services. Page numbers are one-based.
-
-## `list_cases`
-
-- Input: `{}`
-- Output: `{ "cases": CaseSummary[] }`
-
-## `import_document`
-
-- Input: `{ "case_id": string, "path": string }`
-- Output: `DocumentSummary`
-- The path is local and will be subject to allowed-root validation in the ingestion service.
-
-## `search_case_evidence`
-
-- Input: `{ "case_id": string, "query": string, "limit": integer = 10 }`
-- Output: `{ "hits": SearchHit[] }`
-- Each hit contains document/version, page, quote, evidence ID, chunk ID, final rank/score,
-  per-channel ranks/scores, and retrieval sources. The shared service defaults to hybrid RRF.
-
-## `get_document_page`
-
-- Input: `{ "document_id": string, "page_number": integer }`
-- Output: `PageView`
-
-## `detect_conflicts`
-
-- Input: `{ "case_id": string }`
-- Output: `{ "conflicts": ConflictView[] }`
-- Each side carries source-traceable citations.
-
-## `ask_case`
-
-- Input: `{ "case_id": string, "question": string }`
-- Output: `GroundedAnswer`
-- Only citations accepted by the application citation validator may be returned.
+正式 stdio MCP Server 的启动方式、15 个工具、严格输入 schema、导入允许目录和安全边界见 [MCP 手册](mcp.md)。当前不公开 `get_document_page`。

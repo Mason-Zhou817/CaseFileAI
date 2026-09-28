@@ -124,8 +124,8 @@ PDF → 证据（Evidence）→ 候选回答（Answer）→ 引用（Citation）
 
 ## 系统架构
 
-GUI / HTTP 和 CLI 调用同一个 `application/service` 层，界面不复制检索、事实判断或引用校验逻辑。
-数据库、解析器、检索与模型适配器通过契约接入；开发 MCP adapter 同样使用服务契约，但正式产品入口尚未接通。
+GUI / HTTP、CLI 和 MCP 调用同一个 `application/service` 层，界面不复制检索、事实判断或引用校验逻辑。
+数据库、解析器、检索与模型适配器通过契约接入；正式 stdio MCP Server 也复用同一服务层。
 
 ```mermaid
 flowchart TB
@@ -288,6 +288,8 @@ Windows 默认用户目录为 `%LOCALAPPDATA%\CaseFileAI`，用户数据与程�
 
 源码环境安装后可运行 `uv run casefile-ai case list`、`document import`、`index build`、`search`、`ask`、`claim`、`contradiction`、`timeline` 和 `export`。核心命令支持 `--json`，与 GUI/API 使用相同案件数据；完整用法、退出码与本地模式见 [CLI 手册](docs/cli.md)。
 
+支持 MCP 的本地智能体客户端可通过 `casefile-ai-mcp` 启动 stdio Server；开发环境使用 `uv run casefile-ai-mcp`。提供 15 个案件工具，PDF 导入需要设置 `CASEFILE_MCP_IMPORT_ROOTS`，未设置时默认禁用。客户端配置、工具列表与云模型边界见 [MCP 手册](docs/mcp.md)。
+
 ### 1. 从源码准备
 
 本公开候选仓库先提供源码，尚未发布 Windows ZIP。此前已完成 Windows 打包与本地运行验证；公开二进制分发须待第三方许可及 notices 核实。
@@ -335,7 +337,7 @@ src/casefile_ai/
 ├─ application/      # 应用服务、契约与业务编排
 ├─ domain/           # 领域标识与异常
 ├─ infrastructure/   # 数据库、检索、解析/OCR、模型实现
-├─ interfaces/       # API、Web、CLI、Windows；开发 MCP adapter
+├─ interfaces/       # API、Web、CLI、Windows、MCP
 └─ evaluation/       # 评测框架与阶段诊断
 
 migrations/          # 数据库迁移
@@ -356,7 +358,7 @@ scripts/             # Windows 交付、评测与工具脚本
 - 备份与分析导出未加密，需要按内容敏感程度自行保管。
 - 当前仅支持 PDF；v1.0 GUI 不支持永久删除，没有后台任务取消或自动更新。
 - 当前是单机工具，不包含多用户账号、企业权限或 RBAC。
-- 正式 MCP 产品入口尚未接通，开发 adapter 不属于可直接使用的 Windows 功能。
+- MCP 仅支持本机 stdio；导入须配置允许目录，远程 MCP 服务不在当前范围。
 
 ## 后续方向
 

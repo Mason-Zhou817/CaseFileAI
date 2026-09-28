@@ -25,6 +25,7 @@ EDITED_DOCS = (
     GUIDE,
     ROOT / "docs/development.md",
     ROOT / "docs/cli.md",
+    ROOT / "docs/mcp.md",
     ROOT / "docs/windows-installation.md",
     ROOT / "docs/data-management.md",
 )
@@ -77,6 +78,9 @@ def test_documented_configuration_names_are_real_settings() -> None:
     entry_options = {
         "CASEFILE_ENV_FILE": read(ROOT / "src/casefile_ai/config.py"),
         "CASEFILE_NO_PAUSE": read(ROOT / "Setup CaseFile AI.cmd"),
+        "CASEFILE_MCP_IMPORT_ROOTS": read(
+            ROOT / "src/casefile_ai/interfaces/mcp/server.py"
+        ),
     }
     assert all(name in source for name, source in entry_options.items())
     supported.update(entry_options)

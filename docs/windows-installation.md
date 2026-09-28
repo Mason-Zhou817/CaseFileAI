@@ -114,6 +114,8 @@ launcher.log 为安全 JSON，只记录时间、阶段、结果 / 类别、PID�
 
 MCP contract / adapter 测试保留，但正式 `casefile-ai-mcp` 入口尚未接通，明确属于开发 / 未来功能，不属于本 Windows MVP 交付。本任务没有顺带实现 MCP。
 
+后续 v1.1-B 已提供正式本机 stdio MCP 入口；上述文字仅记录 v1.0 Windows 交付时的状态。当前使用方法见 [MCP 手册](mcp.md)。
+
 v1.0.0 使用源码、锁定环境与 wheel 交付，没有 PyInstaller 单文件 exe。exe 不会消除模型大小、首次下载、配置、数据隔离和更新兼容问题；后续是否打包应由实际用户安装反馈决定。任务 4 当时未包括完整用户手册，现已另有任务 5 的 [中文用户手册](user-guide-zh.md)。
 
 本任务的实际测试、Windows smoke 边界与文件清单见 [任务 4 验收记录](stage10-task4-acceptance.md)。
