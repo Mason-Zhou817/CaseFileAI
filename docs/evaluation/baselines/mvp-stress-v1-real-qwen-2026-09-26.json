@@ -1,0 +1,1774 @@
+{
+  "schema_version": 1,
+  "source_commit": "0047fb28943105eb8fe7c0167796c42bb3b11f50",
+  "run_timestamp": "2026-09-26T12:47:46.117906+00:00",
+  "actual_run_date": "2026-09-26",
+  "model": "qwen3.7-plus",
+  "endpoint": "https://example.invalid/v1",
+  "structured_output_mode": "json_schema",
+  "configured_max_validation_attempts": 3,
+  "observed_json_validation_retries": 0,
+  "isolation": {
+    "synthetic_pinned_materials": true,
+    "allow_cloud_model": true,
+    "database": "fresh temporary database; no existing user cases",
+    "material_root": "evals/case_sets/mvp_stress_v1/documents",
+    "inputs": {
+      "case_set_sha256": "62a158b8127dd06e7d31419453a4f710f54aa0181ab835a29b35de79ac91ce0d",
+      "questions_sha256": "839c8e2e38303a352a21e01ee5c8398b8ff6b3a36a2018c557062f0c703857e1",
+      "documents": {
+        "ocr": "e7447497119af9c30e6a1236d330eafeba4530bfa1e0c61522b6adb19197b8e2",
+        "mixed": "5c73b36025c340ca5f743794deddc825907720feaa778caf7a66d0a12ba04f4c",
+        "table": "7848318e6073b132b9a62532d2edf70e731839524a9321660b9c95042275c08e",
+        "ledger_a": "6dd200e19d24b9edf006faa193baece54375a4cad8d93675e3f9091dd9175b8d",
+        "ledger_b": "9b32280d5e5802fb13854efc7e14d912c919956dfe39d3b95efc8bb7a6adc073",
+        "long": "c92a996eae95bd83b89bfbf3a7159d6d5d6883eb91f460c1d42992f6af6cfa30",
+        "contract_v1": "15f81c88db84c505db148021511aa921f09cd89f53a2482289e61da6596ffbed",
+        "contract_v2": "59b071699cd009f44cc9bdde5273b3f519341395002277fd182fa4853d5ef4c0",
+        "conflict_a": "68790f9c804830870dcf8b423cc7a0e93dd868cb0422454464435c51a9527ca3",
+        "conflict_b": "5574626116f8fe04778e193ee1bfe410b7cd0b69c121388b7c161af595bdb5dd",
+        "controls": "57689d9d2fc2b4c7417df534e9e7b9600a56d91407b1836623cff5521418c410"
+      }
+    },
+    "reviewed_questions_file_sha256": "08e8512001771056883157ff8538d2348512377c8edff966c563114aed4bd33b",
+    "downstream_gold_sha256": "bb68366649f8fd5c6aa2f78de354591142da9ac45ffc3392aabb49dc8581c187"
+  },
+  "groups": {
+    "regular": [
+      "s01",
+      "s02",
+      "s03",
+      "s04",
+      "s38"
+    ],
+    "table": [
+      "s06",
+      "s07",
+      "s08",
+      "s09",
+      "s10"
+    ],
+    "hard": [
+      "s11",
+      "s12",
+      "s13",
+      "s14",
+      "s27"
+    ],
+    "abstain": [
+      "s16",
+      "s17",
+      "s18",
+      "s19",
+      "s20"
+    ]
+  },
+  "qa": {
+    "total": 20,
+    "answered": 16,
+    "correct_abstain": 4,
+    "false_abstain_ids": [],
+    "false_answer_ids": [
+      "s19"
+    ],
+    "model_false_answer_ids": [
+      "s19"
+    ],
+    "failure_categories": {
+      "manual_review_required": 1,
+      "qa_wrong_answer": 2,
+      "citation_wrong_document": 1,
+      "citation_wrong_page": 1,
+      "citation_unsupported": 2
+    },
+    "automatic_failure_categories": {
+      "citation_wrong_document": 2,
+      "citation_wrong_page": 3,
+      "manual_review_required": 3,
+      "qa_wrong_answer": 1
+    },
+    "wrong_answer_ids": [
+      "s27"
+    ],
+    "question_correctness_after_review": {
+      "numerator": 18,
+      "denominator": 20,
+      "value": 0.9
+    },
+    "positive_answer_correctness": {
+      "numerator": 14,
+      "denominator": 15,
+      "value": 0.9333
+    },
+    "retrieval_miss_ids": [],
+    "validation_failure_ids": []
+  },
+  "answer_status_accuracy": {
+    "numerator": 19,
+    "denominator": 20,
+    "value": 0.95
+  },
+  "retrieval_all_required_hit_at_k": {
+    "numerator": 15,
+    "denominator": 15,
+    "value": 1.0
+  },
+  "citation_document_accuracy": {
+    "numerator": 16,
+    "denominator": 20,
+    "value": 0.8
+  },
+  "citation_page_accuracy": {
+    "numerator": 15,
+    "denominator": 20,
+    "value": 0.75
+  },
+  "citation_snippet_accuracy": {
+    "numerator": 15,
+    "denominator": 20,
+    "value": 0.75
+  },
+  "citation_semantic_review": {
+    "unit": "answered question, considering the citation set and the requested document/fact slot",
+    "supported": 14,
+    "unsupported": 2,
+    "not_applicable": 4,
+    "unsupported_ids": [
+      "s27",
+      "s19"
+    ],
+    "support_accuracy": {
+      "numerator": 14,
+      "denominator": 16,
+      "value": 0.875
+    },
+    "literal_claim_support": "all 16 returned answers have literal citation support for their own claims; two do not answer the requested source/fact slot",
+    "additional_citation_scope_review_ids": [
+      "s38"
+    ],
+    "gold_metrics_note": "document/page/snippet metrics stay strict against predeclared gold; negatives are excluded. Page accuracy requires correct document too. s11 extra page supplies valid subject context; s38 extra control quotes require event-link review."
+  },
+  "provider": {
+    "total_model_calls": 67,
+    "successful_http_calls": 67,
+    "provider_failures": 0,
+    "timeout": 0,
+    "http_429": 0,
+    "http_503": 0,
+    "http_5xx": 0,
+    "by_phase": {
+      "qa": 39,
+      "claim": 22,
+      "contradiction": 6
+    }
+  },
+  "structured_calls": {
+    "total": 67,
+    "success": 67,
+    "errors": 0
+  },
+  "latency_ms": {
+    "qa_p50": 14126.315,
+    "qa_p95": 26798.601,
+    "claim_p50": 22282.747,
+    "claim_p95": 44519.316
+  },
+  "shared_import_ms": 3985.576,
+  "shared_index_ms": 47049.535,
+  "total_run_ms": 672528.149,
+  "claims": {
+    "tested_answers": 9,
+    "expected_primary_claims": 10,
+    "actual_claims": 12,
+    "atomicity_answer_accuracy": {
+      "numerator": 8,
+      "denominator": 9,
+      "value": 0.8889
+    },
+    "standalone_fact_accuracy": {
+      "numerator": 11,
+      "denominator": 12,
+      "value": 0.9167
+    },
+    "category_accuracy_actual_claims": {
+      "numerator": 8,
+      "denominator": 12,
+      "value": 0.6667
+    },
+    "category_accuracy_primary_facts": {
+      "numerator": 7,
+      "denominator": 10,
+      "value": 0.7
+    },
+    "source_lineage_accuracy": {
+      "numerator": 9,
+      "denominator": 9,
+      "value": 1.0
+    },
+    "real_evidence_id_accuracy": {
+      "numerator": 13,
+      "denominator": 13,
+      "value": 1.0
+    },
+    "strict_gold_source_edge_accuracy": {
+      "numerator": 12,
+      "denominator": 13,
+      "value": 0.9231
+    },
+    "coverage_complete": {
+      "numerator": 8,
+      "denominator": 9,
+      "value": 0.8889
+    },
+    "unsupported_claim_count": 0,
+    "extraction_errors": 0,
+    "category_mismatch_ids": [
+      "s06",
+      "s09",
+      "s10",
+      "s38"
+    ],
+    "incomplete_scope_ids": [
+      "s06"
+    ],
+    "notes": "Expected 10 core facts; two additional true row/contract relationships are retained. Unsupported counts literal factual claims, not missing scope or wrong category. Source lineage validity is not factual/category accuracy. QA s38 already separated facts before extraction.",
+    "source_lineage_claim_accuracy": {
+      "numerator": 12,
+      "denominator": 12,
+      "value": 1.0
+    }
+  },
+  "qa_observations": [
+    {
+      "id": "s01",
+      "question": "甲账簿第一笔设备预付款的实际转账金额是多少？",
+      "tags": [
+        "smoke_regular",
+        "amount",
+        "similar_amount",
+        "citation_page"
+      ],
+      "smoke_group": "regular",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "人民币450000元"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "ledger_a",
+          "page": 3,
+          "snippet": "第一笔设备预付款实际转账金额：人民币450000元"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "甲账簿第一笔设备预付款的实际转账金额是人民币450000元。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "ledger_a",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 3,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "question": "乙账簿第二笔设备预付款的付款人是谁？",
+      "tags": [
+        "smoke_regular",
+        "person",
+        "similar_entity"
+      ],
+      "smoke_group": "regular",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "北京乙有限公司"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "ledger_b",
+          "page": 1,
+          "snippet": "第二笔设备预付款付款人为北京乙有限公司"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "乙账簿第二笔设备预付款的付款人是北京乙有限公司。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "ledger_b",
+          "filename": "05_ledger_beta.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "question": "MIX-28原生页的登记日期是什么？",
+      "tags": [
+        "smoke_regular",
+        "mixed_layer",
+        "date",
+        "timeline"
+      ],
+      "smoke_group": "regular",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "登记日期：2026年3月2日"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "mixed",
+          "page": 1,
+          "snippet": "登记日期：2026年3月2日"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "MIX-28原生页的登记日期是2026年3月2日。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "mixed",
+          "filename": "02_mixed_layer.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "question": "仓储合同ST-2026-11当前版本的月租金是多少？",
+      "tags": [
+        "smoke_regular",
+        "version",
+        "amount"
+      ],
+      "smoke_group": "regular",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "人民币82000元"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "contract_v2",
+          "page": 1,
+          "snippet": "月租金：人民币82000元"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "仓储合同ST-2026-11当前版本的月租金是人民币82000元。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "contract_v2",
+          "filename": "08_contract_v2.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s38",
+      "question": "争议陈述A的付款状态与唯一付款人分别是什么？",
+      "tags": [
+        "claim_multi_fact",
+        "action",
+        "person",
+        "contradiction"
+      ],
+      "smoke_group": "regular",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "付款记录款项已支付，付款记录唯一付款人为北京甲有限公司"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "conflict_a",
+          "page": 1,
+          "snippet": "付款记录款项已支付"
+        },
+        {
+          "doc_key": "conflict_a",
+          "page": 1,
+          "snippet": "付款记录唯一付款人为北京甲有限公司"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "争议陈述A的付款状态为已支付\n争议陈述A的唯一付款人为北京甲有限公司",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [
+        "manual_review_required"
+      ],
+      "automatic_failure_categories": [
+        "citation_wrong_document",
+        "citation_wrong_page",
+        "manual_review_required"
+      ],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "陈述A第1页直接支持两项回答；另有两条对照页补充引用。对照页包含已支付及甲公司简称，但未明确绑定陈述A，额外引用的事件关联仍需用户人工确认。"
+      },
+      "citations": [
+        {
+          "doc_key": "conflict_a",
+          "filename": "09_conflict_a.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        },
+        {
+          "doc_key": "controls",
+          "filename": "11_conflict_controls.pdf",
+          "page": 1,
+          "document_match": false,
+          "page_match": false,
+          "snippet_match": false,
+          "support_role": "corroborating_unconfirmed_scope",
+          "scoped_link_confirmed": null
+        },
+        {
+          "doc_key": "conflict_a",
+          "filename": "09_conflict_a.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        },
+        {
+          "doc_key": "controls",
+          "filename": "11_conflict_controls.pdf",
+          "page": 1,
+          "document_match": false,
+          "page_match": false,
+          "snippet_match": false,
+          "support_role": "corroborating_unconfirmed_scope",
+          "scoped_link_confirmed": null
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "question": "结算表R-01对应CT-77的月租金是多少？",
+      "tags": [
+        "smoke_table",
+        "table",
+        "broken_line",
+        "amount"
+      ],
+      "smoke_group": "table",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "人民币85000.50元"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "table",
+          "page": 1,
+          "snippet": "R-01    CT-77     月租金        人民币\n                                  85000.50元"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "结算表R-01对应CT-77的月租金是人民币85000.50元。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "table",
+          "filename": "03_broken_table.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "question": "结算表R-02对应CT-78的月租金是多少？",
+      "tags": [
+        "smoke_table",
+        "table",
+        "similar_amount",
+        "amount"
+      ],
+      "smoke_group": "table",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "人民币85000.80元"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "table",
+          "page": 1,
+          "snippet": "R-02    CT-78     月租金        人民币85000.80元"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "结算表R-02对应CT-78的月租金是人民币85000.80元。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "table",
+          "filename": "03_broken_table.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "question": "结算表R-01对应CT-77的起租日期是什么？",
+      "tags": [
+        "smoke_table",
+        "table",
+        "broken_line",
+        "date"
+      ],
+      "smoke_group": "table",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "2026年3月9日"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "table",
+          "page": 1,
+          "snippet": "R-01    CT-77     起租日期      2026年3月\n                                  9日"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "结算表R-01对应CT-77的起租日期是2026年3月9日。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "table",
+          "filename": "03_broken_table.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "question": "结算表CT-77设备交接费的付款状态是什么？",
+      "tags": [
+        "smoke_table",
+        "table",
+        "adjacent_row",
+        "action"
+      ],
+      "smoke_group": "table",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "尚未支付"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "table",
+          "page": 2,
+          "snippet": "CT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "结算表CT-77设备交接费的付款状态为尚未支付。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "table",
+          "filename": "03_broken_table.pdf",
+          "page": 2,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "question": "结算表CT-78的审核人是谁？",
+      "tags": [
+        "smoke_table",
+        "table",
+        "similar_name",
+        "person"
+      ],
+      "smoke_group": "table",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "柳均"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "table",
+          "page": 2,
+          "snippet": "CT-78   审核人           柳均"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "结算表CT-78的审核人是柳均。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "table",
+          "filename": "03_broken_table.pdf",
+          "page": 2,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "question": "海岚设备有限公司第一笔预付设备款实际划出的数额？",
+      "tags": [
+        "smoke_paraphrase",
+        "paraphrase",
+        "amount",
+        "similar_amount"
+      ],
+      "smoke_group": "hard",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "人民币450000元"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "ledger_a",
+          "page": 3,
+          "snippet": "第一笔设备预付款实际转账金额：人民币450000元"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "海岚设备有限公司第一笔预付设备款实际划出的数额为人民币450000元。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [
+        "citation_wrong_page",
+        "manual_review_required"
+      ],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "甲账簿第3页提供金额；第1页明确海岚为同一笔预付款的记载主体，是合理主体上下文引用。第1页不匹配金额gold，保留原始gold页码指标。"
+      },
+      "citations": [
+        {
+          "doc_key": "ledger_a",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 3,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        },
+        {
+          "doc_key": "ledger_a",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": false,
+          "snippet_match": false,
+          "support_role": "subject_context",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "question": "乙账簿第二次预付设备款是什么时候汇出的？",
+      "tags": [
+        "smoke_paraphrase",
+        "paraphrase",
+        "date"
+      ],
+      "smoke_group": "hard",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "2026年3月10日"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "ledger_b",
+          "page": 1,
+          "snippet": "第二笔设备预付款实际转账日期：2026年3月10日"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "乙账簿第二笔设备预付款的实际转账日期为2026年3月10日。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "ledger_b",
+          "filename": "05_ledger_beta.pdf",
+          "page": 1,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "question": "MIX-28扫描附件何时完成验收？",
+      "tags": [
+        "smoke_paraphrase",
+        "paraphrase",
+        "mixed_layer",
+        "ocr",
+        "date",
+        "timeline"
+      ],
+      "smoke_group": "hard",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "MIX-28附件验收日期：2026年3月11日"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "mixed",
+          "page": 2,
+          "snippet": "MIX-28附件验收日期：2026年3月11日"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "MIX-28扫描附件的验收日期为2026年3月11日。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "mixed",
+          "filename": "02_mixed_layer.pdf",
+          "page": 2,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "question": "长卷宗南浦节点实际交付的款项有多少？",
+      "tags": [
+        "smoke_paraphrase",
+        "paraphrase",
+        "long_doc",
+        "amount"
+      ],
+      "smoke_group": "hard",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "人民币538038元"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "long",
+          "page": 38,
+          "snippet": "南浦站实际交付金额：人民币538038元"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "南浦站实际交付金额为人民币538038元。",
+      "validation_status": "validated",
+      "gold_rank": 1,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "supported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "supported",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": [
+        {
+          "doc_key": "long",
+          "filename": "06_long_50_pages.pdf",
+          "page": 38,
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true,
+          "support_role": "direct_fact",
+          "scoped_link_confirmed": true
+        }
+      ]
+    },
+    {
+      "id": "s27",
+      "question": "低清扫描第2页的日期是什么？",
+      "tags": [
+        "ocr",
+        "ocr_noise",
+        "date",
+        "date_separator"
+      ],
+      "smoke_group": "hard",
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "2026-03-08"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "ocr",
+          "page": 2,
+          "snippet": "日期：2026-03-08"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "第2页的参考日期为2026年3月3日\n第2页未记载目标交付日期",
+      "validation_status": "validated",
+      "gold_rank": 3,
+      "gold_in_qa_context": true,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [
+        "qa_wrong_answer",
+        "citation_wrong_document",
+        "citation_wrong_page",
+        "citation_unsupported"
+      ],
+      "automatic_failure_categories": [
+        "citation_wrong_document",
+        "citation_wrong_page",
+        "manual_review_required"
+      ],
+      "citation_semantic_support": "unsupported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": false,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "unsupported",
+        "note": "应回答低清扫描ocr第2页2026-03-08，gold为rank3且进入context；实际引用long第2页2026年3月3日。引用支持长文档本身的参考日期，不能支持所问扫描来源。问句的低清描述并非唯一文档标识，需后续复核来源选择。"
+      },
+      "citations": [
+        {
+          "doc_key": "long",
+          "filename": "06_long_50_pages.pdf",
+          "page": 2,
+          "document_match": false,
+          "page_match": false,
+          "snippet_match": false,
+          "support_role": "wrong_requested_fact_or_source",
+          "scoped_link_confirmed": false
+        },
+        {
+          "doc_key": "long",
+          "filename": "06_long_50_pages.pdf",
+          "page": 2,
+          "document_match": false,
+          "page_match": false,
+          "snippet_match": false,
+          "support_role": "wrong_requested_fact_or_source",
+          "scoped_link_confirmed": false
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "question": "海岚设备有限公司董事长的出生日期是什么？",
+      "tags": [
+        "smoke_abstain",
+        "abstain",
+        "mentioned_not_answered"
+      ],
+      "smoke_group": "abstain",
+      "expected_status": "insufficient_evidence",
+      "expected_answer_any": [],
+      "gold_evidence": [],
+      "actual_status": "insufficient_evidence",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "validation_status": "model_abstained",
+      "gold_rank": null,
+      "gold_in_qa_context": null,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "not_applicable",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "not_applicable",
+        "requested_fact_support": "not_applicable",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": []
+    },
+    {
+      "id": "s17",
+      "question": "柳钧的手机号码是多少？",
+      "tags": [
+        "smoke_abstain",
+        "abstain",
+        "mentioned_not_answered"
+      ],
+      "smoke_group": "abstain",
+      "expected_status": "insufficient_evidence",
+      "expected_answer_any": [],
+      "gold_evidence": [],
+      "actual_status": "insufficient_evidence",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "validation_status": "model_abstained",
+      "gold_rank": null,
+      "gold_in_qa_context": null,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "not_applicable",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "not_applicable",
+        "requested_fact_support": "not_applicable",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": []
+    },
+    {
+      "id": "s18",
+      "question": "ST-2026-11合同约定的违约金是多少？",
+      "tags": [
+        "smoke_abstain",
+        "abstain",
+        "version"
+      ],
+      "smoke_group": "abstain",
+      "expected_status": "insufficient_evidence",
+      "expected_answer_any": [],
+      "gold_evidence": [],
+      "actual_status": "insufficient_evidence",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "validation_status": "model_abstained",
+      "gold_rank": null,
+      "gold_in_qa_context": null,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "not_applicable",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "not_applicable",
+        "requested_fact_support": "not_applicable",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": []
+    },
+    {
+      "id": "s19",
+      "question": "第一笔设备预付款最终到账日期是哪天？",
+      "tags": [
+        "smoke_abstain",
+        "abstain",
+        "action"
+      ],
+      "smoke_group": "abstain",
+      "expected_status": "insufficient_evidence",
+      "expected_answer_any": [],
+      "gold_evidence": [],
+      "actual_status": "answered",
+      "actual_answer": "第一笔设备预付款实际转账日期为2026年3月1日。",
+      "validation_status": "validated",
+      "gold_rank": null,
+      "gold_in_qa_context": null,
+      "false_abstain": false,
+      "false_answer": true,
+      "failure_categories": [
+        "qa_wrong_answer",
+        "citation_unsupported"
+      ],
+      "automatic_failure_categories": [
+        "qa_wrong_answer"
+      ],
+      "citation_semantic_support": "unsupported",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": false,
+        "literal_returned_claim_support": "supported",
+        "requested_fact_support": "unsupported",
+        "note": "材料只有实际转账日期2026年3月1日，没有最终到账日期。转账不能等同到账；即使返回的转账事实有依据，负例上的事实性回答仍是false_answer。"
+      },
+      "citations": [
+        {
+          "doc_key": "ledger_a",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 3,
+          "document_match": null,
+          "page_match": null,
+          "snippet_match": null,
+          "support_role": "wrong_requested_fact_or_source",
+          "scoped_link_confirmed": false
+        },
+        {
+          "doc_key": "conflict_a",
+          "filename": "09_conflict_a.pdf",
+          "page": 1,
+          "document_match": null,
+          "page_match": null,
+          "snippet_match": null,
+          "support_role": "wrong_requested_fact_or_source",
+          "scoped_link_confirmed": false
+        }
+      ]
+    },
+    {
+      "id": "s20",
+      "question": "CT-77审核人的出生地址在哪里？",
+      "tags": [
+        "smoke_abstain",
+        "abstain",
+        "mentioned_not_answered",
+        "table"
+      ],
+      "smoke_group": "abstain",
+      "expected_status": "insufficient_evidence",
+      "expected_answer_any": [],
+      "gold_evidence": [],
+      "actual_status": "insufficient_evidence",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "validation_status": "model_abstained",
+      "gold_rank": null,
+      "gold_in_qa_context": null,
+      "false_abstain": false,
+      "false_answer": false,
+      "failure_categories": [],
+      "automatic_failure_categories": [],
+      "citation_semantic_support": "not_applicable",
+      "answer_review": {
+        "method": "Codex direct inspection of returned answer, gold, and cited synthetic text; no extra model API judge",
+        "human_signoff": false,
+        "correct": true,
+        "literal_returned_claim_support": "not_applicable",
+        "requested_fact_support": "not_applicable",
+        "note": "回答的事实、所问字段、主体和原文对应；负例未返回事实性答案。"
+      },
+      "citations": []
+    }
+  ],
+  "claim_observations": [
+    {
+      "id": "s01",
+      "answer": "甲账簿第一笔设备预付款的实际转账金额是人民币450000元。",
+      "expected_claims": [
+        {
+          "doc_key": "ledger_a",
+          "page": 3,
+          "snippet": "第一笔设备预付款实际转账金额：人民币450000元"
+        }
+      ],
+      "actual_claims": [
+        {
+          "text": "甲账簿第一笔设备预付款的实际转账金额是人民币450000元",
+          "expected_kind": "amount",
+          "actual_kind": "amount",
+          "category_correct": true,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "原文及回答中的独立事实，分类一致"
+        }
+      ],
+      "coverage_complete": true,
+      "extraction_error": null,
+      "latency_ms": 29520.9
+    },
+    {
+      "id": "s02",
+      "answer": "乙账簿第二笔设备预付款的付款人是北京乙有限公司。",
+      "expected_claims": [
+        {
+          "doc_key": "ledger_b",
+          "page": 1,
+          "snippet": "第二笔设备预付款付款人为北京乙有限公司"
+        }
+      ],
+      "actual_claims": [
+        {
+          "text": "乙账簿第二笔设备预付款的付款人是北京乙有限公司",
+          "expected_kind": "person",
+          "actual_kind": "person",
+          "category_correct": true,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "原文及回答中的独立事实，分类一致"
+        }
+      ],
+      "coverage_complete": true,
+      "extraction_error": null,
+      "latency_ms": 20954.817
+    },
+    {
+      "id": "s03",
+      "answer": "MIX-28原生页的登记日期是2026年3月2日。",
+      "expected_claims": [
+        {
+          "doc_key": "mixed",
+          "page": 1,
+          "snippet": "登记日期：2026年3月2日"
+        }
+      ],
+      "actual_claims": [
+        {
+          "text": "MIX-28原生页的登记日期是2026年3月2日",
+          "expected_kind": "date",
+          "actual_kind": "date",
+          "category_correct": true,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "原文及回答中的独立事实，分类一致"
+        }
+      ],
+      "coverage_complete": true,
+      "extraction_error": null,
+      "latency_ms": 22282.747
+    },
+    {
+      "id": "s06",
+      "answer": "结算表R-01对应CT-77的月租金是人民币85000.50元。",
+      "expected_claims": [
+        {
+          "doc_key": "table",
+          "page": 1,
+          "snippet": "R-01    CT-77     月租金        人民币\n                                  85000.50元"
+        }
+      ],
+      "actual_claims": [
+        {
+          "text": "结算表R-01对应CT-77",
+          "expected_kind": "other",
+          "actual_kind": "amount",
+          "category_correct": false,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "关系事实不应标amount"
+        },
+        {
+          "text": "月租金是人民币85000.50元",
+          "expected_kind": "amount",
+          "actual_kind": "amount",
+          "category_correct": true,
+          "standalone_atomic_fact": false,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "金额字段遗漏行号/合同主体，单独不完整"
+        }
+      ],
+      "coverage_complete": false,
+      "extraction_error": null,
+      "latency_ms": 44519.316
+    },
+    {
+      "id": "s08",
+      "answer": "结算表R-01对应CT-77的起租日期是2026年3月9日。",
+      "expected_claims": [
+        {
+          "doc_key": "table",
+          "page": 1,
+          "snippet": "R-01    CT-77     起租日期      2026年3月\n                                  9日"
+        }
+      ],
+      "actual_claims": [
+        {
+          "text": "结算表R-01对应CT-77",
+          "expected_kind": "other",
+          "actual_kind": "other",
+          "category_correct": true,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "原文及回答中的独立事实，分类一致"
+        },
+        {
+          "text": "CT-77的起租日期是2026年3月9日",
+          "expected_kind": "date",
+          "actual_kind": "date",
+          "category_correct": true,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "原文及回答中的独立事实，分类一致"
+        }
+      ],
+      "coverage_complete": true,
+      "extraction_error": null,
+      "latency_ms": 40951.124
+    },
+    {
+      "id": "s09",
+      "answer": "结算表CT-77设备交接费的付款状态为尚未支付。",
+      "expected_claims": [
+        {
+          "doc_key": "table",
+          "page": 2,
+          "snippet": "CT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付"
+        }
+      ],
+      "actual_claims": [
+        {
+          "text": "结算表CT-77设备交接费的付款状态为尚未支付",
+          "expected_kind": "action",
+          "actual_kind": "other",
+          "category_correct": false,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "明确行为/人物事实被标other，可能无法进入该类型候选"
+        }
+      ],
+      "coverage_complete": true,
+      "extraction_error": null,
+      "latency_ms": 20879.099
+    },
+    {
+      "id": "s10",
+      "answer": "结算表CT-78的审核人是柳均。",
+      "expected_claims": [
+        {
+          "doc_key": "table",
+          "page": 2,
+          "snippet": "CT-78   审核人           柳均"
+        }
+      ],
+      "actual_claims": [
+        {
+          "text": "结算表CT-78的审核人是柳均",
+          "expected_kind": "person",
+          "actual_kind": "other",
+          "category_correct": false,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "明确行为/人物事实被标other，可能无法进入该类型候选"
+        }
+      ],
+      "coverage_complete": true,
+      "extraction_error": null,
+      "latency_ms": 15995.033
+    },
+    {
+      "id": "s13",
+      "answer": "MIX-28扫描附件的验收日期为2026年3月11日。",
+      "expected_claims": [
+        {
+          "doc_key": "mixed",
+          "page": 2,
+          "snippet": "MIX-28附件验收日期：2026年3月11日"
+        }
+      ],
+      "actual_claims": [
+        {
+          "text": "MIX-28扫描附件的验收日期为2026年3月11日",
+          "expected_kind": "date",
+          "actual_kind": "date",
+          "category_correct": true,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "原文及回答中的独立事实，分类一致"
+        }
+      ],
+      "coverage_complete": true,
+      "extraction_error": null,
+      "latency_ms": 18967.122
+    },
+    {
+      "id": "s38",
+      "answer": "争议陈述A的付款状态为已支付\n争议陈述A的唯一付款人为北京甲有限公司",
+      "expected_claims": [
+        {
+          "doc_key": "conflict_a",
+          "page": 1,
+          "snippet": "付款记录款项已支付"
+        },
+        {
+          "doc_key": "conflict_a",
+          "page": 1,
+          "snippet": "付款记录唯一付款人为北京甲有限公司"
+        }
+      ],
+      "actual_claims": [
+        {
+          "text": "争议陈述A的付款状态为已支付",
+          "expected_kind": "action",
+          "actual_kind": "other",
+          "category_correct": false,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "明确行为/人物事实被标other，可能无法进入该类型候选"
+        },
+        {
+          "text": "争议陈述A的唯一付款人为北京甲有限公司",
+          "expected_kind": "person",
+          "actual_kind": "person",
+          "category_correct": true,
+          "standalone_atomic_fact": true,
+          "literal_fact_supported": true,
+          "real_evidence_ids_valid": true,
+          "note": "原文及回答中的独立事实，分类一致"
+        }
+      ],
+      "coverage_complete": true,
+      "extraction_error": null,
+      "latency_ms": 37224.186
+    }
+  ],
+  "contradiction_observations": [
+    {
+      "pair_key": "action_conflict",
+      "type": "action",
+      "expected": "contradiction",
+      "actual": "contradiction",
+      "basis": "model_incompatible_same_slot",
+      "exact_gold_match": true,
+      "manual_review_required": false,
+      "review_note": "actual semantic decision matches annotated relation and source facts",
+      "fixture_mode": "gold-controlled validated claims, real Qwen judge",
+      "left_claim": "付款记录款项已支付",
+      "right_claim": "付款记录款项尚未支付",
+      "latency_ms": 16148.503,
+      "raw_model_output": {
+        "verdict": "contradiction",
+        "same_event": true,
+        "same_fact_slot": true,
+        "reason": "右侧证据明确指出该记录指向陈述A的同一笔付款记录，因此属于同一事件。对于同一笔付款记录的支付状态，左侧证据表明款项已支付（occurred），右侧证据表明款项尚未支付（did_not_occur），两者在同一事实槽位上明确不兼容，构成矛盾。",
+        "left_occurrence": "occurred",
+        "right_occurrence": "did_not_occur",
+        "left_identity": "",
+        "right_identity": ""
+      }
+    },
+    {
+      "pair_key": "action_compatible",
+      "type": "action",
+      "expected": "non_contradiction",
+      "actual": "non_contradiction",
+      "basis": "model_compatible",
+      "exact_gold_match": true,
+      "manual_review_required": false,
+      "review_note": "actual semantic decision matches annotated relation and source facts",
+      "fixture_mode": "gold-controlled validated claims, real Qwen judge",
+      "left_claim": "付款记录款项已支付",
+      "right_claim": "付款记录款项确已支付",
+      "latency_ms": 11163.559,
+      "raw_model_output": {
+        "verdict": "non_contradiction",
+        "same_event": true,
+        "same_fact_slot": true,
+        "reason": "左侧和右侧的声明及证据均表明付款记录款项已经支付，两者描述的是同一事件和同一事实槽位，且内容完全一致，不存在矛盾。",
+        "left_occurrence": "occurred",
+        "right_occurrence": "occurred",
+        "left_identity": "",
+        "right_identity": ""
+      }
+    },
+    {
+      "pair_key": "action_uncertain",
+      "type": "action",
+      "expected": "uncertain",
+      "actual": "non_contradiction",
+      "basis": "different_event_or_slot",
+      "exact_gold_match": false,
+      "manual_review_required": true,
+      "review_note": "right quote also states payment completed; condition and occurrence differ; strict gold uncertainty needs contextual review",
+      "fixture_mode": "gold-controlled validated claims, real Qwen judge",
+      "left_claim": "付款记录款项已支付",
+      "right_claim": "付款记录款项在收到发票后支付",
+      "latency_ms": 11554.696,
+      "raw_model_output": {
+        "verdict": "non_contradiction",
+        "same_event": true,
+        "same_fact_slot": false,
+        "reason": "左侧陈述付款记录款项已支付，右侧陈述付款记录款项在收到发票后支付且确已支付。两者描述的是同一笔付款的支付状态与支付条件，内容兼容，不存在矛盾。",
+        "left_occurrence": "occurred",
+        "right_occurrence": "occurred",
+        "left_identity": "",
+        "right_identity": ""
+      }
+    },
+    {
+      "pair_key": "person_conflict",
+      "type": "person",
+      "expected": "contradiction",
+      "actual": "contradiction",
+      "basis": "model_incompatible_same_slot",
+      "exact_gold_match": true,
+      "manual_review_required": false,
+      "review_note": "actual semantic decision matches annotated relation and source facts",
+      "fixture_mode": "gold-controlled validated claims, real Qwen judge",
+      "left_claim": "付款记录唯一付款人为乙公司",
+      "right_claim": "付款记录唯一付款人为北京甲有限公司",
+      "latency_ms": 10376.564,
+      "raw_model_output": {
+        "verdict": "contradiction",
+        "same_event": true,
+        "same_fact_slot": true,
+        "reason": "两侧均指向同一笔付款记录，且槽位均为“唯一付款人”。左侧原文证据指出唯一付款人为“乙公司”，右侧原文证据指出唯一付款人为“北京甲有限公司”。两者为同一事件、同一槽位且明确不兼容，构成矛盾。",
+        "left_occurrence": "unknown",
+        "right_occurrence": "unknown",
+        "left_identity": "乙公司",
+        "right_identity": "北京甲有限公司"
+      }
+    },
+    {
+      "pair_key": "person_compatible",
+      "type": "person",
+      "expected": "non_contradiction",
+      "actual": "non_contradiction",
+      "basis": "model_compatible",
+      "exact_gold_match": true,
+      "manual_review_required": false,
+      "review_note": "actual semantic decision matches annotated relation and source facts",
+      "fixture_mode": "gold-controlled validated claims, real Qwen judge",
+      "left_claim": "付款记录唯一付款人为甲公司",
+      "right_claim": "付款记录唯一付款人为北京甲有限公司",
+      "latency_ms": 13739.313,
+      "raw_model_output": {
+        "verdict": "non_contradiction",
+        "same_event": true,
+        "same_fact_slot": true,
+        "reason": "左侧证据明确指出甲公司即北京甲有限公司，因此左侧的付款人甲公司与右侧的付款人北京甲有限公司指向同一实体，两者描述的是同一事实，不存在矛盾。",
+        "left_occurrence": "unknown",
+        "right_occurrence": "unknown",
+        "left_identity": "甲公司",
+        "right_identity": "北京甲有限公司"
+      }
+    },
+    {
+      "pair_key": "person_uncertain",
+      "type": "person",
+      "expected": "uncertain",
+      "actual": "non_contradiction",
+      "basis": "different_event_or_slot",
+      "exact_gold_match": false,
+      "manual_review_required": true,
+      "review_note": "explicit different payment event supports non-conflict; original gold uncertain is conservative and needs rubric review",
+      "fixture_mode": "gold-controlled validated claims, real Qwen judge",
+      "left_claim": "另一笔付款记录唯一付款人为乙公司",
+      "right_claim": "付款记录唯一付款人为北京甲有限公司",
+      "latency_ms": 8794.704,
+      "raw_model_output": {
+        "verdict": "non_contradiction",
+        "same_event": false,
+        "same_fact_slot": false,
+        "reason": "左侧描述的是“另一笔付款记录”的付款人为乙公司，右侧描述的是“付款记录”（即第一笔）的付款人为北京甲有限公司。两者针对的是不同的付款记录，属于不同事件和不同角色，因此不构成矛盾。",
+        "left_occurrence": "unknown",
+        "right_occurrence": "unknown",
+        "left_identity": "乙公司",
+        "right_identity": "北京甲有限公司"
+      }
+    }
+  ],
+  "warm": [
+    {
+      "id": "s01",
+      "run_mode": "warm",
+      "cache_hit": true,
+      "same_answer_id": true,
+      "model_calls": 0,
+      "latency_ms": 7.767
+    },
+    {
+      "id": "s06",
+      "run_mode": "warm",
+      "cache_hit": true,
+      "same_answer_id": true,
+      "model_calls": 0,
+      "latency_ms": 7.755
+    },
+    {
+      "id": "s16",
+      "run_mode": "warm",
+      "cache_hit": true,
+      "same_answer_id": true,
+      "model_calls": 0,
+      "latency_ms": 8.438
+    }
+  ],
+  "review_status": "Codex direct evidence inspection completed; independent user human signoff pending",
+  "review_timestamp": "2026-09-26T13:02:26.007467+00:00",
+  "acceptance": {
+    "recommended_close_phase_9": false,
+    "blocking_qa_ids": [
+      "s19",
+      "s27"
+    ],
+    "claim_issues": [
+      "s06",
+      "s09",
+      "s10",
+      "s38"
+    ],
+    "reason": "negative factual answer and wrong-document answer escaped existing validation; no business changes or reruns"
+  },
+  "metric_notes": {
+    "status_is_not_correctness": "s27 has expected answered status but wrong source/date; s19 answers a negative. Question correctness is 18/20.",
+    "citation_gold": "20 returned citation links from expected answered questions; negatives excluded. Document+page is required for page accuracy; returned valid context can be outside narrow gold.",
+    "semantic_support": "14/16 answered question citation sets support the requested fact/source; literal returned claims have citation support in all 16, which does not ensure they answer the question.",
+    "claim_category": "8/12 all actual claims; 7/10 core expected facts. Extra row/contract relation has expected other category. Atomicity also requires retained subject scope.",
+    "claim_source": "Valid provenance is measured separately from category/atomicity; strict gold source precision is 12/13 citation links.",
+    "contradiction": "Fixed gold fixtures through real services, real Qwen judge. 2/3 exact gold matches for each type; uncertain gold/context mismatch requires review, not necessarily model failure.",
+    "review": "Codex directly inspected synthetic text/results without another model API judge. This is not independent human signoff.",
+    "sampling": "Single cold sample, no agent-initiated retries or reruns. Three warm checks send zero model calls."
+  },
+  "versions": {
+    "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+    "retrieval": "hybrid-rrf-k60-page-token-v2",
+    "qa_prompt": "grounded-qa-citation-alias-v6+claim-support-v1",
+    "claim_extraction": "qa-atomic-claims-v2",
+    "contradiction_detector": "candidate-contradiction-v2",
+    "semantic_prompt": "semantic-contradiction-v1"
+  },
+  "checks": {
+    "pytest": {
+      "passed": 148,
+      "warnings": 1,
+      "seconds": 65.52
+    },
+    "ruff": "passed",
+    "mypy_strict_src": {
+      "status": "passed",
+      "source_files": 63
+    },
+    "business_logic_modified": false,
+    "extra_model_judge_calls": 0,
+    "credential_matches_in_artifacts": 0
+  }
+}

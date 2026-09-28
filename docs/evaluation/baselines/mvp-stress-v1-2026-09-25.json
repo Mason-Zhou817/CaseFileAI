@@ -1,0 +1,613 @@
+{
+  "evaluation_set": "CaseFile AI MVP stress v1 synthetic scenarios",
+  "run_timestamp": "2026-09-25T05:29:34.587842+00:00",
+  "provider_version": "mvp-v1-gold-evidence-fake-v1",
+  "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+  "retrieval_version": "hybrid-rrf-k60-v1",
+  "inputs": {
+    "case_set_sha256": "3a587fc260f29edab572ae839c54bf446e97e1e7d3436d14414c98bb7988872c",
+    "questions_sha256": "08e8512001771056883157ff8538d2348512377c8edff966c563114aed4bd33b",
+    "documents": {
+      "ocr": "e7447497119af9c30e6a1236d330eafeba4530bfa1e0c61522b6adb19197b8e2",
+      "mixed": "5c73b36025c340ca5f743794deddc825907720feaa778caf7a66d0a12ba04f4c",
+      "table": "7848318e6073b132b9a62532d2edf70e731839524a9321660b9c95042275c08e",
+      "ledger_a": "6dd200e19d24b9edf006faa193baece54375a4cad8d93675e3f9091dd9175b8d",
+      "ledger_b": "9b32280d5e5802fb13854efc7e14d912c919956dfe39d3b95efc8bb7a6adc073",
+      "long": "c92a996eae95bd83b89bfbf3a7159d6d5d6883eb91f460c1d42992f6af6cfa30",
+      "contract_v1": "15f81c88db84c505db148021511aa921f09cd89f53a2482289e61da6596ffbed",
+      "contract_v2": "59b071699cd009f44cc9bdde5273b3f519341395002277fd182fa4853d5ef4c0",
+      "conflict_a": "68790f9c804830870dcf8b423cc7a0e93dd868cb0422454464435c51a9527ca3",
+      "conflict_b": "5574626116f8fe04778e193ee1bfe410b7cd0b69c121388b7c161af595bdb5dd",
+      "controls": "57689d9d2fc2b4c7417df534e9e7b9600a56d91407b1836623cff5521418c410"
+    }
+  },
+  "total_questions": 51,
+  "answer_status_accuracy": {
+    "numerator": 47,
+    "denominator": 51,
+    "value": 0.9216
+  },
+  "correct_abstain_rate": {
+    "numerator": 6,
+    "denominator": 6,
+    "value": 1.0
+  },
+  "retrieval_all_required_hit_at_k": {
+    "numerator": 41,
+    "denominator": 45,
+    "value": 0.9111
+  },
+  "citation_document_accuracy": {
+    "numerator": 42,
+    "denominator": 42,
+    "value": 1.0
+  },
+  "citation_page_accuracy": {
+    "numerator": 42,
+    "denominator": 42,
+    "value": 1.0
+  },
+  "citation_snippet_accuracy": {
+    "numerator": 42,
+    "denominator": 42,
+    "value": 1.0
+  },
+  "answer_match_rate": {
+    "numerator": 41,
+    "denominator": 41,
+    "value": 1.0
+  },
+  "manual_review_count": 0,
+  "failure_count": 4,
+  "latency_ms": {
+    "import_ms": 2401.344,
+    "index_ms": 17585.041,
+    "run_total_ms": 23978.888,
+    "question_total_p50": 54.023,
+    "question_total_p95": 63.398
+  },
+  "index_statistics": {
+    "pages_seen": 66,
+    "document_versions_seen": 11,
+    "chunks_total": 66,
+    "chunks_created": 66,
+    "embeddings_created": 66,
+    "chunking_version": "page-char-v1-target500-overlap80-boundary100",
+    "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c"
+  },
+  "stress": {
+    "stress_gold_sha256": "f34e2b88ed4df59ee1826e912c68cbea31c2215b834798737a524869877ce9a2",
+    "materials": 11,
+    "pages": 66,
+    "questions": 51,
+    "tag_counts": {
+      "abstain": 6,
+      "action": 6,
+      "adjacent_row": 1,
+      "alias": 1,
+      "ambiguous": 1,
+      "ambiguous_char": 2,
+      "amount": 19,
+      "broken_line": 2,
+      "citation_page": 4,
+      "claim_multi_fact": 4,
+      "compatible": 4,
+      "contradiction": 4,
+      "cross_document": 3,
+      "date": 14,
+      "date_separator": 2,
+      "decimal": 2,
+      "distractor_query": 1,
+      "long_doc": 6,
+      "long_end": 1,
+      "long_front": 1,
+      "long_middle": 1,
+      "long_quarter": 1,
+      "long_query": 1,
+      "long_three_quarters": 1,
+      "mentioned_not_answered": 3,
+      "mixed_layer": 2,
+      "multi_evidence": 4,
+      "ocr": 8,
+      "ocr_noise": 5,
+      "paraphrase": 5,
+      "partial_date": 1,
+      "person": 9,
+      "same_fact_multi_page": 1,
+      "short_query": 1,
+      "similar_amount": 3,
+      "similar_entity": 1,
+      "similar_name": 2,
+      "smoke_abstain": 5,
+      "smoke_paraphrase": 5,
+      "smoke_regular": 5,
+      "smoke_table": 5,
+      "table": 6,
+      "time_range": 1,
+      "timeline": 8,
+      "uncertain": 4,
+      "version": 6
+    },
+    "retrieval": {
+      "any_hit_at_1": {
+        "numerator": 37,
+        "denominator": 45,
+        "value": 0.8222
+      },
+      "any_hit_at_3": {
+        "numerator": 40,
+        "denominator": 45,
+        "value": 0.8889
+      },
+      "any_hit_at_5": {
+        "numerator": 41,
+        "denominator": 45,
+        "value": 0.9111
+      },
+      "all_required_hit_at_1": {
+        "numerator": 35,
+        "denominator": 45,
+        "value": 0.7778
+      },
+      "all_required_hit_at_3": {
+        "numerator": 40,
+        "denominator": 45,
+        "value": 0.8889
+      },
+      "all_required_hit_at_5": {
+        "numerator": 41,
+        "denominator": 45,
+        "value": 0.9111
+      },
+      "mrr_at_5": 0.8611,
+      "mean_distractors_at_5": 4.044,
+      "missed_gold_ids": [
+        "s21",
+        "s22",
+        "s27",
+        "s49"
+      ]
+    },
+    "ocr": {
+      "token_preservation": {
+        "numerator": 9,
+        "denominator": 12,
+        "value": 0.75
+      },
+      "damaged_token_ids": [
+        "ocr_o_zero",
+        "ocr_one_i_l",
+        "ocr_code_low"
+      ]
+    },
+    "qa": {
+      "deterministic_only": true,
+      "false_abstain": [
+        "s21",
+        "s22",
+        "s27",
+        "s49"
+      ],
+      "false_abstain_with_all_gold_retrieved": [],
+      "false_answer": [],
+      "provider_failure": []
+    },
+    "citation": {
+      "document_accuracy": {
+        "numerator": 42,
+        "denominator": 42,
+        "value": 1.0
+      },
+      "page_accuracy": {
+        "numerator": 42,
+        "denominator": 42,
+        "value": 1.0
+      },
+      "snippet_accuracy": {
+        "numerator": 42,
+        "denominator": 42,
+        "value": 1.0
+      },
+      "semantic_support_mismatch": null,
+      "manual_review_count": 41
+    },
+    "claim": {
+      "expected_count": 22,
+      "actual_count": 27,
+      "fact_recall": {
+        "numerator": 22,
+        "denominator": 22,
+        "value": 1.0
+      },
+      "source_document_accuracy": {
+        "numerator": 22,
+        "denominator": 22,
+        "value": 1.0
+      },
+      "source_page_accuracy": {
+        "numerator": 22,
+        "denominator": 22,
+        "value": 1.0
+      },
+      "evidence_snippet_accuracy": {
+        "numerator": 22,
+        "denominator": 22,
+        "value": 1.0
+      },
+      "by_category": {
+        "amount": {
+          "numerator": 4,
+          "denominator": 4,
+          "value": 1.0
+        },
+        "date": {
+          "numerator": 10,
+          "denominator": 10,
+          "value": 1.0
+        },
+        "person": {
+          "numerator": 4,
+          "denominator": 4,
+          "value": 1.0
+        },
+        "action": {
+          "numerator": 4,
+          "denominator": 4,
+          "value": 1.0
+        }
+      },
+      "category_accuracy_given_fact": {
+        "numerator": 22,
+        "denominator": 22,
+        "value": 1.0
+      },
+      "atomicity": {
+        "numerator": 27,
+        "denominator": 27,
+        "value": 1.0
+      },
+      "non_atomic_claim_ids": []
+    },
+    "candidate": {
+      "expected_conflicting_pairs": 4,
+      "claim_pairs_ready": 4,
+      "actual_pairs": 45,
+      "annotated_pairs_found": 12,
+      "unlabelled_pairs": 33,
+      "precision": null,
+      "pair_recall": {
+        "numerator": 4,
+        "denominator": 4,
+        "value": 1.0
+      }
+    },
+    "contradiction": {
+      "expected_pairs_all_relations": 12,
+      "decision_accuracy_given_candidate": {
+        "numerator": 7,
+        "denominator": 12,
+        "value": 0.5833
+      },
+      "end_to_end_contradiction_recall": {
+        "numerator": 2,
+        "denominator": 4,
+        "value": 0.5
+      },
+      "by_type": {
+        "amount": {
+          "expected_conflicting_pairs": 1,
+          "candidate_pair_recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "decision_accuracy_given_candidate": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          },
+          "end_to_end_contradiction_recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "date": {
+          "expected_conflicting_pairs": 1,
+          "candidate_pair_recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "decision_accuracy_given_candidate": {
+            "numerator": 2,
+            "denominator": 3,
+            "value": 0.6667
+          },
+          "end_to_end_contradiction_recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          }
+        },
+        "person": {
+          "expected_conflicting_pairs": 1,
+          "candidate_pair_recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "decision_accuracy_given_candidate": {
+            "numerator": 1,
+            "denominator": 3,
+            "value": 0.3333
+          },
+          "end_to_end_contradiction_recall": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          }
+        },
+        "action": {
+          "expected_conflicting_pairs": 1,
+          "candidate_pair_recall": {
+            "numerator": 1,
+            "denominator": 1,
+            "value": 1.0
+          },
+          "decision_accuracy_given_candidate": {
+            "numerator": 1,
+            "denominator": 3,
+            "value": 0.3333
+          },
+          "end_to_end_contradiction_recall": {
+            "numerator": 0,
+            "denominator": 1,
+            "value": 0.0
+          }
+        }
+      },
+      "false_contradiction": [
+        "date_uncertain"
+      ],
+      "false_compatible": [],
+      "false_uncertain": [
+        "action_conflict",
+        "action_compatible",
+        "person_conflict",
+        "person_compatible"
+      ]
+    },
+    "timeline": {
+      "expected_events": 10,
+      "event_recall": {
+        "numerator": 10,
+        "denominator": 10,
+        "value": 1.0
+      },
+      "date_accuracy": {
+        "numerator": 10,
+        "denominator": 10,
+        "value": 1.0
+      },
+      "source_accuracy": {
+        "numerator": 10,
+        "denominator": 10,
+        "value": 1.0
+      },
+      "order_accuracy": {
+        "numerator": 44,
+        "denominator": 44,
+        "value": 1.0
+      },
+      "same_date_gold_pairs_excluded_from_order": 1,
+      "duplicate_matched_event_count": 1
+    },
+    "stage_failures": {
+      "parse": {
+        "failure_count": 0,
+        "affected_gold_ids": [],
+        "affected_tags": []
+      },
+      "ocr": {
+        "failure_count": 2,
+        "affected_gold_ids": [
+          "s21",
+          "s22"
+        ],
+        "affected_tags": [
+          "ambiguous_char",
+          "citation_page",
+          "ocr",
+          "ocr_noise"
+        ]
+      },
+      "chunk": {
+        "failure_count": 0,
+        "affected_gold_ids": [],
+        "affected_tags": []
+      },
+      "retrieval": {
+        "failure_count": 2,
+        "affected_gold_ids": [
+          "s27",
+          "s49"
+        ],
+        "affected_tags": [
+          "ambiguous",
+          "amount",
+          "date",
+          "date_separator",
+          "ocr",
+          "ocr_noise",
+          "short_query"
+        ]
+      },
+      "evidence": {
+        "failure_count": 0,
+        "affected_gold_ids": [],
+        "affected_tags": []
+      },
+      "qa": {
+        "failure_count": 0,
+        "affected_gold_ids": [],
+        "affected_tags": []
+      },
+      "citation": {
+        "failure_count": 0,
+        "affected_gold_ids": [],
+        "affected_tags": []
+      },
+      "claim": {
+        "failure_count": 0,
+        "affected_gold_ids": [],
+        "affected_tags": []
+      },
+      "candidate": {
+        "failure_count": 0,
+        "affected_gold_ids": [],
+        "affected_tags": []
+      },
+      "contradiction": {
+        "failure_count": 5,
+        "affected_gold_ids": [
+          "action_compatible",
+          "action_conflict",
+          "date_uncertain",
+          "person_compatible",
+          "person_conflict"
+        ],
+        "affected_tags": [
+          "action",
+          "alias",
+          "amount",
+          "claim_multi_fact",
+          "compatible",
+          "contradiction",
+          "date",
+          "multi_evidence",
+          "person",
+          "timeline",
+          "uncertain"
+        ]
+      },
+      "timeline": {
+        "failure_count": 0,
+        "affected_gold_ids": [],
+        "affected_tags": []
+      }
+    },
+    "top_failure_categories": [
+      {
+        "stage": "contradiction",
+        "failure_count": 5,
+        "affected_gold_ids": [
+          "action_compatible",
+          "action_conflict",
+          "date_uncertain",
+          "person_compatible",
+          "person_conflict"
+        ],
+        "affected_tags": [
+          "action",
+          "alias",
+          "amount",
+          "claim_multi_fact",
+          "compatible",
+          "contradiction",
+          "date",
+          "multi_evidence",
+          "person",
+          "timeline",
+          "uncertain"
+        ]
+      },
+      {
+        "stage": "ocr",
+        "failure_count": 2,
+        "affected_gold_ids": [
+          "s21",
+          "s22"
+        ],
+        "affected_tags": [
+          "ambiguous_char",
+          "citation_page",
+          "ocr",
+          "ocr_noise"
+        ]
+      },
+      {
+        "stage": "retrieval",
+        "failure_count": 2,
+        "affected_gold_ids": [
+          "s27",
+          "s49"
+        ],
+        "affected_tags": [
+          "ambiguous",
+          "amount",
+          "date",
+          "date_separator",
+          "ocr",
+          "ocr_noise",
+          "short_query"
+        ]
+      }
+    ],
+    "long_document": {
+      "doc_key": "long",
+      "pages": 50,
+      "gold_pages": [
+        1,
+        13,
+        25,
+        38,
+        50
+      ],
+      "shared_index_ms": 17585.041,
+      "shared_chunks_total": 66,
+      "long_retrieval": {
+        "count": 6,
+        "p50_ms": 16.546,
+        "p95_ms": 21.503
+      },
+      "other_retrieval": {
+        "count": 45,
+        "p50_ms": 16.451,
+        "p95_ms": 21.996
+      },
+      "long_qa": {
+        "count": 6,
+        "p50_ms": 37.346,
+        "p95_ms": 42.157
+      },
+      "other_qa": {
+        "count": 45,
+        "p50_ms": 36.971,
+        "p95_ms": 44.629
+      },
+      "gold_ranks": {
+        "s14": 1,
+        "s28": 1,
+        "s29": 1,
+        "s30": 1,
+        "s31": 1,
+        "s32": 1
+      },
+      "all_required_hit_at_5": {
+        "numerator": 6,
+        "denominator": 6,
+        "value": 1.0
+      }
+    },
+    "metric_notes": {
+      "qa": "gold-gated FakeLLM, not real-model reliability",
+      "semantic_support": "not deterministically decidable; answered rows need review",
+      "candidate_precision": "gold pairs are not exhaustive; unlabelled is not false",
+      "indexing": "shared index time/chunks include all 11 documents",
+      "failure_counts": "gold records, including dependent downstream records",
+      "retrieval_mrr": "first gold hit in top 5; misses contribute zero"
+    }
+  },
+  "baseline_mode": "cold offline gold-gated FakeLLM; no cloud invocation"
+}

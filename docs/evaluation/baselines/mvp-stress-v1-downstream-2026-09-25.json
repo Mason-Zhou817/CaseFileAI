@@ -1,0 +1,292 @@
+{
+  "evaluation_set": "MVP stress v1 downstream gold",
+  "gold_sha256": "bb68366649f8fd5c6aa2f78de354591142da9ac45ffc3392aabb49dc8581c187",
+  "run_timestamp": "2026-09-25T05:29:34.587842+00:00",
+  "provider_versions": {
+    "qa": "mvp-v1-gold-evidence-fake-v1",
+    "claim": "downstream-extractive-fake-v1",
+    "semantic": "downstream-semantic-rules-v1"
+  },
+  "claim": {
+    "expected_count": 22,
+    "actual_count": 27,
+    "fact_recall": {
+      "numerator": 22,
+      "denominator": 22,
+      "value": 1.0
+    },
+    "source_document_accuracy": {
+      "numerator": 22,
+      "denominator": 22,
+      "value": 1.0
+    },
+    "source_page_accuracy": {
+      "numerator": 22,
+      "denominator": 22,
+      "value": 1.0
+    },
+    "evidence_snippet_accuracy": {
+      "numerator": 22,
+      "denominator": 22,
+      "value": 1.0
+    },
+    "by_category": {
+      "amount": {
+        "numerator": 4,
+        "denominator": 4,
+        "value": 1.0
+      },
+      "date": {
+        "numerator": 10,
+        "denominator": 10,
+        "value": 1.0
+      },
+      "person": {
+        "numerator": 4,
+        "denominator": 4,
+        "value": 1.0
+      },
+      "action": {
+        "numerator": 4,
+        "denominator": 4,
+        "value": 1.0
+      }
+    }
+  },
+  "candidate": {
+    "expected_conflicting_pairs": 4,
+    "claim_pairs_ready": 4,
+    "actual_pairs": 45,
+    "annotated_pairs_found": 12,
+    "unlabelled_pairs": 33,
+    "precision": null,
+    "pair_recall": {
+      "numerator": 4,
+      "denominator": 4,
+      "value": 1.0
+    }
+  },
+  "contradiction": {
+    "expected_pairs_all_relations": 12,
+    "decision_accuracy_given_candidate": {
+      "numerator": 7,
+      "denominator": 12,
+      "value": 0.5833
+    },
+    "end_to_end_contradiction_recall": {
+      "numerator": 2,
+      "denominator": 4,
+      "value": 0.5
+    },
+    "by_type": {
+      "amount": {
+        "expected_conflicting_pairs": 1,
+        "candidate_pair_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "decision_accuracy_given_candidate": {
+          "numerator": 3,
+          "denominator": 3,
+          "value": 1.0
+        },
+        "end_to_end_contradiction_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "date": {
+        "expected_conflicting_pairs": 1,
+        "candidate_pair_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "decision_accuracy_given_candidate": {
+          "numerator": 2,
+          "denominator": 3,
+          "value": 0.6667
+        },
+        "end_to_end_contradiction_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "person": {
+        "expected_conflicting_pairs": 1,
+        "candidate_pair_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "decision_accuracy_given_candidate": {
+          "numerator": 1,
+          "denominator": 3,
+          "value": 0.3333
+        },
+        "end_to_end_contradiction_recall": {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0
+        }
+      },
+      "action": {
+        "expected_conflicting_pairs": 1,
+        "candidate_pair_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "decision_accuracy_given_candidate": {
+          "numerator": 1,
+          "denominator": 3,
+          "value": 0.3333
+        },
+        "end_to_end_contradiction_recall": {
+          "numerator": 0,
+          "denominator": 1,
+          "value": 0.0
+        }
+      }
+    }
+  },
+  "timeline": {
+    "expected_events": 10,
+    "event_recall": {
+      "numerator": 10,
+      "denominator": 10,
+      "value": 1.0
+    },
+    "date_accuracy": {
+      "numerator": 10,
+      "denominator": 10,
+      "value": 1.0
+    },
+    "source_accuracy": {
+      "numerator": 10,
+      "denominator": 10,
+      "value": 1.0
+    },
+    "order_accuracy": {
+      "numerator": 44,
+      "denominator": 44,
+      "value": 1.0
+    },
+    "same_date_gold_pairs_excluded_from_order": 1,
+    "duplicate_matched_event_count": 1
+  },
+  "pipeline": {
+    "first_failure_stage_counts": {
+      "contradiction_decision": 5,
+      "none": 39
+    },
+    "record_count": 44
+  },
+  "metric_notes": {
+    "claim_source_denominator": "fact-matched claims only",
+    "candidate_recall_denominator": "gold contradiction pairs with both facts and sources matched; claim_pairs_ready reports this denominator",
+    "decision_denominator": "gold pairs entering candidate set and evaluated by judge",
+    "end_to_end_denominator": "all gold contradiction pairs",
+    "timeline_recall_denominator": "all gold timeline events",
+    "timeline_order_denominator": "comparable gold event pairs with both events present; ties excluded",
+    "fake_boundary": "gold-gated QA and claim extraction; rule semantic fake for action/person",
+    "business_services": "real claim validation/persistence, candidate generation, amount/date judge, semantic decision safeguards, timeline"
+  },
+  "stress_stage_failures": {
+    "parse": {
+      "failure_count": 0,
+      "affected_gold_ids": [],
+      "affected_tags": []
+    },
+    "ocr": {
+      "failure_count": 2,
+      "affected_gold_ids": [
+        "s21",
+        "s22"
+      ],
+      "affected_tags": [
+        "ambiguous_char",
+        "citation_page",
+        "ocr",
+        "ocr_noise"
+      ]
+    },
+    "chunk": {
+      "failure_count": 0,
+      "affected_gold_ids": [],
+      "affected_tags": []
+    },
+    "retrieval": {
+      "failure_count": 2,
+      "affected_gold_ids": [
+        "s27",
+        "s49"
+      ],
+      "affected_tags": [
+        "ambiguous",
+        "amount",
+        "date",
+        "date_separator",
+        "ocr",
+        "ocr_noise",
+        "short_query"
+      ]
+    },
+    "evidence": {
+      "failure_count": 0,
+      "affected_gold_ids": [],
+      "affected_tags": []
+    },
+    "qa": {
+      "failure_count": 0,
+      "affected_gold_ids": [],
+      "affected_tags": []
+    },
+    "citation": {
+      "failure_count": 0,
+      "affected_gold_ids": [],
+      "affected_tags": []
+    },
+    "claim": {
+      "failure_count": 0,
+      "affected_gold_ids": [],
+      "affected_tags": []
+    },
+    "candidate": {
+      "failure_count": 0,
+      "affected_gold_ids": [],
+      "affected_tags": []
+    },
+    "contradiction": {
+      "failure_count": 5,
+      "affected_gold_ids": [
+        "action_compatible",
+        "action_conflict",
+        "date_uncertain",
+        "person_compatible",
+        "person_conflict"
+      ],
+      "affected_tags": [
+        "action",
+        "alias",
+        "amount",
+        "claim_multi_fact",
+        "compatible",
+        "contradiction",
+        "date",
+        "multi_evidence",
+        "person",
+        "timeline",
+        "uncertain"
+      ]
+    },
+    "timeline": {
+      "failure_count": 0,
+      "affected_gold_ids": [],
+      "affected_tags": []
+    }
+  }
+}

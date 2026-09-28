@@ -1,0 +1,27 @@
+"""Closed public categories for data operations; never include exception bodies."""
+
+DATA_MESSAGES = {
+    "backup_busy": "数据库持续忙碌，本次备份未完成，请稍后重试。",
+    "backup_failed": "完整备份创建失败，请检查可用空间和本地目录权限。",
+    "missing_pdf": "备份或当前数据缺少引用的 PDF，无法生成或恢复残缺副本。",
+    "pdf_checksum": "原始 PDF 与数据库记录的哈希不一致，请核对来源文件。",
+    "checksum_mismatch": "备份文件哈希或大小校验失败，请使用完整、未损坏的备份。",
+    "invalid_manifest": "备份清单无效或文件列表不完整。",
+    "invalid_backup": "备份包无效、损坏或数据库无法验证。",
+    "unsafe_archive": "备份包含不安全路径、链接或不允许的压缩条目，已拒绝恢复。",
+    "unsafe_path": "文件路径不符合本地数据管理的安全限制。",
+    "backup_too_large": "备份超过当前压缩包、解压大小或文件数量限制。",
+    "backup_format_incompatible": "备份格式版本不受支持；可能由更高版本 CaseFile AI 创建。",
+    "application_version_incompatible": "备份的应用版本格式不受支持。",
+    "future_backup": "此备份由更高版本 CaseFile AI 创建，请使用相应版本恢复。",
+    "future_schema": "此备份使用未知或更高版本数据库结构，已拒绝恢复。",
+    "schema_incompatible": "数据库结构或迁移版本无法验证，已停止操作。",
+    "database_integrity": "数据库完整性检查未通过，恢复副本无效。",
+    "database_references": "数据库来源链或引用完整性检查未通过，恢复副本无效。",
+    "restore_confirmation_required": "请明确确认：仅创建新的恢复副本，不覆盖当前工作数据。",
+    "restore_not_found": "未找到已验证的恢复预览，请重新选择备份包。",
+    "restore_already_created": "此恢复副本已创建或已有同名目录；不会覆盖，请重新上传备份。",
+    "restore_failed": "恢复副本未完成，请检查可用空间和目录权限；当前工作数据未被覆盖。",
+    "artifact_not_found": "未找到系统生成的下载文件，请重新生成。",
+    "data_management_failed": "数据管理操作未完成，请使用诊断编号检查安全日志。",
+}

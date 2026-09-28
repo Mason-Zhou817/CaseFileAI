@@ -1,0 +1,18 @@
+{
+  "case_name": "星河投资款争议（合成）",
+  "synthetic": true,
+  "documents": [
+    {
+      "filename": "01_询问笔录_王海.pdf",
+      "sha256": "29f99567e721361291702ce054fd114e862c4a7116790cbe2e6b3c4949ba7f19",
+      "pages": 2,
+      "has_text_layer": true
+    },
+    {
+      "filename": "02_银行凭证_扫描件.pdf",
+      "sha256": "c09c0cbb21ef3443f86f07863ce5b6f485c3581da6954490021d267bcc143cda",
+      "pages": 2,
+      "has_text_layer": false
+    }
+  ]
+}

@@ -1,0 +1,694 @@
+{
+  "source_commit": "7fdc349edd6cb63679c4cec181ae37d16019e64d",
+  "observation_date": "2026-09-26",
+  "method": "retained first-smoke outputs; no new cloud reproduction",
+  "traces": [
+    {
+      "id": "s06",
+      "validated_answer": "结算表R-01对应CT-77的月租金是人民币85000.50元。",
+      "answer_claims": [
+        {
+          "claim_id": "2e84adc9-fb94-5850-b4fa-16a9fd21d3b9",
+          "text": "结算表R-01对应CT-77的月租金是人民币85000.50元。",
+          "citation_ids": [
+            "6c74966e-896d-53da-ba54-ca17f149b625"
+          ],
+          "confidence": 1.0,
+          "support_status": "supported"
+        }
+      ],
+      "extractor_inputs": [
+        {
+          "answer_claim": "结算表R-01对应CT-77的月租金是人民币85000.50元。",
+          "evidence": [
+            {
+              "citation_id": "E1",
+              "quote": "租金与保证金对照表 · 跨行\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n行号    合同      项目          数值\nR-01    CT-77     月租金        人民币\n                                  85000.50元\nR-01    CT-77     起租日期      2026年3月\n                                  9日\nR-02    CT-78     月租金        人民币85000.80元\nR-02    CT-78     起租日期      2026年3月10日\n附注：两个合同的行号相邻，金额不可混用。"
+            }
+          ]
+        }
+      ],
+      "model_outputs": [
+        {
+          "scope": "s06",
+          "phase": "claim",
+          "schema": "AllowedClaimExtraction",
+          "output": {
+            "claims": [
+              {
+                "text": "结算表R-01对应CT-77",
+                "kind": "amount",
+                "citation_ids": [
+                  "E1"
+                ]
+              },
+              {
+                "text": "月租金是人民币85000.50元",
+                "kind": "amount",
+                "citation_ids": [
+                  "E1"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "latency_ms": 25179.389
+        },
+        {
+          "scope": "s06",
+          "phase": "claim",
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "supported",
+            "reason": "证据中的表格明确列出了行号R-01对应的合同为CT-77，直接且完整地支持了该原子事实。"
+          },
+          "error": null,
+          "latency_ms": 8957.103
+        },
+        {
+          "scope": "s06",
+          "phase": "claim",
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "supported",
+            "reason": "证据表格中明确列出合同CT-77的月租金数值为人民币85000.50元，直接且完整地支持了该原子事实。"
+          },
+          "error": null,
+          "latency_ms": 10353.988
+        }
+      ],
+      "normalization": "whitespace only; date/amount regex override; action/person/other retain model kind",
+      "persisted_claims": [
+        {
+          "claim_id": "5a4784d0-7d0b-5c84-a076-fd793a28c15a",
+          "answer_id": "08bba1ea-16a3-4d5c-b577-e82613335606",
+          "source_answer_claim_id": "2e84adc9-fb94-5850-b4fa-16a9fd21d3b9",
+          "text": "结算表R-01对应CT-77",
+          "kind": "amount",
+          "evidence_ids": [
+            "6c74966e-896d-53da-ba54-ca17f149b625"
+          ],
+          "extraction_version": "qa-atomic-claims-v2",
+          "model_version": "qwen3.7-plus"
+        },
+        {
+          "claim_id": "70ae6cd8-50bf-51d4-ac3e-cb24121615e9",
+          "answer_id": "08bba1ea-16a3-4d5c-b577-e82613335606",
+          "source_answer_claim_id": "2e84adc9-fb94-5850-b4fa-16a9fd21d3b9",
+          "text": "月租金是人民币85000.50元",
+          "kind": "amount",
+          "evidence_ids": [
+            "6c74966e-896d-53da-ba54-ca17f149b625"
+          ],
+          "extraction_version": "qa-atomic-claims-v2",
+          "model_version": "qwen3.7-plus"
+        }
+      ],
+      "review": {
+        "method": "direct source/answer inspection; not independent human signoff",
+        "expected_primary_facts": 1,
+        "atomicity_correct": false,
+        "claims": [
+          {
+            "text": "结算表R-01对应CT-77",
+            "expected_kind": "other",
+            "actual_kind": "amount",
+            "category_correct": false,
+            "standalone_atomic_fact": true,
+            "literal_fact_supported": true,
+            "real_evidence_ids_valid": true,
+            "note": "关系事实不应标amount"
+          },
+          {
+            "text": "月租金是人民币85000.50元",
+            "expected_kind": "amount",
+            "actual_kind": "amount",
+            "category_correct": true,
+            "standalone_atomic_fact": false,
+            "literal_fact_supported": true,
+            "real_evidence_ids_valid": true,
+            "note": "金额字段遗漏行号/合同主体，单独不完整"
+          }
+        ],
+        "unsupported_claim_count": 0
+      },
+      "coverage": {
+        "answer_id": "08bba1ea-16a3-4d5c-b577-e82613335606",
+        "extraction_version": "qa-atomic-claims-v2",
+        "model_version": "qwen3.7-plus",
+        "complete": false,
+        "sources": [
+          {
+            "source_answer_claim_id": "2e84adc9-fb94-5850-b4fa-16a9fd21d3b9",
+            "source_text": "结算表R-01对应CT-77的月租金是人民币85000.50元。",
+            "covered_claim_ids": [
+              "5a4784d0-7d0b-5c84-a076-fd793a28c15a",
+              "70ae6cd8-50bf-51d4-ac3e-cb24121615e9"
+            ],
+            "uncovered_fragments": [
+              {
+                "source_answer_claim_id": "2e84adc9-fb94-5850-b4fa-16a9fd21d3b9",
+                "text": "的",
+                "start_offset": 14,
+                "end_offset": 15
+              }
+            ]
+          }
+        ],
+        "claims": [
+          {
+            "claim_id": "5a4784d0-7d0b-5c84-a076-fd793a28c15a",
+            "source_answer_claim_id": "2e84adc9-fb94-5850-b4fa-16a9fd21d3b9",
+            "evidence": [
+              {
+                "evidence_id": "6c74966e-896d-53da-ba54-ca17f149b625",
+                "claim_id": "2e84adc9-fb94-5850-b4fa-16a9fd21d3b9",
+                "document_id": "4621a418-336a-4589-94c6-e04838d43bfd",
+                "page_id": "af251157-3ed0-493c-9139-6518fcb566c4",
+                "filename": "03_broken_table.pdf",
+                "page_number": 1,
+                "quote": "租金与保证金对照表 · 跨行\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n行号    合同      项目          数值\nR-01    CT-77     月租金        人民币\n                                  85000.50元\nR-01    CT-77     起租日期      2026年3月\n                                  9日\nR-02    CT-78     月租金        人民币85000.80元\nR-02    CT-78     起租日期      2026年3月10日\n附注：两个合同的行号相邻，金额不可混用。",
+                "document_version_id": "a40498ab-e238-41d3-ac19-385ddd5b3f19"
+              }
+            ],
+            "valid_evidence": true,
+            "issue": null
+          },
+          {
+            "claim_id": "70ae6cd8-50bf-51d4-ac3e-cb24121615e9",
+            "source_answer_claim_id": "2e84adc9-fb94-5850-b4fa-16a9fd21d3b9",
+            "evidence": [
+              {
+                "evidence_id": "6c74966e-896d-53da-ba54-ca17f149b625",
+                "claim_id": "2e84adc9-fb94-5850-b4fa-16a9fd21d3b9",
+                "document_id": "4621a418-336a-4589-94c6-e04838d43bfd",
+                "page_id": "af251157-3ed0-493c-9139-6518fcb566c4",
+                "filename": "03_broken_table.pdf",
+                "page_number": 1,
+                "quote": "租金与保证金对照表 · 跨行\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n行号    合同      项目          数值\nR-01    CT-77     月租金        人民币\n                                  85000.50元\nR-01    CT-77     起租日期      2026年3月\n                                  9日\nR-02    CT-78     月租金        人民币85000.80元\nR-02    CT-78     起租日期      2026年3月10日\n附注：两个合同的行号相邻，金额不可混用。",
+                "document_version_id": "a40498ab-e238-41d3-ac19-385ddd5b3f19"
+              }
+            ],
+            "valid_evidence": true,
+            "issue": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "s09",
+      "validated_answer": "结算表CT-77设备交接费的付款状态为尚未支付。",
+      "answer_claims": [
+        {
+          "claim_id": "6caba611-ee32-52c8-a5cf-3cacbada9d20",
+          "text": "结算表CT-77设备交接费的付款状态为尚未支付。",
+          "citation_ids": [
+            "312e0c30-e06b-564a-943f-2450bd3c9dab"
+          ],
+          "confidence": 1.0,
+          "support_status": "supported"
+        }
+      ],
+      "extractor_inputs": [
+        {
+          "answer_claim": "结算表CT-77设备交接费的付款状态为尚未支付。",
+          "evidence": [
+            {
+              "citation_id": "E1",
+              "quote": "相邻行错位 · 付款状态\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\nCT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付\nCT-78   设备交接费       人民币18000元\n                              付款状态：已经支付\nCT-77   审核人           柳钧\nCT-78   审核人           柳均"
+            }
+          ]
+        }
+      ],
+      "model_outputs": [
+        {
+          "scope": "s09",
+          "phase": "claim",
+          "schema": "AllowedClaimExtraction",
+          "output": {
+            "claims": [
+              {
+                "text": "结算表CT-77设备交接费的付款状态为尚未支付",
+                "kind": "other",
+                "citation_ids": [
+                  "E1"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "latency_ms": 11651.329
+        },
+        {
+          "scope": "s09",
+          "phase": "claim",
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "supported",
+            "reason": "证据中明确列出了“CT-77 设备交接费”以及对应的“付款状态：尚未支付”，直接且完整地支持了该原子事实。"
+          },
+          "error": null,
+          "latency_ms": 9207.944
+        }
+      ],
+      "normalization": "whitespace only; date/amount regex override; action/person/other retain model kind",
+      "persisted_claims": [
+        {
+          "claim_id": "b07d44ae-30df-5dc7-996c-13fc3e72a89d",
+          "answer_id": "64cc342f-3e83-4bfd-b756-a1402a1fd6b5",
+          "source_answer_claim_id": "6caba611-ee32-52c8-a5cf-3cacbada9d20",
+          "text": "结算表CT-77设备交接费的付款状态为尚未支付",
+          "kind": "other",
+          "evidence_ids": [
+            "312e0c30-e06b-564a-943f-2450bd3c9dab"
+          ],
+          "extraction_version": "qa-atomic-claims-v2",
+          "model_version": "qwen3.7-plus"
+        }
+      ],
+      "review": {
+        "method": "direct source/answer inspection; not independent human signoff",
+        "expected_primary_facts": 1,
+        "atomicity_correct": true,
+        "claims": [
+          {
+            "text": "结算表CT-77设备交接费的付款状态为尚未支付",
+            "expected_kind": "action",
+            "actual_kind": "other",
+            "category_correct": false,
+            "standalone_atomic_fact": true,
+            "literal_fact_supported": true,
+            "real_evidence_ids_valid": true,
+            "note": "明确行为/人物事实被标other，可能无法进入该类型候选"
+          }
+        ],
+        "unsupported_claim_count": 0
+      },
+      "coverage": {
+        "answer_id": "64cc342f-3e83-4bfd-b756-a1402a1fd6b5",
+        "extraction_version": "qa-atomic-claims-v2",
+        "model_version": "qwen3.7-plus",
+        "complete": true,
+        "sources": [
+          {
+            "source_answer_claim_id": "6caba611-ee32-52c8-a5cf-3cacbada9d20",
+            "source_text": "结算表CT-77设备交接费的付款状态为尚未支付。",
+            "covered_claim_ids": [
+              "b07d44ae-30df-5dc7-996c-13fc3e72a89d"
+            ],
+            "uncovered_fragments": []
+          }
+        ],
+        "claims": [
+          {
+            "claim_id": "b07d44ae-30df-5dc7-996c-13fc3e72a89d",
+            "source_answer_claim_id": "6caba611-ee32-52c8-a5cf-3cacbada9d20",
+            "evidence": [
+              {
+                "evidence_id": "312e0c30-e06b-564a-943f-2450bd3c9dab",
+                "claim_id": "6caba611-ee32-52c8-a5cf-3cacbada9d20",
+                "document_id": "4621a418-336a-4589-94c6-e04838d43bfd",
+                "page_id": "6d10cf1b-c4c2-45d8-a5cd-b5ba0069d65e",
+                "filename": "03_broken_table.pdf",
+                "page_number": 2,
+                "quote": "相邻行错位 · 付款状态\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\nCT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付\nCT-78   设备交接费       人民币18000元\n                              付款状态：已经支付\nCT-77   审核人           柳钧\nCT-78   审核人           柳均",
+                "document_version_id": "a40498ab-e238-41d3-ac19-385ddd5b3f19"
+              }
+            ],
+            "valid_evidence": true,
+            "issue": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "s10",
+      "validated_answer": "结算表CT-78的审核人是柳均。",
+      "answer_claims": [
+        {
+          "claim_id": "18a7b59d-4c05-5f08-84d4-be9d1ada4b5f",
+          "text": "结算表CT-78的审核人是柳均。",
+          "citation_ids": [
+            "312e0c30-e06b-564a-943f-2450bd3c9dab"
+          ],
+          "confidence": 1.0,
+          "support_status": "supported"
+        }
+      ],
+      "extractor_inputs": [
+        {
+          "answer_claim": "结算表CT-78的审核人是柳均。",
+          "evidence": [
+            {
+              "citation_id": "E1",
+              "quote": "相邻行错位 · 付款状态\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\nCT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付\nCT-78   设备交接费       人民币18000元\n                              付款状态：已经支付\nCT-77   审核人           柳钧\nCT-78   审核人           柳均"
+            }
+          ]
+        }
+      ],
+      "model_outputs": [
+        {
+          "scope": "s10",
+          "phase": "claim",
+          "schema": "AllowedClaimExtraction",
+          "output": {
+            "claims": [
+              {
+                "text": "结算表CT-78的审核人是柳均",
+                "kind": "other",
+                "citation_ids": [
+                  "E1"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "latency_ms": 8562.408
+        },
+        {
+          "scope": "s10",
+          "phase": "claim",
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "supported",
+            "reason": "证据中明确列出了“CT-78 审核人 柳均”，直接且完整地支持了原子事实。"
+          },
+          "error": null,
+          "latency_ms": 7409.287
+        }
+      ],
+      "normalization": "whitespace only; date/amount regex override; action/person/other retain model kind",
+      "persisted_claims": [
+        {
+          "claim_id": "88f6b5b5-80d5-5fd2-b110-18424fe166b6",
+          "answer_id": "0e0ae272-1822-4e99-acc7-4542b7dc0b48",
+          "source_answer_claim_id": "18a7b59d-4c05-5f08-84d4-be9d1ada4b5f",
+          "text": "结算表CT-78的审核人是柳均",
+          "kind": "other",
+          "evidence_ids": [
+            "312e0c30-e06b-564a-943f-2450bd3c9dab"
+          ],
+          "extraction_version": "qa-atomic-claims-v2",
+          "model_version": "qwen3.7-plus"
+        }
+      ],
+      "review": {
+        "method": "direct source/answer inspection; not independent human signoff",
+        "expected_primary_facts": 1,
+        "atomicity_correct": true,
+        "claims": [
+          {
+            "text": "结算表CT-78的审核人是柳均",
+            "expected_kind": "person",
+            "actual_kind": "other",
+            "category_correct": false,
+            "standalone_atomic_fact": true,
+            "literal_fact_supported": true,
+            "real_evidence_ids_valid": true,
+            "note": "明确行为/人物事实被标other，可能无法进入该类型候选"
+          }
+        ],
+        "unsupported_claim_count": 0
+      },
+      "coverage": {
+        "answer_id": "0e0ae272-1822-4e99-acc7-4542b7dc0b48",
+        "extraction_version": "qa-atomic-claims-v2",
+        "model_version": "qwen3.7-plus",
+        "complete": true,
+        "sources": [
+          {
+            "source_answer_claim_id": "18a7b59d-4c05-5f08-84d4-be9d1ada4b5f",
+            "source_text": "结算表CT-78的审核人是柳均。",
+            "covered_claim_ids": [
+              "88f6b5b5-80d5-5fd2-b110-18424fe166b6"
+            ],
+            "uncovered_fragments": []
+          }
+        ],
+        "claims": [
+          {
+            "claim_id": "88f6b5b5-80d5-5fd2-b110-18424fe166b6",
+            "source_answer_claim_id": "18a7b59d-4c05-5f08-84d4-be9d1ada4b5f",
+            "evidence": [
+              {
+                "evidence_id": "312e0c30-e06b-564a-943f-2450bd3c9dab",
+                "claim_id": "18a7b59d-4c05-5f08-84d4-be9d1ada4b5f",
+                "document_id": "4621a418-336a-4589-94c6-e04838d43bfd",
+                "page_id": "6d10cf1b-c4c2-45d8-a5cd-b5ba0069d65e",
+                "filename": "03_broken_table.pdf",
+                "page_number": 2,
+                "quote": "相邻行错位 · 付款状态\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\nCT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付\nCT-78   设备交接费       人民币18000元\n                              付款状态：已经支付\nCT-77   审核人           柳钧\nCT-78   审核人           柳均",
+                "document_version_id": "a40498ab-e238-41d3-ac19-385ddd5b3f19"
+              }
+            ],
+            "valid_evidence": true,
+            "issue": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "s38",
+      "validated_answer": "争议陈述A的付款状态为已支付\n争议陈述A的唯一付款人为北京甲有限公司",
+      "answer_claims": [
+        {
+          "claim_id": "43042e42-31f7-5a9a-a085-1a85a11a15b1",
+          "text": "争议陈述A的付款状态为已支付",
+          "citation_ids": [
+            "699ebf49-608f-5f2b-9088-b60244e12a49",
+            "c1fb0a32-86a0-5a51-8cb1-efaab80021fc"
+          ],
+          "confidence": 1.0,
+          "support_status": "supported"
+        },
+        {
+          "claim_id": "20b5f82c-0f52-5505-a548-54c6e524edc8",
+          "text": "争议陈述A的唯一付款人为北京甲有限公司",
+          "citation_ids": [
+            "699ebf49-608f-5f2b-9088-b60244e12a49",
+            "c1fb0a32-86a0-5a51-8cb1-efaab80021fc"
+          ],
+          "confidence": 1.0,
+          "support_status": "supported"
+        }
+      ],
+      "extractor_inputs": [
+        {
+          "answer_claim": "争议陈述A的付款状态为已支付",
+          "evidence": [
+            {
+              "citation_id": "E1",
+              "quote": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。"
+            },
+            {
+              "citation_id": "E2",
+              "quote": "付款争议陈述 · 对照\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n付款记录金额为人民币45万元。\n付款记录金额为美元450000。\n付款记录日期为2026年3月。\n另一笔付款记录日期为2026年3月10日。\n付款记录款项确已支付。\n付款记录款项在收到发票后支付。\n付款记录唯一付款人为甲公司。\n另一笔付款记录唯一付款人为乙公司。\n简称说明：甲公司即北京甲有限公司。"
+            }
+          ]
+        },
+        {
+          "answer_claim": "争议陈述A的唯一付款人为北京甲有限公司",
+          "evidence": [
+            {
+              "citation_id": "E1",
+              "quote": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。"
+            },
+            {
+              "citation_id": "E2",
+              "quote": "付款争议陈述 · 对照\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n付款记录金额为人民币45万元。\n付款记录金额为美元450000。\n付款记录日期为2026年3月。\n另一笔付款记录日期为2026年3月10日。\n付款记录款项确已支付。\n付款记录款项在收到发票后支付。\n付款记录唯一付款人为甲公司。\n另一笔付款记录唯一付款人为乙公司。\n简称说明：甲公司即北京甲有限公司。"
+            }
+          ]
+        }
+      ],
+      "model_outputs": [
+        {
+          "scope": "s38",
+          "phase": "claim",
+          "schema": "AllowedClaimExtraction",
+          "output": {
+            "claims": [
+              {
+                "text": "争议陈述A的付款状态为已支付",
+                "kind": "other",
+                "citation_ids": [
+                  "E1",
+                  "E2"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "latency_ms": 7562.867
+        },
+        {
+          "scope": "s38",
+          "phase": "claim",
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "supported",
+            "reason": "证据1中明确提到“付款争议陈述 A”以及“付款记录款项已支付”，直接且完整地支持了争议陈述A的付款状态为已支付的原子事实。"
+          },
+          "error": null,
+          "latency_ms": 5792.644
+        },
+        {
+          "scope": "s38",
+          "phase": "claim",
+          "schema": "AllowedClaimExtraction",
+          "output": {
+            "claims": [
+              {
+                "text": "争议陈述A的唯一付款人为北京甲有限公司",
+                "kind": "person",
+                "citation_ids": [
+                  "E1"
+                ]
+              }
+            ]
+          },
+          "error": null,
+          "latency_ms": 18343.321
+        },
+        {
+          "scope": "s38",
+          "phase": "claim",
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "supported",
+            "reason": "证据中明确记载了“付款争议陈述 A”下的“付款记录唯一付款人为北京甲有限公司”，直接且完整地支持了该原子事实。"
+          },
+          "error": null,
+          "latency_ms": 5498.099
+        }
+      ],
+      "normalization": "whitespace only; date/amount regex override; action/person/other retain model kind",
+      "persisted_claims": [
+        {
+          "claim_id": "4952d621-a7ac-566f-bee1-a0a40fb49ca8",
+          "answer_id": "827a1d8e-518e-4df9-9016-8233ddfa2869",
+          "source_answer_claim_id": "43042e42-31f7-5a9a-a085-1a85a11a15b1",
+          "text": "争议陈述A的付款状态为已支付",
+          "kind": "other",
+          "evidence_ids": [
+            "699ebf49-608f-5f2b-9088-b60244e12a49",
+            "c1fb0a32-86a0-5a51-8cb1-efaab80021fc"
+          ],
+          "extraction_version": "qa-atomic-claims-v2",
+          "model_version": "qwen3.7-plus"
+        },
+        {
+          "claim_id": "ee56c6ca-86d7-5f7c-af7e-a0269c86d2cf",
+          "answer_id": "827a1d8e-518e-4df9-9016-8233ddfa2869",
+          "source_answer_claim_id": "20b5f82c-0f52-5505-a548-54c6e524edc8",
+          "text": "争议陈述A的唯一付款人为北京甲有限公司",
+          "kind": "person",
+          "evidence_ids": [
+            "699ebf49-608f-5f2b-9088-b60244e12a49"
+          ],
+          "extraction_version": "qa-atomic-claims-v2",
+          "model_version": "qwen3.7-plus"
+        }
+      ],
+      "review": {
+        "method": "direct source/answer inspection; not independent human signoff",
+        "expected_primary_facts": 2,
+        "atomicity_correct": true,
+        "claims": [
+          {
+            "text": "争议陈述A的付款状态为已支付",
+            "expected_kind": "action",
+            "actual_kind": "other",
+            "category_correct": false,
+            "standalone_atomic_fact": true,
+            "literal_fact_supported": true,
+            "real_evidence_ids_valid": true,
+            "note": "明确行为/人物事实被标other，可能无法进入该类型候选"
+          },
+          {
+            "text": "争议陈述A的唯一付款人为北京甲有限公司",
+            "expected_kind": "person",
+            "actual_kind": "person",
+            "category_correct": true,
+            "standalone_atomic_fact": true,
+            "literal_fact_supported": true,
+            "real_evidence_ids_valid": true,
+            "note": "原文及回答中的独立事实，分类一致"
+          }
+        ],
+        "unsupported_claim_count": 0
+      },
+      "coverage": {
+        "answer_id": "827a1d8e-518e-4df9-9016-8233ddfa2869",
+        "extraction_version": "qa-atomic-claims-v2",
+        "model_version": "qwen3.7-plus",
+        "complete": true,
+        "sources": [
+          {
+            "source_answer_claim_id": "43042e42-31f7-5a9a-a085-1a85a11a15b1",
+            "source_text": "争议陈述A的付款状态为已支付",
+            "covered_claim_ids": [
+              "4952d621-a7ac-566f-bee1-a0a40fb49ca8"
+            ],
+            "uncovered_fragments": []
+          },
+          {
+            "source_answer_claim_id": "20b5f82c-0f52-5505-a548-54c6e524edc8",
+            "source_text": "争议陈述A的唯一付款人为北京甲有限公司",
+            "covered_claim_ids": [
+              "ee56c6ca-86d7-5f7c-af7e-a0269c86d2cf"
+            ],
+            "uncovered_fragments": []
+          }
+        ],
+        "claims": [
+          {
+            "claim_id": "4952d621-a7ac-566f-bee1-a0a40fb49ca8",
+            "source_answer_claim_id": "43042e42-31f7-5a9a-a085-1a85a11a15b1",
+            "evidence": [
+              {
+                "evidence_id": "699ebf49-608f-5f2b-9088-b60244e12a49",
+                "claim_id": "43042e42-31f7-5a9a-a085-1a85a11a15b1",
+                "document_id": "9b1ac5b8-0078-4bbc-a081-4f59baa8bba4",
+                "page_id": "36e8b686-9524-4016-8205-caf49db61f4d",
+                "filename": "09_conflict_a.pdf",
+                "page_number": 1,
+                "quote": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。",
+                "document_version_id": "670ff6e0-c53b-4c9b-9784-119b1a2abdf5"
+              },
+              {
+                "evidence_id": "c1fb0a32-86a0-5a51-8cb1-efaab80021fc",
+                "claim_id": "43042e42-31f7-5a9a-a085-1a85a11a15b1",
+                "document_id": "7e722b70-6061-4d0b-8c0e-fe1743ba81e6",
+                "page_id": "21a314da-50f1-47cd-8639-c664b0956589",
+                "filename": "11_conflict_controls.pdf",
+                "page_number": 1,
+                "quote": "付款争议陈述 · 对照\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n付款记录金额为人民币45万元。\n付款记录金额为美元450000。\n付款记录日期为2026年3月。\n另一笔付款记录日期为2026年3月10日。\n付款记录款项确已支付。\n付款记录款项在收到发票后支付。\n付款记录唯一付款人为甲公司。\n另一笔付款记录唯一付款人为乙公司。\n简称说明：甲公司即北京甲有限公司。",
+                "document_version_id": "306906d3-bb09-40a8-8e8b-e4e6c698b07a"
+              }
+            ],
+            "valid_evidence": true,
+            "issue": null
+          },
+          {
+            "claim_id": "ee56c6ca-86d7-5f7c-af7e-a0269c86d2cf",
+            "source_answer_claim_id": "20b5f82c-0f52-5505-a548-54c6e524edc8",
+            "evidence": [
+              {
+                "evidence_id": "699ebf49-608f-5f2b-9088-b60244e12a49",
+                "claim_id": "20b5f82c-0f52-5505-a548-54c6e524edc8",
+                "document_id": "9b1ac5b8-0078-4bbc-a081-4f59baa8bba4",
+                "page_id": "36e8b686-9524-4016-8205-caf49db61f4d",
+                "filename": "09_conflict_a.pdf",
+                "page_number": 1,
+                "quote": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。",
+                "document_version_id": "670ff6e0-c53b-4c9b-9784-119b1a2abdf5"
+              }
+            ],
+            "valid_evidence": true,
+            "issue": null
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "evaluation_set": "CaseFile AI MVP v1 synthetic scenarios",
+  "run_timestamp": "2026-09-25T06:08:34.245816+00:00",
+  "provider_version": "mvp-v1-gold-evidence-fake-v1",
+  "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+  "retrieval_version": "hybrid-rrf-k60-page-token-v2",
+  "inputs": {
+    "case_set_sha256": "ba91a4fbb6115ffe38b37298980f9f94cdea4d414cc66402f749f3c48b26b6d3",
+    "questions_sha256": "12693f0afc82700ae6b00a90a887359045e5b348ab111aac2f0b8fff6c852275",
+    "documents": {
+      "bank": "4be45c9d9a7381881a12cde6de6faab15dcf8035ec60cbe58dd2dcc766d256c4",
+      "lease": "e91bc0c4af52bddbb6a552cf47f9c87ca407008dc632a7a37418a773803a7994",
+      "clear_scan": "b5296b253bfac8bf5478dd932f3eb403db5b72954e8e4a28cc1388560e6e78be",
+      "low_scan": "9b797792a2963d0d800878c1f7dfcc00fd951dc4072380d5ec251342ba177ad4",
+      "table": "d84d1727104898fc2a7a0ffafb5aebe92501b7369efdff384eaaed94b5824803",
+      "long": "238a6e66474c24290cdcacd15140abdb54daac1eee6ed92d4e05e1e1feaf6555",
+      "order_v1": "125ed5a6b02c030153c245034b325a9fc99973f5688e27d37ec21fa6e44b6102",
+      "order_v2": "45223ce8fce0f0ce9f1f547f17ff71fe8b29c9b329aae59528ef6e156fe42142"
+    }
+  },
+  "total_questions": 30,
+  "answer_status_accuracy": {
+    "numerator": 30,
+    "denominator": 30,
+    "value": 1.0
+  },
+  "correct_abstain_rate": {
+    "numerator": 3,
+    "denominator": 3,
+    "value": 1.0
+  },
+  "retrieval_all_required_hit_at_k": {
+    "numerator": 27,
+    "denominator": 27,
+    "value": 1.0
+  },
+  "citation_document_accuracy": {
+    "numerator": 29,
+    "denominator": 29,
+    "value": 1.0
+  },
+  "citation_page_accuracy": {
+    "numerator": 29,
+    "denominator": 29,
+    "value": 1.0
+  },
+  "citation_snippet_accuracy": {
+    "numerator": 29,
+    "denominator": 29,
+    "value": 1.0
+  },
+  "answer_match_rate": {
+    "numerator": 27,
+    "denominator": 27,
+    "value": 1.0
+  },
+  "manual_review_count": 0,
+  "failure_count": 0,
+  "latency_ms": {
+    "import_ms": 2689.279,
+    "index_ms": 13036.283,
+    "run_total_ms": 18081.469,
+    "question_total_p50": 68.619,
+    "question_total_p95": 83.8
+  },
+  "index_statistics": {
+    "pages_seen": 22,
+    "document_versions_seen": 8,
+    "chunks_total": 22,
+    "chunks_created": 22,
+    "embeddings_created": 22,
+    "chunking_version": "page-char-v1-target500-overlap80-boundary100",
+    "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c"
+  },
+  "baseline_mode": "cold offline gold-gated FakeLLM; no cloud invocation"
+}

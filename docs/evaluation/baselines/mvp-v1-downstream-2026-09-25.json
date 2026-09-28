@@ -1,0 +1,209 @@
+{
+  "evaluation_set": "MVP v1 downstream gold",
+  "gold_sha256": "e254091f5dace9f4fb8551fe3d222752662066c5cbbed811b97d617acea7ada9",
+  "provider_versions": {
+    "qa": "mvp-v1-gold-evidence-fake-v1",
+    "claim": "downstream-extractive-fake-v1",
+    "semantic": "downstream-semantic-rules-v1"
+  },
+  "claim": {
+    "expected_count": 16,
+    "actual_count": 16,
+    "fact_recall": {
+      "numerator": 16,
+      "denominator": 16,
+      "value": 1.0
+    },
+    "source_document_accuracy": {
+      "numerator": 16,
+      "denominator": 16,
+      "value": 1.0
+    },
+    "source_page_accuracy": {
+      "numerator": 16,
+      "denominator": 16,
+      "value": 1.0
+    },
+    "evidence_snippet_accuracy": {
+      "numerator": 16,
+      "denominator": 16,
+      "value": 1.0
+    },
+    "by_category": {
+      "amount": {
+        "numerator": 3,
+        "denominator": 3,
+        "value": 1.0
+      },
+      "date": {
+        "numerator": 7,
+        "denominator": 7,
+        "value": 1.0
+      },
+      "person": {
+        "numerator": 3,
+        "denominator": 3,
+        "value": 1.0
+      },
+      "action": {
+        "numerator": 3,
+        "denominator": 3,
+        "value": 1.0
+      }
+    }
+  },
+  "candidate": {
+    "expected_conflicting_pairs": 4,
+    "claim_pairs_ready": 4,
+    "pair_recall": {
+      "numerator": 4,
+      "denominator": 4,
+      "value": 1.0
+    }
+  },
+  "contradiction": {
+    "expected_pairs_all_relations": 8,
+    "decision_accuracy_given_candidate": {
+      "numerator": 8,
+      "denominator": 8,
+      "value": 1.0
+    },
+    "end_to_end_contradiction_recall": {
+      "numerator": 4,
+      "denominator": 4,
+      "value": 1.0
+    },
+    "by_type": {
+      "amount": {
+        "expected_conflicting_pairs": 1,
+        "candidate_pair_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "decision_accuracy_given_candidate": {
+          "numerator": 2,
+          "denominator": 2,
+          "value": 1.0
+        },
+        "end_to_end_contradiction_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "date": {
+        "expected_conflicting_pairs": 1,
+        "candidate_pair_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "decision_accuracy_given_candidate": {
+          "numerator": 2,
+          "denominator": 2,
+          "value": 1.0
+        },
+        "end_to_end_contradiction_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "person": {
+        "expected_conflicting_pairs": 1,
+        "candidate_pair_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "decision_accuracy_given_candidate": {
+          "numerator": 2,
+          "denominator": 2,
+          "value": 1.0
+        },
+        "end_to_end_contradiction_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      },
+      "action": {
+        "expected_conflicting_pairs": 1,
+        "candidate_pair_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        },
+        "decision_accuracy_given_candidate": {
+          "numerator": 2,
+          "denominator": 2,
+          "value": 1.0
+        },
+        "end_to_end_contradiction_recall": {
+          "numerator": 1,
+          "denominator": 1,
+          "value": 1.0
+        }
+      }
+    }
+  },
+  "timeline": {
+    "expected_events": 6,
+    "event_recall": {
+      "numerator": 6,
+      "denominator": 6,
+      "value": 1.0
+    },
+    "date_accuracy": {
+      "numerator": 6,
+      "denominator": 6,
+      "value": 1.0
+    },
+    "source_accuracy": {
+      "numerator": 6,
+      "denominator": 6,
+      "value": 1.0
+    },
+    "order_accuracy": {
+      "numerator": 14,
+      "denominator": 14,
+      "value": 1.0
+    },
+    "same_date_gold_pairs_excluded_from_order": 1
+  },
+  "pipeline": {
+    "first_failure_stage_counts": {
+      "none": 30
+    },
+    "record_count": 30
+  },
+  "metric_notes": {
+    "claim_source_denominator": "fact-matched claims only",
+    "candidate_recall_denominator": "gold contradiction pairs with both facts and sources matched; claim_pairs_ready reports this denominator",
+    "decision_denominator": "gold pairs entering candidate set and evaluated by judge",
+    "end_to_end_denominator": "all gold contradiction pairs",
+    "timeline_recall_denominator": "all gold timeline events",
+    "timeline_order_denominator": "comparable gold event pairs with both events present; ties excluded",
+    "fake_boundary": "gold-gated QA and claim extraction; rule semantic fake for action/person",
+    "business_services": "real claim validation/persistence, candidate generation, amount/date judge, semantic decision safeguards, timeline"
+  },
+  "run_timestamp": "2026-09-25T05:04:41.370240+00:00",
+  "inputs": {
+    "case_set_sha256": "6dd0a3096dc9f54075b41c60d036a074dd1d1e460bcce4c9192bf3535e11eebd",
+    "questions_sha256": "f0c179a2adcde4e407b4f2b9f256c2af6956ef8d6655882d27b99856f967802f",
+    "documents": {
+      "bank": "4be45c9d9a7381881a12cde6de6faab15dcf8035ec60cbe58dd2dcc766d256c4",
+      "lease": "e91bc0c4af52bddbb6a552cf47f9c87ca407008dc632a7a37418a773803a7994",
+      "clear_scan": "b5296b253bfac8bf5478dd932f3eb403db5b72954e8e4a28cc1388560e6e78be",
+      "low_scan": "9b797792a2963d0d800878c1f7dfcc00fd951dc4072380d5ec251342ba177ad4",
+      "table": "d84d1727104898fc2a7a0ffafb5aebe92501b7369efdff384eaaed94b5824803",
+      "long": "238a6e66474c24290cdcacd15140abdb54daac1eee6ed92d4e05e1e1feaf6555",
+      "order_v1": "125ed5a6b02c030153c245034b325a9fc99973f5688e27d37ec21fa6e44b6102",
+      "order_v2": "45223ce8fce0f0ce9f1f547f17ff71fe8b29c9b329aae59528ef6e156fe42142",
+      "dispute": "740f386c7471d421958145210abe757abe89db7a0f600b846245df72f59eeb97"
+    }
+  },
+  "retrieval_k": 5,
+  "qa_failure_count": 0
+}

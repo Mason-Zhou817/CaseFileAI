@@ -1,0 +1,19 @@
+{
+  "name": "MVP stress v1 parse and OCR annotations",
+  "ocr_tokens": [
+    {"token_id":"ocr_o_zero","doc_key":"ocr","page":1,"expected":"O0","category":"O/0"},
+    {"token_id":"ocr_one_i_l","doc_key":"ocr","page":1,"expected":"I1l","category":"1/l/I"},
+    {"token_id":"ocr_five_s","doc_key":"ocr","page":1,"expected":"5S","category":"5/S"},
+    {"token_id":"ocr_eight_b","doc_key":"ocr","page":1,"expected":"8B","category":"8/B"},
+    {"token_id":"ocr_code_low","doc_key":"ocr","page":2,"expected":"B8S5I1lO0","category":"low_resolution_code"},
+    {"token_id":"ocr_name_clear","doc_key":"ocr","page":1,"expected":"林琳","category":"chinese_name"},
+    {"token_id":"ocr_name_low","doc_key":"ocr","page":2,"expected":"柳钧","category":"blurred_chinese_name"},
+    {"token_id":"ocr_decimal_clear","doc_key":"ocr","page":1,"expected":"1580.50","category":"decimal_amount"},
+    {"token_id":"ocr_decimal_low","doc_key":"ocr","page":2,"expected":"8510.05","category":"decimal_amount"},
+    {"token_id":"ocr_date_slash","doc_key":"ocr","page":1,"expected":"2026/03/07","category":"date_separator"},
+    {"token_id":"ocr_date_dash","doc_key":"ocr","page":2,"expected":"2026-03-08","category":"date_separator"},
+    {"token_id":"mixed_scan_date","doc_key":"mixed","page":2,"expected":"2026年3月11日","category":"mixed_layer_ocr"}
+  ],
+  "long_doc_key": "long",
+  "long_gold_pages": [1, 13, 25, 38, 50]
+}

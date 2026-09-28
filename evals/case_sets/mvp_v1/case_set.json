@@ -1,0 +1,15 @@
+{
+  "name": "CaseFile AI MVP v1 synthetic scenarios",
+  "allow_cloud_model": false,
+  "retrieval_k": 5,
+  "documents": [
+    {"doc_key":"bank","path":"documents/01_bank_payment.pdf","expected_sha256":"4be45c9d9a7381881a12cde6de6faab15dcf8035ec60cbe58dd2dcc766d256c4","repeat_uploads":1},
+    {"doc_key":"lease","path":"documents/02_lease_contract.pdf","expected_sha256":"e91bc0c4af52bddbb6a552cf47f9c87ca407008dc632a7a37418a773803a7994"},
+    {"doc_key":"clear_scan","path":"documents/03_clear_receipt_scan.pdf","expected_sha256":"b5296b253bfac8bf5478dd932f3eb403db5b72954e8e4a28cc1388560e6e78be"},
+    {"doc_key":"low_scan","path":"documents/04_lowres_check_scan.pdf","expected_sha256":"9b797792a2963d0d800878c1f7dfcc00fd951dc4072380d5ec251342ba177ad4"},
+    {"doc_key":"table","path":"documents/05_wrapped_table.pdf","expected_sha256":"d84d1727104898fc2a7a0ffafb5aebe92501b7369efdff384eaaed94b5824803"},
+    {"doc_key":"long","path":"documents/06_long_record_12_pages.pdf","expected_sha256":"238a6e66474c24290cdcacd15140abdb54daac1eee6ed92d4e05e1e1feaf6555"},
+    {"doc_key":"order_v1","path":"documents/07_order_v1.pdf","expected_sha256":"125ed5a6b02c030153c245034b325a9fc99973f5688e27d37ec21fa6e44b6102"},
+    {"doc_key":"order_v2","path":"documents/08_order_v2.pdf","expected_sha256":"45223ce8fce0f0ce9f1f547f17ff71fe8b29c9b329aae59528ef6e156fe42142","version_of":"order_v1"}
+  ]
+}

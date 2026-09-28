@@ -1,0 +1,4 @@
+{"id":"conflict-001","type":"date","left":{"filename":"01_询问笔录_王海.pdf","page":1,"quote":"2021年6月1日"},"right":{"filename":"02_银行凭证_扫描件.pdf","page":1,"quote":"交易日期：2021年3月5日"}}
+{"id":"conflict-002","type":"amount","left":{"filename":"01_询问笔录_王海.pdf","page":1,"quote":"人民币50万元"},"right":{"filename":"02_银行凭证_扫描件.pdf","page":1,"quote":"交易金额：人民币450000元"}}
+{"id":"conflict-003","type":"action_presence","left":{"filename":"01_询问笔录_王海.pdf","page":1,"quote":"确认收到上述款项"},"right":{"filename":"02_银行凭证_扫描件.pdf","page":2,"quote":"未收到王海支付的上述投资款"}}
+{"id":"conflict-004","type":"subject_person","left":{"filename":"01_询问笔录_王海.pdf","page":2,"quote":"付款人是王海本人"},"right":{"filename":"02_银行凭证_扫描件.pdf","page":1,"quote":"付款人：陈军"}}

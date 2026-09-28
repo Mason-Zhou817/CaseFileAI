@@ -1,0 +1,851 @@
+{
+  "name": "MVP stress Claim quality v1",
+  "base_commit": "bc9d4e9c01d87ead4ecaebd25bef5964d7a734eb",
+  "policy": "fixed 14 stage-only samples; no real QA or contradiction calls; one extraction service invocation per sample",
+  "samples": [
+    {
+      "id": "s06",
+      "question": "结算表R-01对应CT-77的月租金是多少？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "结算表R-01对应CT-77的月租金是人民币85000.50元。",
+          "evidence": [
+            {
+              "doc_key": "table",
+              "page": 1,
+              "snippet": "租金与保证金对照表 · 跨行\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n行号    合同      项目          数值\nR-01    CT-77     月租金        人民币\n                                  85000.50元\nR-01    CT-77     起租日期      2026年3月\n                                  9日\nR-02    CT-78     月租金        人民币85000.80元\nR-02    CT-78     起租日期      2026年3月10日\n附注：两个合同的行号相邻，金额不可混用。"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s06_rent",
+          "category": "amount",
+          "core_match_groups": [
+            [
+              "月租金"
+            ],
+            [
+              "85000.50"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "CT-77"
+            ],
+            [
+              "R-01"
+            ]
+          ],
+          "atomic_text_any": [
+            "结算表R-01对应CT-77的月租金是人民币85000.50元"
+          ],
+          "source": {
+            "doc_key": "table",
+            "page": 1,
+            "snippet": "R-01    CT-77     月租金        人民币\n                                  85000.50元"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "question": "结算表CT-77设备交接费的付款状态是什么？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "结算表CT-77设备交接费的付款状态为尚未支付。",
+          "evidence": [
+            {
+              "doc_key": "table",
+              "page": 2,
+              "snippet": "相邻行错位 · 付款状态\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\nCT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付\nCT-78   设备交接费       人民币18000元\n                              付款状态：已经支付\nCT-77   审核人           柳钧\nCT-78   审核人           柳均"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s09_unpaid",
+          "category": "action",
+          "core_match_groups": [
+            [
+              "尚未支付",
+              "未支付"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "CT-77"
+            ],
+            [
+              "设备交接费"
+            ],
+            [
+              "尚未",
+              "未支付"
+            ]
+          ],
+          "atomic_text_any": [
+            "结算表CT-77设备交接费的付款状态为尚未支付"
+          ],
+          "source": {
+            "doc_key": "table",
+            "page": 2,
+            "snippet": "CT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "question": "结算表CT-78的审核人是谁？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "结算表CT-78的审核人是柳均。",
+          "evidence": [
+            {
+              "doc_key": "table",
+              "page": 2,
+              "snippet": "相邻行错位 · 付款状态\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\nCT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付\nCT-78   设备交接费       人民币18000元\n                              付款状态：已经支付\nCT-77   审核人           柳钧\nCT-78   审核人           柳均"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s10_reviewer",
+          "category": "person",
+          "core_match_groups": [
+            [
+              "审核人"
+            ],
+            [
+              "柳均"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "CT-78"
+            ],
+            [
+              "审核人"
+            ]
+          ],
+          "atomic_text_any": [
+            "结算表CT-78的审核人是柳均"
+          ],
+          "source": {
+            "doc_key": "table",
+            "page": 2,
+            "snippet": "CT-78   审核人           柳均"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s38",
+      "question": "争议陈述A的付款状态与唯一付款人分别是什么？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "争议陈述A的付款状态为已支付",
+          "evidence": [
+            {
+              "doc_key": "conflict_a",
+              "page": 1,
+              "snippet": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。"
+            },
+            {
+              "doc_key": "controls",
+              "page": 1,
+              "snippet": "付款争议陈述 · 对照\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n付款记录金额为人民币45万元。\n付款记录金额为美元450000。\n付款记录日期为2026年3月。\n另一笔付款记录日期为2026年3月10日。\n付款记录款项确已支付。\n付款记录款项在收到发票后支付。\n付款记录唯一付款人为甲公司。\n另一笔付款记录唯一付款人为乙公司。\n简称说明：甲公司即北京甲有限公司。"
+            }
+          ]
+        },
+        {
+          "text": "争议陈述A的唯一付款人为北京甲有限公司",
+          "evidence": [
+            {
+              "doc_key": "conflict_a",
+              "page": 1,
+              "snippet": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。"
+            },
+            {
+              "doc_key": "controls",
+              "page": 1,
+              "snippet": "付款争议陈述 · 对照\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n付款记录金额为人民币45万元。\n付款记录金额为美元450000。\n付款记录日期为2026年3月。\n另一笔付款记录日期为2026年3月10日。\n付款记录款项确已支付。\n付款记录款项在收到发票后支付。\n付款记录唯一付款人为甲公司。\n另一笔付款记录唯一付款人为乙公司。\n简称说明：甲公司即北京甲有限公司。"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 2,
+      "gold": [
+        {
+          "fact_key": "s38_paid",
+          "category": "action",
+          "core_match_groups": [
+            [
+              "已支付"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "争议陈述A",
+              "付款争议陈述A"
+            ],
+            [
+              "付款状态",
+              "付款记录"
+            ]
+          ],
+          "atomic_text_any": [
+            "争议陈述A的付款状态为已支付"
+          ],
+          "source": {
+            "doc_key": "conflict_a",
+            "page": 1,
+            "snippet": "付款记录款项已支付"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        },
+        {
+          "fact_key": "s38_payer",
+          "category": "person",
+          "core_match_groups": [
+            [
+              "付款人"
+            ],
+            [
+              "北京甲有限公司"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "争议陈述A",
+              "付款争议陈述A"
+            ],
+            [
+              "唯一付款人"
+            ]
+          ],
+          "atomic_text_any": [
+            "争议陈述A的唯一付款人为北京甲有限公司"
+          ],
+          "source": {
+            "doc_key": "conflict_a",
+            "page": 1,
+            "snippet": "付款记录唯一付款人为北京甲有限公司"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s01",
+      "question": "甲账簿第一笔设备预付款的实际转账金额是多少？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "甲账簿第一笔设备预付款的实际转账金额是人民币450000元。",
+          "evidence": [
+            {
+              "doc_key": "ledger_a",
+              "page": 3,
+              "snippet": "甲账簿 · 唯一付款记录\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 3 / 3 页\n第一笔设备预付款实际转账金额：人民币450000元。\n第一笔设备预付款实际转账日期：2026年3月1日。\n付款人：北京甲有限公司；经办人：柳钧。\n本页同时记载参考编号 O0I1l5S8B。"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s01_amount",
+          "category": "amount",
+          "core_match_groups": [
+            [
+              "450000"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "第一笔"
+            ],
+            [
+              "实际转账",
+              "实际划出"
+            ],
+            [
+              "甲账簿"
+            ]
+          ],
+          "atomic_text_any": [
+            "甲账簿第一笔设备预付款的实际转账金额是人民币450000元。"
+          ],
+          "source": {
+            "doc_key": "ledger_a",
+            "page": 3,
+            "snippet": "第一笔设备预付款实际转账金额：人民币450000元"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "question": "乙账簿第二笔设备预付款的付款人是谁？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "乙账簿第二笔设备预付款的付款人是北京乙有限公司。",
+          "evidence": [
+            {
+              "doc_key": "ledger_b",
+              "page": 1,
+              "snippet": "乙账簿 · 近似主体\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n第一笔设备预付款的收款人为北川设备有限公司。\n第二笔设备预付款付款人为北京乙有限公司。\n第二笔设备预付款实际转账金额：人民币480000元。\n第二笔设备预付款实际转账日期：2026年3月10日。\n经办人柳均与甲账簿经办人柳钧并非同一人。"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s02_payer",
+          "category": "person",
+          "core_match_groups": [
+            [
+              "北京乙有限公司"
+            ],
+            [
+              "付款人"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "第二笔"
+            ],
+            [
+              "付款人"
+            ]
+          ],
+          "atomic_text_any": [
+            "乙账簿第二笔设备预付款的付款人是北京乙有限公司。"
+          ],
+          "source": {
+            "doc_key": "ledger_b",
+            "page": 1,
+            "snippet": "第二笔设备预付款付款人为北京乙有限公司"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "question": "MIX-28原生页的登记日期是什么？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "MIX-28原生页的登记日期是2026年3月2日。",
+          "evidence": [
+            {
+              "doc_key": "mixed",
+              "page": 1,
+              "snippet": "混合文本层材料 · 原生页\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n主合同标识：MIX-28。\n登记主体：北川设备有限公司。\n登记日期：2026年3月2日。"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s03_date",
+          "category": "date",
+          "core_match_groups": [
+            [
+              "2026年3月2日"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "MIX-28"
+            ],
+            [
+              "登记日期"
+            ]
+          ],
+          "atomic_text_any": [
+            "MIX-28原生页的登记日期是2026年3月2日。"
+          ],
+          "source": {
+            "doc_key": "mixed",
+            "page": 1,
+            "snippet": "登记日期：2026年3月2日"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "question": "结算表R-01对应CT-77的起租日期是什么？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "结算表R-01对应CT-77的起租日期是2026年3月9日。",
+          "evidence": [
+            {
+              "doc_key": "table",
+              "page": 1,
+              "snippet": "租金与保证金对照表 · 跨行\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n行号    合同      项目          数值\nR-01    CT-77     月租金        人民币\n                                  85000.50元\nR-01    CT-77     起租日期      2026年3月\n                                  9日\nR-02    CT-78     月租金        人民币85000.80元\nR-02    CT-78     起租日期      2026年3月10日\n附注：两个合同的行号相邻，金额不可混用。"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s08_date",
+          "category": "date",
+          "core_match_groups": [
+            [
+              "2026年3月9日"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "CT-77"
+            ],
+            [
+              "起租日期"
+            ]
+          ],
+          "atomic_text_any": [
+            "结算表R-01对应CT-77的起租日期是2026年3月9日。"
+          ],
+          "source": {
+            "doc_key": "table",
+            "page": 1,
+            "snippet": "R-01    CT-77     起租日期      2026年3月\n                                  9日"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        },
+        {
+          "fact_key": "s08_row",
+          "category": "other",
+          "core_match_groups": [
+            [
+              "R-01"
+            ],
+            [
+              "CT-77"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "R-01"
+            ],
+            [
+              "CT-77"
+            ]
+          ],
+          "atomic_text_any": [
+            "结算表R-01对应CT-77"
+          ],
+          "source": {
+            "doc_key": "table",
+            "page": 1,
+            "snippet": "R-01    CT-77     起租日期      2026年3月\n                                  9日"
+          },
+          "exact_core_match": true,
+          "core_required": false
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "question": "MIX-28扫描附件何时完成验收？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "MIX-28扫描附件的验收日期为2026年3月11日。",
+          "evidence": [
+            {
+              "doc_key": "mixed",
+              "page": 2,
+              "snippet": "合成扫描压力页\nMIX-28附件验收日期：2026年3月11日\n验收人：林琳\n附件状态：尚未最终结算"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s13_date",
+          "category": "date",
+          "core_match_groups": [
+            [
+              "2026年3月11日"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "MIX-28"
+            ],
+            [
+              "验收日期"
+            ]
+          ],
+          "atomic_text_any": [
+            "MIX-28扫描附件的验收日期为2026年3月11日。"
+          ],
+          "source": {
+            "doc_key": "mixed",
+            "page": 2,
+            "snippet": "MIX-28附件验收日期：2026年3月11日"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "question": "仓储合同ST-2026-11当前版本的月租金是多少？",
+      "source_mode": "archived Qwen validated answer, replayed through synthetic QA provider",
+      "source_claims": [
+        {
+          "text": "仓储合同ST-2026-11当前版本的月租金是人民币82000元。",
+          "evidence": [
+            {
+              "doc_key": "contract_v2",
+              "page": 1,
+              "snippet": "仓储合同 · v2\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n合同编号：ST-2026-11。\n承租人：海岚设备有限公司。\n月租金：人民币82000元。\n租期：2026年4月1日至2027年3月31日。\n本修订版替代v1，版本标识：v2。"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s04_rent",
+          "category": "amount",
+          "core_match_groups": [
+            [
+              "82000"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "ST-2026-11"
+            ],
+            [
+              "月租金"
+            ]
+          ],
+          "atomic_text_any": [
+            "仓储合同ST-2026-11当前版本的月租金是人民币82000元。"
+          ],
+          "source": {
+            "doc_key": "contract_v2",
+            "page": 1,
+            "snippet": "月租金：人民币82000元"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "question": "乙账簿第一笔预付款的收款人是谁？",
+      "source_mode": "annotated fused/role synthetic answer, deterministic QA provider",
+      "source_claims": [
+        {
+          "text": "乙账簿第一笔设备预付款的收款人为北川设备有限公司。",
+          "evidence": [
+            {
+              "doc_key": "ledger_b",
+              "page": 1,
+              "snippet": "第一笔设备预付款的收款人为北川设备有限公司"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s05_payee",
+          "category": "person",
+          "core_match_groups": [
+            [
+              "北川设备有限公司"
+            ],
+            [
+              "收款人"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "第一笔"
+            ],
+            [
+              "收款人"
+            ]
+          ],
+          "atomic_text_any": [
+            "乙账簿第一笔设备预付款的收款人为北川设备有限公司。"
+          ],
+          "source": {
+            "doc_key": "ledger_b",
+            "page": 1,
+            "snippet": "第一笔设备预付款的收款人为北川设备有限公司"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s45",
+      "question": "对照页如何再次确认本笔付款已支付？",
+      "source_mode": "annotated fused/role synthetic answer, deterministic QA provider",
+      "source_claims": [
+        {
+          "text": "对照页的付款记录款项确已支付。",
+          "evidence": [
+            {
+              "doc_key": "controls",
+              "page": 1,
+              "snippet": "付款记录款项确已支付"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 1,
+      "gold": [
+        {
+          "fact_key": "s45_paid",
+          "category": "action",
+          "core_match_groups": [
+            [
+              "确已支付"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "付款记录"
+            ],
+            [
+              "确已支付"
+            ],
+            [
+              "对照页"
+            ]
+          ],
+          "atomic_text_any": [
+            "对照页的付款记录款项确已支付"
+          ],
+          "source": {
+            "doc_key": "controls",
+            "page": 1,
+            "snippet": "付款记录款项确已支付"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s37",
+      "question": "争议陈述A的付款记录金额和日期分别是什么？",
+      "source_mode": "annotated fused/role synthetic answer, deterministic QA provider",
+      "source_claims": [
+        {
+          "text": "争议陈述A的付款记录金额为人民币450000元，争议陈述A的付款记录日期为2026年3月1日。",
+          "evidence": [
+            {
+              "doc_key": "conflict_a",
+              "page": 1,
+              "snippet": "付款记录金额为人民币450000元"
+            },
+            {
+              "doc_key": "conflict_a",
+              "page": 1,
+              "snippet": "付款记录日期为2026年3月1日"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 2,
+      "gold": [
+        {
+          "fact_key": "s37_amount",
+          "category": "amount",
+          "core_match_groups": [
+            [
+              "450000"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "付款记录"
+            ],
+            [
+              "金额"
+            ],
+            [
+              "争议陈述A"
+            ]
+          ],
+          "atomic_text_any": [
+            "争议陈述A的付款记录金额为人民币450000元"
+          ],
+          "source": {
+            "doc_key": "conflict_a",
+            "page": 1,
+            "snippet": "付款记录金额为人民币450000元"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        },
+        {
+          "fact_key": "s37_date",
+          "category": "date",
+          "core_match_groups": [
+            [
+              "2026年3月1日"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "付款记录"
+            ],
+            [
+              "日期"
+            ],
+            [
+              "争议陈述A"
+            ]
+          ],
+          "atomic_text_any": [
+            "争议陈述A的付款记录日期为2026年3月1日"
+          ],
+          "source": {
+            "doc_key": "conflict_a",
+            "page": 1,
+            "snippet": "付款记录日期为2026年3月1日"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    },
+    {
+      "id": "s40",
+      "question": "争议陈述B的付款状态与唯一付款人分别是什么？",
+      "source_mode": "annotated fused/role synthetic answer, deterministic QA provider",
+      "source_claims": [
+        {
+          "text": "争议陈述B的付款记录款项尚未支付，争议陈述B的付款记录唯一付款人为乙公司。",
+          "evidence": [
+            {
+              "doc_key": "conflict_b",
+              "page": 1,
+              "snippet": "付款记录款项尚未支付"
+            },
+            {
+              "doc_key": "conflict_b",
+              "page": 1,
+              "snippet": "付款记录唯一付款人为乙公司"
+            }
+          ]
+        }
+      ],
+      "expected_core_claim_count": 2,
+      "gold": [
+        {
+          "fact_key": "s40_unpaid",
+          "category": "action",
+          "core_match_groups": [
+            [
+              "尚未支付"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "付款记录"
+            ],
+            [
+              "尚未支付"
+            ],
+            [
+              "争议陈述B"
+            ]
+          ],
+          "atomic_text_any": [
+            "争议陈述B的付款记录款项尚未支付"
+          ],
+          "source": {
+            "doc_key": "conflict_b",
+            "page": 1,
+            "snippet": "付款记录款项尚未支付"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        },
+        {
+          "fact_key": "s40_payer",
+          "category": "person",
+          "core_match_groups": [
+            [
+              "乙公司"
+            ],
+            [
+              "唯一付款人"
+            ]
+          ],
+          "required_scope_groups": [
+            [
+              "付款记录"
+            ],
+            [
+              "唯一付款人"
+            ],
+            [
+              "争议陈述B"
+            ]
+          ],
+          "atomic_text_any": [
+            "争议陈述B的付款记录唯一付款人为乙公司"
+          ],
+          "source": {
+            "doc_key": "conflict_b",
+            "page": 1,
+            "snippet": "付款记录唯一付款人为乙公司"
+          },
+          "exact_core_match": false,
+          "core_required": true
+        }
+      ]
+    }
+  ]
+}

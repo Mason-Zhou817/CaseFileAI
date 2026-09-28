@@ -1,0 +1,39 @@
+{
+  "name": "MVP v1 downstream gold",
+  "claims": [
+    {"claim_key":"amount_a","question_id":"d01","category":"amount","expected_text_any":["本次交易金额为人民币438000元"],"normalized":{"amount":438000},"source":{"doc_key":"dispute","page":1,"snippet":"本次交易金额为人民币438000元"}},
+    {"claim_key":"amount_b","question_id":"d02","category":"amount","expected_text_any":["本次交易金额为人民币448000元"],"normalized":{"amount":448000},"source":{"doc_key":"dispute","page":2,"snippet":"本次交易金额为人民币448000元"}},
+    {"claim_key":"date_a","question_id":"d03","category":"date","expected_text_any":["本次交易日期为2021年3月18日"],"normalized":{"date":"2021-03-18"},"source":{"doc_key":"dispute","page":1,"snippet":"本次交易日期为2021年3月18日"}},
+    {"claim_key":"date_b","question_id":"d04","category":"date","expected_text_any":["本次交易日期为2021年3月19日"],"normalized":{"date":"2021-03-19"},"source":{"doc_key":"dispute","page":2,"snippet":"本次交易日期为2021年3月19日"}},
+    {"claim_key":"action_a","question_id":"d05","category":"action","expected_text_any":["本次交易款项已支付"],"normalized":{"action":"paid"},"source":{"doc_key":"dispute","page":1,"snippet":"本次交易款项已支付"}},
+    {"claim_key":"action_b","question_id":"d06","category":"action","expected_text_any":["本次交易款项未支付"],"normalized":{"action":"unpaid"},"source":{"doc_key":"dispute","page":2,"snippet":"本次交易款项未支付"}},
+    {"claim_key":"person_a","question_id":"d07","category":"person","expected_text_any":["本次交易唯一付款人是赵明"],"normalized":{"person":"赵明"},"source":{"doc_key":"dispute","page":1,"snippet":"本次交易唯一付款人是赵明"}},
+    {"claim_key":"person_b","question_id":"d08","category":"person","expected_text_any":["本次交易唯一付款人是钱平"],"normalized":{"person":"钱平"},"source":{"doc_key":"dispute","page":2,"snippet":"本次交易唯一付款人是钱平"}},
+    {"claim_key":"amount_same","question_id":"d09","category":"amount","expected_text_any":["本次交易金额为人民币438,000元"],"normalized":{"amount":438000},"source":{"doc_key":"dispute","page":3,"snippet":"本次交易金额为人民币438,000元"}},
+    {"claim_key":"date_other","question_id":"d10","category":"date","expected_text_any":["另一笔交易日期为2021年3月20日"],"normalized":{"date":"2021-03-20"},"source":{"doc_key":"dispute","page":3,"snippet":"另一笔交易日期为2021年3月20日"}},
+    {"claim_key":"action_other","question_id":"d11","category":"action","expected_text_any":["另一笔交易款项已支付"],"normalized":{"action":"paid"},"source":{"doc_key":"dispute","page":3,"snippet":"另一笔交易款项已支付"}},
+    {"claim_key":"person_same","question_id":"d12","category":"person","expected_text_any":["本次交易唯一付款人为赵明"],"normalized":{"person":"赵明"},"source":{"doc_key":"dispute","page":3,"snippet":"本次交易唯一付款人为赵明"}},
+    {"claim_key":"date_month","question_id":"d13","category":"date","expected_text_any":["本次交易计划日期为2021年3月"],"normalized":{"date":"2021-03"},"source":{"doc_key":"dispute","page":3,"snippet":"本次交易计划日期为2021年3月"}},
+    {"claim_key":"bank_date","question_id":"d14","category":"date","expected_text_any":["交易日期：2021年3月18日"],"normalized":{"date":"2021-03-18"},"source":{"doc_key":"bank","page":1,"snippet":"交易日期：2021年3月18日"}},
+    {"claim_key":"receipt_date","question_id":"d15","category":"date","expected_text_any":["收款日期：2021年4月2日"],"normalized":{"date":"2021-04-02"},"source":{"doc_key":"clear_scan","page":1,"snippet":"收款日期：2021年4月2日"}},
+    {"claim_key":"delivery_date","question_id":"d16","category":"date","expected_text_any":["北岭设备交付日期：2022年6月8日"],"normalized":{"date":"2022-06-08"},"source":{"doc_key":"long","page":2,"snippet":"北岭设备交付日期：2022年6月8日"}}
+  ],
+  "conflict_pairs": [
+    {"pair_key":"amount_conflict","claim_a":"amount_a","claim_b":"amount_b","expected_relation":"contradiction","contradiction_type":"amount","note":"同一笔交易的金额不同"},
+    {"pair_key":"date_conflict","claim_a":"date_a","claim_b":"date_b","expected_relation":"contradiction","contradiction_type":"date","note":"同一笔交易的日期不同"},
+    {"pair_key":"action_conflict","claim_a":"action_a","claim_b":"action_b","expected_relation":"contradiction","contradiction_type":"action","note":"同一笔款项已支付与未支付相斥"},
+    {"pair_key":"person_conflict","claim_a":"person_a","claim_b":"person_b","expected_relation":"contradiction","contradiction_type":"person","note":"同一笔交易唯一付款人身份不同"},
+    {"pair_key":"amount_compatible","claim_a":"amount_a","claim_b":"amount_same","expected_relation":"non_contradiction","contradiction_type":"amount","note":"千分位写法不同，数值相同"},
+    {"pair_key":"date_uncertain","claim_a":"date_a","claim_b":"date_other","expected_relation":"uncertain","contradiction_type":"date","note":"另一笔交易的日期不能与本次交易直接比较"},
+    {"pair_key":"action_uncertain","claim_a":"action_a","claim_b":"action_other","expected_relation":"uncertain","contradiction_type":"action","note":"另一笔交易的支付状态不构成本次交易矛盾"},
+    {"pair_key":"person_compatible","claim_a":"person_a","claim_b":"person_same","expected_relation":"non_contradiction","contradiction_type":"person","note":"相同唯一付款人的不同表达"}
+  ],
+  "timeline_events": [
+    {"event_key":"event_date_a","claim_key":"date_a","expected_date":"2021-03-18","date_precision":"exact"},
+    {"event_key":"event_date_b","claim_key":"date_b","expected_date":"2021-03-19","date_precision":"exact"},
+    {"event_key":"event_month","claim_key":"date_month","expected_date":"2021-03","date_precision":"partial"},
+    {"event_key":"event_bank","claim_key":"bank_date","expected_date":"2021-03-18","date_precision":"exact"},
+    {"event_key":"event_receipt","claim_key":"receipt_date","expected_date":"2021-04-02","date_precision":"exact"},
+    {"event_key":"event_delivery","claim_key":"delivery_date","expected_date":"2022-06-08","date_precision":"exact"}
+  ]
+}

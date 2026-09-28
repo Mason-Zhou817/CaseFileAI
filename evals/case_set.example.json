@@ -1,0 +1,17 @@
+{
+  "name": "星河投资款争议（合成评测）",
+  "allow_cloud_model": true,
+  "retrieval_k": 5,
+  "documents": [
+    {
+      "doc_key": "interview",
+      "path": "../tests/fixtures/synthetic_case/01_询问笔录_王海.pdf",
+      "expected_sha256": "29f99567e721361291702ce054fd114e862c4a7116790cbe2e6b3c4949ba7f19"
+    },
+    {
+      "doc_key": "bank",
+      "path": "../tests/fixtures/synthetic_case/02_银行凭证_扫描件.pdf",
+      "expected_sha256": "c09c0cbb21ef3443f86f07863ce5b6f485c3581da6954490021d267bcc143cda"
+    }
+  ]
+}

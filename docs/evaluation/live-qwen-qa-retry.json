@@ -1,0 +1,46 @@
+{
+  "dataset": "synthetic_fixture_only",
+  "model": "qwen3.7-plus",
+  "qa_attempts": [
+    {
+      "question": "银行凭证中的金额是多少？",
+      "http_status": 200,
+      "latency_ms": 15054.29,
+      "status": "answered",
+      "schema_valid": true,
+      "validation_status": "validated",
+      "refusal_reason": null,
+      "claim_count": 1,
+      "citation_count": 1,
+      "citation_lineage_valid": true,
+      "support_verdicts": [
+        "supported"
+      ],
+      "generation_ms": 8590.345,
+      "validation_ms": 6409.3,
+      "answer_mentions_source_amount": true,
+      "outside_fact_detected": false
+    }
+  ],
+  "claim_extraction": {
+    "http_status": 200,
+    "latency_ms": 26861.62,
+    "schema_valid": true,
+    "claim_count": 1,
+    "evidence_valid": true,
+    "coverage_complete": true,
+    "outside_answer_fact_detected": false
+  },
+  "contradiction": null,
+  "index": {
+    "case_id": "fcb39f6d-dd19-4690-b438-8c5d0f5f3a2c",
+    "pages_seen": 4,
+    "document_versions_seen": 2,
+    "chunks_total": 4,
+    "chunks_created": 4,
+    "embeddings_created": 4,
+    "chunking_version": "page-char-v1-target500-overlap80-boundary100",
+    "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c"
+  },
+  "claim_source": "Qwen QA; persisted and validated citation chain"
+}

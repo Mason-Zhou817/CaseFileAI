@@ -1,0 +1,72 @@
+{
+  "dataset": "synthetic_fixture_only",
+  "model": "qwen3.7-plus",
+  "qa_attempts": [
+    {
+      "question": "银行凭证中的交易金额是多少？",
+      "http_status": 200,
+      "latency_ms": 24237.83,
+      "status": "insufficient_evidence",
+      "schema_valid": true,
+      "validation_status": "model_abstained",
+      "refusal_reason": "model_insufficient_evidence",
+      "claim_count": 0,
+      "citation_count": 0,
+      "citation_lineage_valid": null,
+      "support_verdicts": [],
+      "generation_ms": 24191.651,
+      "validation_ms": 0.0,
+      "answer_mentions_source_amount": false,
+      "outside_fact_detected": null
+    },
+    {
+      "question": "银行交易凭证载明的金额是多少元？",
+      "http_status": 503,
+      "latency_ms": 35794.03,
+      "failure_type": "http_or_model_unavailable"
+    },
+    {
+      "question": "请引用银行凭证原文回答交易金额。",
+      "http_status": 503,
+      "latency_ms": 46109.93,
+      "failure_type": "http_or_model_unavailable"
+    }
+  ],
+  "claim_extraction": {
+    "http_status": 200,
+    "latency_ms": 19672.79,
+    "schema_valid": true,
+    "claim_count": 1,
+    "evidence_valid": true,
+    "coverage_complete": true,
+    "outside_answer_fact_detected": false
+  },
+  "contradiction": {
+    "schema_valid": true,
+    "model_decision": {
+      "verdict": "contradiction",
+      "same_event": true,
+      "same_fact_slot": true,
+      "reason": "左侧事实表明公司于2021年3月5日收到了投资款，而右侧事实表明公司在同一天未收到投资款。两者描述的是同一事件和同一事实槽位，且状态明确不兼容（收到与未收到）。",
+      "left_occurrence": "occurred",
+      "right_occurrence": "did_not_occur",
+      "left_identity": "",
+      "right_identity": ""
+    },
+    "backend_verdict": "contradiction",
+    "backend_reason_code": "model_incompatible_same_slot",
+    "evidence_unchanged": true,
+    "latency_ms": 10573.69
+  },
+  "index": {
+    "case_id": "37c855eb-f345-4e6c-931a-bfce2cb3b840",
+    "pages_seen": 4,
+    "document_versions_seen": 2,
+    "chunks_total": 4,
+    "chunks_created": 4,
+    "embeddings_created": 4,
+    "chunking_version": "page-char-v1-target500-overlap80-boundary100",
+    "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c"
+  },
+  "claim_source": "FakeLLM QA; persisted and validated citation chain"
+}

@@ -1,0 +1,3 @@
+{"id":"q001","question":"王海陈述的付款日期是什么时候？","expected_status":"answered","expected_answer_any":["2021年6月1日"],"gold_evidence":[{"doc_key":"interview","page":1,"snippet":"2021年6月1日"}],"tags":["date","native_pdf"]}
+{"id":"q002","question":"银行凭证记载的交易金额是多少？","expected_status":"answered","expected_answer_any":["450000元","45万元"],"gold_evidence":[{"doc_key":"bank","page":1,"snippet":"交易金额：人民币450000元"}],"tags":["amount","ocr"]}
+{"id":"q003","question":"材料记载的房屋租赁期限是多少？","expected_status":"insufficient_evidence","expected_answer_any":[],"gold_evidence":[],"tags":["abstain"]}

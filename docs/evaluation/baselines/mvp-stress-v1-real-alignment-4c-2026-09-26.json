@@ -1,0 +1,1309 @@
+{
+  "evaluation_set": "CaseFile AI MVP stress v1 synthetic scenarios",
+  "run_timestamp": "2026-09-26T13:36:12.948679+00:00",
+  "provider_version": "qwen3.7-plus",
+  "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+  "retrieval_version": "hybrid-rrf-k60-page-token-v2",
+  "run_mode": "fresh_case",
+  "inputs": {
+    "case_set_sha256": "62a158b8127dd06e7d31419453a4f710f54aa0181ab835a29b35de79ac91ce0d",
+    "questions_sha256": "b29cba7dedbd465100bad7c5363c46e7677c1962f487c48574b08e94f490ac67",
+    "documents": {
+      "ocr": "e7447497119af9c30e6a1236d330eafeba4530bfa1e0c61522b6adb19197b8e2",
+      "mixed": "5c73b36025c340ca5f743794deddc825907720feaa778caf7a66d0a12ba04f4c",
+      "table": "7848318e6073b132b9a62532d2edf70e731839524a9321660b9c95042275c08e",
+      "ledger_a": "6dd200e19d24b9edf006faa193baece54375a4cad8d93675e3f9091dd9175b8d",
+      "ledger_b": "9b32280d5e5802fb13854efc7e14d912c919956dfe39d3b95efc8bb7a6adc073",
+      "long": "c92a996eae95bd83b89bfbf3a7159d6d5d6883eb91f460c1d42992f6af6cfa30",
+      "contract_v1": "15f81c88db84c505db148021511aa921f09cd89f53a2482289e61da6596ffbed",
+      "contract_v2": "59b071699cd009f44cc9bdde5273b3f519341395002277fd182fa4853d5ef4c0",
+      "conflict_a": "68790f9c804830870dcf8b423cc7a0e93dd868cb0422454464435c51a9527ca3",
+      "conflict_b": "5574626116f8fe04778e193ee1bfe410b7cd0b69c121388b7c161af595bdb5dd",
+      "controls": "57689d9d2fc2b4c7417df534e9e7b9600a56d91407b1836623cff5521418c410"
+    }
+  },
+  "document_checks": [
+    {
+      "doc_key": "ocr",
+      "version_of": null,
+      "document_id": "fba0363f-b709-4179-8958-6edeb21f9c30",
+      "document_version_id": "693bc87d-bc48-486a-a083-77db8c5cc563",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "mixed",
+      "version_of": null,
+      "document_id": "b111b676-d1b5-4734-ad2f-58bd2693311f",
+      "document_version_id": "f7a18bfe-988b-471f-aeff-8ec38fde78af",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "table",
+      "version_of": null,
+      "document_id": "89d9986f-7263-49f5-bb69-a96bcf75d3c7",
+      "document_version_id": "a9753463-a0a3-4368-a8bc-061aa4d3fbc6",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "ledger_a",
+      "version_of": null,
+      "document_id": "e174a118-de78-4a5f-beb5-45c33d2f255d",
+      "document_version_id": "8423e59e-d5f6-4963-b1fb-101483187a79",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "ledger_b",
+      "version_of": null,
+      "document_id": "2f9edab6-0f98-4d5f-b459-76368a205419",
+      "document_version_id": "274d425a-bc98-4359-b46f-af6898379641",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "long",
+      "version_of": null,
+      "document_id": "316de00a-6e6d-4f13-822a-9c12aca418d0",
+      "document_version_id": "f5b0c5ce-5732-4132-8d9b-bcb5078f1cf5",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "contract_v1",
+      "version_of": null,
+      "document_id": "7c0cf41f-3e97-45f2-a281-a50644d2957c",
+      "document_version_id": "7b29e31e-f52c-4159-9ad1-1c955571b84a",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "contract_v2",
+      "version_of": "contract_v1",
+      "document_id": "7c0cf41f-3e97-45f2-a281-a50644d2957c",
+      "document_version_id": "b9d1e60d-b99d-4d60-9a31-80f1dd2b0adb",
+      "version_number": 2,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "conflict_a",
+      "version_of": null,
+      "document_id": "49d1e132-5586-47a6-a70c-17a47f053871",
+      "document_version_id": "e96737a5-d19a-4816-bd9f-ccdd44008928",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "conflict_b",
+      "version_of": null,
+      "document_id": "2efc8b68-cd65-4691-9353-01a9dab2be36",
+      "document_version_id": "e3aa918b-edc5-4020-81e7-db795c113c7c",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    },
+    {
+      "doc_key": "controls",
+      "version_of": null,
+      "document_id": "1f16399b-66dc-43a8-81ed-3db3db803d76",
+      "document_version_id": "f54ccde0-b5c3-46a6-8eb6-6e0232f52287",
+      "version_number": 1,
+      "repeat_uploads": 0,
+      "duplicate_uploads_passed": true,
+      "historical_pages_preserved": true
+    }
+  ],
+  "retrieval_k": 5,
+  "total_questions": 9,
+  "answer_status_accuracy": {
+    "numerator": 8,
+    "denominator": 9,
+    "value": 0.8889
+  },
+  "correct_abstain_rate": {
+    "numerator": 3,
+    "denominator": 3,
+    "value": 1.0
+  },
+  "retrieval_all_required_hit_at_k": {
+    "numerator": 6,
+    "denominator": 6,
+    "value": 1.0
+  },
+  "retrieval_any_hit_at_k": {
+    "numerator": 6,
+    "denominator": 6,
+    "value": 1.0
+  },
+  "citation_document_accuracy": {
+    "numerator": 5,
+    "denominator": 5,
+    "value": 1.0
+  },
+  "citation_page_accuracy": {
+    "numerator": 5,
+    "denominator": 5,
+    "value": 1.0
+  },
+  "citation_snippet_accuracy": {
+    "numerator": 5,
+    "denominator": 5,
+    "value": 1.0
+  },
+  "answer_match_rate": {
+    "numerator": 4,
+    "denominator": 4,
+    "value": 1.0
+  },
+  "manual_review_count": 1,
+  "failure_count": 1,
+  "latency_ms": {
+    "import_ms": 3264.799,
+    "index_ms": 14940.503,
+    "run_total_ms": 179399.702,
+    "question_total_p50": 21903.345,
+    "question_total_p95": 25702.853
+  },
+  "metric_notes": {
+    "retrieval_denominator": "answerable questions with completed retrieval only",
+    "citation_denominator": "returned citations for answerable questions only",
+    "answer_match_denominator": "deterministically decidable answered comparisons only",
+    "question_latency": "retrieval through evaluation; excludes shared import and index",
+    "citation_snippet": "lexical gold excerpt match on the gold document and page; not semantic proof"
+  },
+  "index_statistics": {
+    "case_id": "2e6415a0-9976-42cc-8b0a-ac9b7dc4c556",
+    "pages_seen": 66,
+    "document_versions_seen": 11,
+    "chunks_total": 66,
+    "chunks_created": 66,
+    "embeddings_created": 66,
+    "chunking_version": "page-char-v1-target500-overlap80-boundary100",
+    "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c"
+  },
+  "run_date": "2026-09-26",
+  "subset": [
+    "s19",
+    "s27",
+    "s01",
+    "s02",
+    "s06",
+    "s09",
+    "s13",
+    "s16",
+    "s17"
+  ],
+  "model": "qwen3.7-plus",
+  "structured_output_mode": "json_schema",
+  "max_validation_attempts": 3,
+  "synthetic_pinned_materials": true,
+  "database_isolation": "fresh temporary case/database",
+  "run_policy": "one cold application run per predefined question; no agent rerun",
+  "provider": {
+    "total_model_calls": 21,
+    "successful_http_calls": 21,
+    "provider_failures": 0,
+    "timeout": 0,
+    "http_429": 0,
+    "http_503": 0,
+    "http_5xx": 0,
+    "by_phase": {
+      "qa": 21
+    }
+  },
+  "alignment_regression": {
+    "total": 9,
+    "positive": 6,
+    "negative": 3,
+    "answered": 5,
+    "correct_abstain_ids": [
+      "s19",
+      "s16",
+      "s17"
+    ],
+    "false_answer_ids": [],
+    "positive_abstain_ids": [
+      "s27"
+    ],
+    "validation_failure_ids": [
+      "s27"
+    ],
+    "alignment_rejected_ids": [],
+    "alignment_calls": 5,
+    "mean_added_structured_alignment_calls": 0.5555555555555556,
+    "by_question": {
+      "s19": {
+        "structured_calls": 1,
+        "http_calls": 1,
+        "by_schema": {
+          "AllowedGroundedAnswer": 1
+        },
+        "alignment": [],
+        "qa_ms": 11360.195
+      },
+      "s27": {
+        "structured_calls": 2,
+        "http_calls": 2,
+        "by_schema": {
+          "AllowedGroundedAnswer": 1,
+          "ModelSupportDecision": 1
+        },
+        "alignment": [],
+        "qa_ms": 23957.424
+      },
+      "s01": {
+        "structured_calls": 3,
+        "http_calls": 3,
+        "by_schema": {
+          "AllowedGroundedAnswer": 1,
+          "ModelSupportDecision": 1,
+          "ModelAnswerAlignment": 1
+        },
+        "alignment": [
+          {
+            "requested_fact": "甲账簿第一笔设备预付款的实际转账金额",
+            "requested_scope": "甲账簿（04_ledger_alpha.pdf）",
+            "answers_requested_fact": "matches",
+            "field_matches": "matches",
+            "source_scope_matches": "matches",
+            "reason": "问题询问甲账簿第一笔设备预付款的实际转账金额。答案直接回答为人民币450000元，属性完全一致。答案引用的证据E1来自04_ledger_alpha.pdf第3页，明确记载了甲账簿中第一笔设备预付款实际转账金额为人民币450000元，来源和事实均准确对应。"
+          }
+        ],
+        "qa_ms": 20875.419
+      },
+      "s02": {
+        "structured_calls": 3,
+        "http_calls": 3,
+        "by_schema": {
+          "AllowedGroundedAnswer": 1,
+          "ModelSupportDecision": 1,
+          "ModelAnswerAlignment": 1
+        },
+        "alignment": [
+          {
+            "requested_fact": "乙账簿第二笔设备预付款的付款人",
+            "requested_scope": "乙账簿",
+            "answers_requested_fact": "matches",
+            "field_matches": "matches",
+            "source_scope_matches": "matches",
+            "reason": "问题询问乙账簿第二笔设备预付款的付款人，答案直接回答为北京乙有限公司，所答属性与所问一致。引用的证据E1来自乙账簿（05_ledger_beta.pdf），明确记载‘第二笔设备预付款付款人为北京乙有限公司’，来源范围和事实均完全匹配。"
+          }
+        ],
+        "qa_ms": 22152.886
+      },
+      "s06": {
+        "structured_calls": 3,
+        "http_calls": 3,
+        "by_schema": {
+          "AllowedGroundedAnswer": 1,
+          "ModelSupportDecision": 1,
+          "ModelAnswerAlignment": 1
+        },
+        "alignment": [
+          {
+            "requested_fact": "结算表R-01对应CT-77的月租金",
+            "requested_scope": "无特定来源限制",
+            "answers_requested_fact": "matches",
+            "field_matches": "matches",
+            "source_scope_matches": "matches",
+            "reason": "问题询问结算表R-01对应CT-77的月租金，答案直接回答为人民币85000.50元，所问属性与所答属性完全一致。引用的证据E1中明确记载了行号R-01、合同CT-77对应的月租金为人民币85000.50元，事实与来源均完全匹配。"
+          }
+        ],
+        "qa_ms": 23127.675
+      },
+      "s09": {
+        "structured_calls": 3,
+        "http_calls": 3,
+        "by_schema": {
+          "AllowedGroundedAnswer": 1,
+          "ModelSupportDecision": 1,
+          "ModelAnswerAlignment": 1
+        },
+        "alignment": [
+          {
+            "requested_fact": "结算表CT-77设备交接费的付款状态",
+            "requested_scope": "无特定来源限制",
+            "answers_requested_fact": "matches",
+            "field_matches": "matches",
+            "source_scope_matches": "matches",
+            "reason": "问题询问结算表CT-77设备交接费的付款状态。答案直接回答为“尚未支付”，属性完全匹配。引用的证据E1（03_broken_table.pdf第2页）中明确记载了“CT-77 设备交接费...付款状态：尚未支付”，直接支持了答案的事实，来源和主体均准确对应。"
+          }
+        ],
+        "qa_ms": 21883.183
+      },
+      "s13": {
+        "structured_calls": 3,
+        "http_calls": 3,
+        "by_schema": {
+          "AllowedGroundedAnswer": 1,
+          "ModelSupportDecision": 1,
+          "ModelAnswerAlignment": 1
+        },
+        "alignment": [
+          {
+            "requested_fact": "MIX-28扫描附件的验收日期",
+            "requested_scope": "未限制特定来源，需找到MIX-28扫描附件的验收日期",
+            "answers_requested_fact": "matches",
+            "field_matches": "matches",
+            "source_scope_matches": "matches",
+            "reason": "问题询问MIX-28扫描附件的验收日期，答案直接回答为2026年3月11日，属性完全一致。引用的证据E1中明确记载了“MIX-28附件验收日期：2026年3月11日”，来源和事实均完全匹配。"
+          }
+        ],
+        "qa_ms": 25684.9
+      },
+      "s16": {
+        "structured_calls": 1,
+        "http_calls": 1,
+        "by_schema": {
+          "AllowedGroundedAnswer": 1
+        },
+        "alignment": [],
+        "qa_ms": 2711.558
+      },
+      "s17": {
+        "structured_calls": 2,
+        "http_calls": 2,
+        "by_schema": {
+          "AllowedGroundedAnswer": 2
+        },
+        "alignment": [],
+        "qa_ms": 9044.923
+      }
+    },
+    "qa_latency_ms": {
+      "p50": 21883.183,
+      "p95": 25684.9
+    },
+    "tokens": {
+      "prompt_tokens": 22957,
+      "completion_tokens": 10215,
+      "total_tokens": 33172
+    },
+    "token_observed_http_calls": 21,
+    "cost": null,
+    "cost_note": "provider returns token usage but no charge/pricing; no invented cost",
+    "review_status": "direct source/fact review complete; lexical runner results preserved"
+  },
+  "comparison": {
+    "same_subset": [
+      "s19",
+      "s27",
+      "s01",
+      "s02",
+      "s06",
+      "s09",
+      "s13",
+      "s16",
+      "s17"
+    ],
+    "before_source_commit": "7fdc349edd6cb63679c4cec181ae37d16019e64d",
+    "before_qa_latency_ms": {
+      "p50": 14390.729,
+      "p95": 30396.372
+    },
+    "before_qa_calls": 18,
+    "after_qa_calls": 21,
+    "net_mean_call_increase": 0.3333333333333333,
+    "note": "One observed cold run per question on each revision; network/model variation means no performance guarantee",
+    "context_note": "same source set/model/config, not identical ordered context: s27 OCR gold rank3 -> rank4. Existing chunk_id tie breaking and new temporary IDs are comparison variables; retrieval code unchanged."
+  },
+  "review": {
+    "reviewer": "Codex direct inspection of synthetic question, gold, raw outputs, selected sources; not independent human sign-off",
+    "correct_answered": 5,
+    "correct_abstain": 3,
+    "false_answer": 0,
+    "wrong_validated_positive_answer": 0,
+    "false_abstain": 1,
+    "false_abstain_ids": [
+      "s27"
+    ],
+    "previously_correct_positive_control_false_abstain": 0,
+    "validation_failure": 1,
+    "validation_failure_ids": [
+      "s27"
+    ],
+    "alignment_validator_rejected_answers": 0,
+    "provider_failure": 0,
+    "source_scope_matches_returned_answers": {
+      "numerator": 5,
+      "denominator": 5,
+      "value": 1.0
+    },
+    "strict_question_correctness": {
+      "numerator": 8,
+      "denominator": 9,
+      "value": 0.8889
+    },
+    "manual_rule_comparisons_reviewed": [
+      {
+        "id": "s13",
+        "correct": true,
+        "note": "Same acceptance date 2026-03-11 in actual and annotated fact. Lexical answer_match remains null/manual_review_required true."
+      }
+    ],
+    "s27_note": "Correct OCR date/source chosen at E4/rank4, then existing support validator returned partially_supported because source descriptor is absent in quote. Safe abstention, not a correct validated answer; alignment not reached.",
+    "s19_note": "Generation abstained on missing final-arrival field, support/alignment not reached.",
+    "alignment_note": "All 5 real alignment calls were matches; live sample observed no rejections. Scripted A-J tests exercise rejection, not proof of real judge rejection reliability.",
+    "acceptance": "4C bounded safety requirement met; phase 9 remains open for Claim category/scope and existing OCR/semantic-rubric gaps"
+  },
+  "qa_observations": [
+    {
+      "id": "s19",
+      "question": "第一笔设备预付款最终到账日期是哪天？",
+      "tags": [
+        "smoke_abstain",
+        "abstain",
+        "action"
+      ],
+      "expected_status": "insufficient_evidence",
+      "expected_answer_any": [],
+      "gold_evidence": [],
+      "actual_status": "insufficient_evidence",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "validation_status": "model_abstained",
+      "refusal_reason": "model_insufficient_evidence",
+      "qa_versions": {
+        "model": "qwen3.7-plus",
+        "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+        "retrieval": "hybrid-rrf-k60-page-token-v2",
+        "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+        "chunking": "page-char-v1-target500-overlap80-boundary100"
+      },
+      "cache_hit": false,
+      "run_mode": "cold",
+      "answer_match": null,
+      "manual_review_required": false,
+      "citations": [],
+      "latency_ms": {
+        "import_ms": 3264.799,
+        "index_ms": 14940.503,
+        "retrieval_ms": 29.641,
+        "qa_ms": 11360.195,
+        "total_ms": 11389.897
+      },
+      "failure_stage": null,
+      "failure_reason": null,
+      "retrieval_all_required_hit": null,
+      "answer_review": {
+        "correct": null,
+        "source_scope_correct": null,
+        "note": "Directly compared question/gold and bound source; no new model judge"
+      }
+    },
+    {
+      "id": "s27",
+      "question": "低清扫描第2页的日期是什么？",
+      "tags": [
+        "ocr",
+        "ocr_noise",
+        "date",
+        "date_separator"
+      ],
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "2026-03-08"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "ocr",
+          "page": 2,
+          "snippet": "日期：2026-03-08"
+        }
+      ],
+      "actual_status": "insufficient_evidence",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "validation_status": "semantic_validation_failed",
+      "refusal_reason": "claim_partially_supported",
+      "qa_versions": {
+        "model": "qwen3.7-plus",
+        "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+        "retrieval": "hybrid-rrf-k60-page-token-v2",
+        "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+        "chunking": "page-char-v1-target500-overlap80-boundary100"
+      },
+      "cache_hit": false,
+      "run_mode": "cold",
+      "answer_match": null,
+      "manual_review_required": false,
+      "citations": [],
+      "latency_ms": {
+        "import_ms": 3264.799,
+        "index_ms": 14940.503,
+        "retrieval_ms": 25.735,
+        "qa_ms": 23957.424,
+        "total_ms": 23983.316
+      },
+      "failure_stage": "validation",
+      "failure_reason": "claim_partially_supported",
+      "retrieval_all_required_hit": true,
+      "answer_review": {
+        "correct": null,
+        "source_scope_correct": null,
+        "note": "Directly compared question/gold and bound source; no new model judge"
+      }
+    },
+    {
+      "id": "s01",
+      "question": "甲账簿第一笔设备预付款的实际转账金额是多少？",
+      "tags": [
+        "smoke_regular",
+        "amount",
+        "similar_amount",
+        "citation_page"
+      ],
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "人民币450000元"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "ledger_a",
+          "page": 3,
+          "snippet": "第一笔设备预付款实际转账金额：人民币450000元"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "甲账簿第一笔设备预付款的实际转账金额是人民币450000元。",
+      "validation_status": "validated",
+      "refusal_reason": null,
+      "qa_versions": {
+        "model": "qwen3.7-plus",
+        "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+        "retrieval": "hybrid-rrf-k60-page-token-v2",
+        "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+        "chunking": "page-char-v1-target500-overlap80-boundary100"
+      },
+      "cache_hit": false,
+      "run_mode": "cold",
+      "answer_match": true,
+      "manual_review_required": false,
+      "citations": [
+        {
+          "doc_key": "ledger_a",
+          "document_id": "e174a118-de78-4a5f-beb5-45c33d2f255d",
+          "document_version_id": "8423e59e-d5f6-4963-b1fb-101483187a79",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 3,
+          "text": "甲账簿 · 唯一付款记录\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 3 / 3 页\n第一笔设备预付款实际转账金额：人民币450000元。\n第一笔设备预付款实际转账日期：2026年3月1日。\n付款人：北京甲有限公司；经办人：柳钧。\n本页同时记载参考编号 O0I1l5S8B。",
+          "evidence_id": "0109e5e2-c76e-51e0-af2e-77f354755dbd",
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true
+        }
+      ],
+      "latency_ms": {
+        "import_ms": 3264.799,
+        "index_ms": 14940.503,
+        "retrieval_ms": 19.884,
+        "qa_ms": 20875.419,
+        "total_ms": 20895.81
+      },
+      "failure_stage": null,
+      "failure_reason": null,
+      "retrieval_all_required_hit": true,
+      "answer_review": {
+        "correct": true,
+        "source_scope_correct": true,
+        "note": "Directly compared question/gold and bound source; no new model judge"
+      }
+    },
+    {
+      "id": "s02",
+      "question": "乙账簿第二笔设备预付款的付款人是谁？",
+      "tags": [
+        "smoke_regular",
+        "person",
+        "similar_entity"
+      ],
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "北京乙有限公司"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "ledger_b",
+          "page": 1,
+          "snippet": "第二笔设备预付款付款人为北京乙有限公司"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "乙账簿第二笔设备预付款的付款人是北京乙有限公司。",
+      "validation_status": "validated",
+      "refusal_reason": null,
+      "qa_versions": {
+        "model": "qwen3.7-plus",
+        "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+        "retrieval": "hybrid-rrf-k60-page-token-v2",
+        "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+        "chunking": "page-char-v1-target500-overlap80-boundary100"
+      },
+      "cache_hit": false,
+      "run_mode": "cold",
+      "answer_match": true,
+      "manual_review_required": false,
+      "citations": [
+        {
+          "doc_key": "ledger_b",
+          "document_id": "2f9edab6-0f98-4d5f-b459-76368a205419",
+          "document_version_id": "274d425a-bc98-4359-b46f-af6898379641",
+          "filename": "05_ledger_beta.pdf",
+          "page": 1,
+          "text": "乙账簿 · 近似主体\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n第一笔设备预付款的收款人为北川设备有限公司。\n第二笔设备预付款付款人为北京乙有限公司。\n第二笔设备预付款实际转账金额：人民币480000元。\n第二笔设备预付款实际转账日期：2026年3月10日。\n经办人柳均与甲账簿经办人柳钧并非同一人。",
+          "evidence_id": "8d8bbfd0-ee08-50ea-a0b9-53fa3dc69dd7",
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true
+        }
+      ],
+      "latency_ms": {
+        "import_ms": 3264.799,
+        "index_ms": 14940.503,
+        "retrieval_ms": 19.554,
+        "qa_ms": 22152.886,
+        "total_ms": 22172.954
+      },
+      "failure_stage": null,
+      "failure_reason": null,
+      "retrieval_all_required_hit": true,
+      "answer_review": {
+        "correct": true,
+        "source_scope_correct": true,
+        "note": "Directly compared question/gold and bound source; no new model judge"
+      }
+    },
+    {
+      "id": "s06",
+      "question": "结算表R-01对应CT-77的月租金是多少？",
+      "tags": [
+        "smoke_table",
+        "table",
+        "broken_line",
+        "amount"
+      ],
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "人民币85000.50元"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "table",
+          "page": 1,
+          "snippet": "R-01    CT-77     月租金        人民币\n                                  85000.50元"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "结算表R-01对应CT-77的月租金是人民币85000.50元。",
+      "validation_status": "validated",
+      "refusal_reason": null,
+      "qa_versions": {
+        "model": "qwen3.7-plus",
+        "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+        "retrieval": "hybrid-rrf-k60-page-token-v2",
+        "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+        "chunking": "page-char-v1-target500-overlap80-boundary100"
+      },
+      "cache_hit": false,
+      "run_mode": "cold",
+      "answer_match": true,
+      "manual_review_required": false,
+      "citations": [
+        {
+          "doc_key": "table",
+          "document_id": "89d9986f-7263-49f5-bb69-a96bcf75d3c7",
+          "document_version_id": "a9753463-a0a3-4368-a8bc-061aa4d3fbc6",
+          "filename": "03_broken_table.pdf",
+          "page": 1,
+          "text": "租金与保证金对照表 · 跨行\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n行号    合同      项目          数值\nR-01    CT-77     月租金        人民币\n                                  85000.50元\nR-01    CT-77     起租日期      2026年3月\n                                  9日\nR-02    CT-78     月租金        人民币85000.80元\nR-02    CT-78     起租日期      2026年3月10日\n附注：两个合同的行号相邻，金额不可混用。",
+          "evidence_id": "7ee9b8ce-fa7f-5624-b67d-64c22210ff04",
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true
+        }
+      ],
+      "latency_ms": {
+        "import_ms": 3264.799,
+        "index_ms": 14940.503,
+        "retrieval_ms": 19.55,
+        "qa_ms": 23127.675,
+        "total_ms": 23147.691
+      },
+      "failure_stage": null,
+      "failure_reason": null,
+      "retrieval_all_required_hit": true,
+      "answer_review": {
+        "correct": true,
+        "source_scope_correct": true,
+        "note": "Directly compared question/gold and bound source; no new model judge"
+      }
+    },
+    {
+      "id": "s09",
+      "question": "结算表CT-77设备交接费的付款状态是什么？",
+      "tags": [
+        "smoke_table",
+        "table",
+        "adjacent_row",
+        "action"
+      ],
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "尚未支付"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "table",
+          "page": 2,
+          "snippet": "CT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "结算表CT-77设备交接费的付款状态为尚未支付。",
+      "validation_status": "validated",
+      "refusal_reason": null,
+      "qa_versions": {
+        "model": "qwen3.7-plus",
+        "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+        "retrieval": "hybrid-rrf-k60-page-token-v2",
+        "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+        "chunking": "page-char-v1-target500-overlap80-boundary100"
+      },
+      "cache_hit": false,
+      "run_mode": "cold",
+      "answer_match": true,
+      "manual_review_required": false,
+      "citations": [
+        {
+          "doc_key": "table",
+          "document_id": "89d9986f-7263-49f5-bb69-a96bcf75d3c7",
+          "document_version_id": "a9753463-a0a3-4368-a8bc-061aa4d3fbc6",
+          "filename": "03_broken_table.pdf",
+          "page": 2,
+          "text": "相邻行错位 · 付款状态\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\nCT-77   设备交接费       人民币17000元\n                              付款状态：尚未支付\nCT-78   设备交接费       人民币18000元\n                              付款状态：已经支付\nCT-77   审核人           柳钧\nCT-78   审核人           柳均",
+          "evidence_id": "3c411703-9088-5eb0-a8b6-00211867cd51",
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true
+        }
+      ],
+      "latency_ms": {
+        "import_ms": 3264.799,
+        "index_ms": 14940.503,
+        "retrieval_ms": 19.68,
+        "qa_ms": 21883.183,
+        "total_ms": 21903.345
+      },
+      "failure_stage": null,
+      "failure_reason": null,
+      "retrieval_all_required_hit": true,
+      "answer_review": {
+        "correct": true,
+        "source_scope_correct": true,
+        "note": "Directly compared question/gold and bound source; no new model judge"
+      }
+    },
+    {
+      "id": "s13",
+      "question": "MIX-28扫描附件何时完成验收？",
+      "tags": [
+        "smoke_paraphrase",
+        "paraphrase",
+        "mixed_layer",
+        "ocr",
+        "date",
+        "timeline"
+      ],
+      "expected_status": "answered",
+      "expected_answer_any": [
+        "MIX-28附件验收日期：2026年3月11日"
+      ],
+      "gold_evidence": [
+        {
+          "doc_key": "mixed",
+          "page": 2,
+          "snippet": "MIX-28附件验收日期：2026年3月11日"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "MIX-28扫描附件的验收日期为2026年3月11日。",
+      "validation_status": "validated",
+      "refusal_reason": null,
+      "qa_versions": {
+        "model": "qwen3.7-plus",
+        "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+        "retrieval": "hybrid-rrf-k60-page-token-v2",
+        "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+        "chunking": "page-char-v1-target500-overlap80-boundary100"
+      },
+      "cache_hit": false,
+      "run_mode": "cold",
+      "answer_match": null,
+      "manual_review_required": true,
+      "citations": [
+        {
+          "doc_key": "mixed",
+          "document_id": "b111b676-d1b5-4734-ad2f-58bd2693311f",
+          "document_version_id": "f7a18bfe-988b-471f-aeff-8ec38fde78af",
+          "filename": "02_mixed_layer.pdf",
+          "page": 2,
+          "text": "合成扫描压力页\nMIX-28附件验收日期：2026年3月11日\n验收人：林琳\n附件状态：尚未最终结算",
+          "evidence_id": "b219bbdd-9b50-5a0c-b361-cad288efb996",
+          "document_match": true,
+          "page_match": true,
+          "snippet_match": true
+        }
+      ],
+      "latency_ms": {
+        "import_ms": 3264.799,
+        "index_ms": 14940.503,
+        "retrieval_ms": 17.628,
+        "qa_ms": 25684.9,
+        "total_ms": 25702.853
+      },
+      "failure_stage": null,
+      "failure_reason": null,
+      "retrieval_all_required_hit": true,
+      "answer_review": {
+        "correct": true,
+        "source_scope_correct": true,
+        "note": "Directly compared question/gold and bound source; no new model judge"
+      }
+    },
+    {
+      "id": "s16",
+      "question": "海岚设备有限公司董事长的出生日期是什么？",
+      "tags": [
+        "smoke_abstain",
+        "abstain",
+        "mentioned_not_answered"
+      ],
+      "expected_status": "insufficient_evidence",
+      "expected_answer_any": [],
+      "gold_evidence": [],
+      "actual_status": "insufficient_evidence",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "validation_status": "model_abstained",
+      "refusal_reason": "model_insufficient_evidence",
+      "qa_versions": {
+        "model": "qwen3.7-plus",
+        "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+        "retrieval": "hybrid-rrf-k60-page-token-v2",
+        "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+        "chunking": "page-char-v1-target500-overlap80-boundary100"
+      },
+      "cache_hit": false,
+      "run_mode": "cold",
+      "answer_match": null,
+      "manual_review_required": false,
+      "citations": [],
+      "latency_ms": {
+        "import_ms": 3264.799,
+        "index_ms": 14940.503,
+        "retrieval_ms": 18.278,
+        "qa_ms": 2711.558,
+        "total_ms": 2729.874
+      },
+      "failure_stage": null,
+      "failure_reason": null,
+      "retrieval_all_required_hit": null,
+      "answer_review": {
+        "correct": null,
+        "source_scope_correct": null,
+        "note": "Directly compared question/gold and bound source; no new model judge"
+      }
+    },
+    {
+      "id": "s17",
+      "question": "柳钧的手机号码是多少？",
+      "tags": [
+        "smoke_abstain",
+        "abstain",
+        "mentioned_not_answered"
+      ],
+      "expected_status": "insufficient_evidence",
+      "expected_answer_any": [],
+      "gold_evidence": [],
+      "actual_status": "insufficient_evidence",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "validation_status": "model_abstained",
+      "refusal_reason": "model_insufficient_evidence",
+      "qa_versions": {
+        "model": "qwen3.7-plus",
+        "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+        "retrieval": "hybrid-rrf-k60-page-token-v2",
+        "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+        "chunking": "page-char-v1-target500-overlap80-boundary100"
+      },
+      "cache_hit": false,
+      "run_mode": "cold",
+      "answer_match": null,
+      "manual_review_required": false,
+      "citations": [],
+      "latency_ms": {
+        "import_ms": 3264.799,
+        "index_ms": 14940.503,
+        "retrieval_ms": 19.394,
+        "qa_ms": 9044.923,
+        "total_ms": 9064.355
+      },
+      "failure_stage": null,
+      "failure_reason": null,
+      "retrieval_all_required_hit": null,
+      "answer_review": {
+        "correct": null,
+        "source_scope_correct": null,
+        "note": "Directly compared question/gold and bound source; no new model judge"
+      }
+    }
+  ],
+  "after_failure_traces": [
+    {
+      "id": "s19",
+      "question": "第一笔设备预付款最终到账日期是哪天？",
+      "retrieval_evidence": [
+        {
+          "rank": 1,
+          "evidence_id": "0109e5e2-c76e-51e0-af2e-77f354755dbd",
+          "doc_key": "ledger_a",
+          "document_id": "e174a118-de78-4a5f-beb5-45c33d2f255d",
+          "document_version_id": "8423e59e-d5f6-4963-b1fb-101483187a79",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 3,
+          "text": "甲账簿 · 唯一付款记录\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 3 / 3 页\n第一笔设备预付款实际转账金额：人民币450000元。\n第一笔设备预付款实际转账日期：2026年3月1日。\n付款人：北京甲有限公司；经办人：柳钧。\n本页同时记载参考编号 O0I1l5S8B。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "rank": 2,
+          "evidence_id": "8d8bbfd0-ee08-50ea-a0b9-53fa3dc69dd7",
+          "doc_key": "ledger_b",
+          "document_id": "2f9edab6-0f98-4d5f-b459-76368a205419",
+          "document_version_id": "274d425a-bc98-4359-b46f-af6898379641",
+          "filename": "05_ledger_beta.pdf",
+          "page": 1,
+          "text": "乙账簿 · 近似主体\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n第一笔设备预付款的收款人为北川设备有限公司。\n第二笔设备预付款付款人为北京乙有限公司。\n第二笔设备预付款实际转账金额：人民币480000元。\n第二笔设备预付款实际转账日期：2026年3月10日。\n经办人柳均与甲账簿经办人柳钧并非同一人。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "rank": 3,
+          "evidence_id": "be70b5e2-39ac-5c10-91b6-afc49949c8b9",
+          "doc_key": "ledger_a",
+          "document_id": "e174a118-de78-4a5f-beb5-45c33d2f255d",
+          "document_version_id": "8423e59e-d5f6-4963-b1fb-101483187a79",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 1,
+          "text": "甲账簿 · 多次主体提及\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 3 页\n海岚设备有限公司为第一笔设备预付款的记载主体。\n海岚设备有限公司进行了资料交接。\n海岚设备有限公司等待银行回单。\n海岚设备有限公司已核对合同编号。\n海岚设备有限公司尚未披露付款人出生日期。\n保证金：人民币460000元；这不是设备预付款金额。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "rank": 4,
+          "evidence_id": "85322c2d-7bf2-5f83-9ec3-ab135e457dac",
+          "doc_key": "conflict_a",
+          "document_id": "49d1e132-5586-47a6-a70c-17a47f053871",
+          "document_version_id": "e96737a5-d19a-4816-bd9f-ccdd44008928",
+          "filename": "09_conflict_a.pdf",
+          "page": 1,
+          "text": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "rank": 5,
+          "evidence_id": "ecb5b423-cd1b-5fb9-8ba5-ff329c1e7dff",
+          "doc_key": "ledger_b",
+          "document_id": "2f9edab6-0f98-4d5f-b459-76368a205419",
+          "document_version_id": "274d425a-bc98-4359-b46f-af6898379641",
+          "filename": "05_ledger_beta.pdf",
+          "page": 2,
+          "text": "乙账簿 · 重复事实\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\n第一笔设备预付款实际转账金额：人民币450000元。\n但此页为前页以外的重复摘要，不能替代原始甲账簿。\n第二笔设备预付款实际转账金额：人民币480000元。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        }
+      ],
+      "generation_contexts": [
+        {
+          "schema": "AllowedGroundedAnswer",
+          "input": {
+            "question": "第一笔设备预付款最终到账日期是哪天？",
+            "evidence": [
+              {
+                "citation_id": "E1",
+                "document_name": "04_ledger_alpha.pdf",
+                "document_id": "e174a118-de78-4a5f-beb5-45c33d2f255d",
+                "document_version_id": "8423e59e-d5f6-4963-b1fb-101483187a79",
+                "page_number": 3,
+                "evidence_type": "chunk",
+                "quote": "甲账簿 · 唯一付款记录\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 3 / 3 页\n第一笔设备预付款实际转账金额：人民币450000元。\n第一笔设备预付款实际转账日期：2026年3月1日。\n付款人：北京甲有限公司；经办人：柳钧。\n本页同时记载参考编号 O0I1l5S8B。"
+              },
+              {
+                "citation_id": "E2",
+                "document_name": "05_ledger_beta.pdf",
+                "document_id": "2f9edab6-0f98-4d5f-b459-76368a205419",
+                "document_version_id": "274d425a-bc98-4359-b46f-af6898379641",
+                "page_number": 1,
+                "evidence_type": "chunk",
+                "quote": "乙账簿 · 近似主体\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n第一笔设备预付款的收款人为北川设备有限公司。\n第二笔设备预付款付款人为北京乙有限公司。\n第二笔设备预付款实际转账金额：人民币480000元。\n第二笔设备预付款实际转账日期：2026年3月10日。\n经办人柳均与甲账簿经办人柳钧并非同一人。"
+              },
+              {
+                "citation_id": "E3",
+                "document_name": "04_ledger_alpha.pdf",
+                "document_id": "e174a118-de78-4a5f-beb5-45c33d2f255d",
+                "document_version_id": "8423e59e-d5f6-4963-b1fb-101483187a79",
+                "page_number": 1,
+                "evidence_type": "chunk",
+                "quote": "甲账簿 · 多次主体提及\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 3 页\n海岚设备有限公司为第一笔设备预付款的记载主体。\n海岚设备有限公司进行了资料交接。\n海岚设备有限公司等待银行回单。\n海岚设备有限公司已核对合同编号。\n海岚设备有限公司尚未披露付款人出生日期。\n保证金：人民币460000元；这不是设备预付款金额。"
+              },
+              {
+                "citation_id": "E4",
+                "document_name": "09_conflict_a.pdf",
+                "document_id": "49d1e132-5586-47a6-a70c-17a47f053871",
+                "document_version_id": "e96737a5-d19a-4816-bd9f-ccdd44008928",
+                "page_number": 1,
+                "evidence_type": "chunk",
+                "quote": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。"
+              },
+              {
+                "citation_id": "E5",
+                "document_name": "05_ledger_beta.pdf",
+                "document_id": "2f9edab6-0f98-4d5f-b459-76368a205419",
+                "document_version_id": "274d425a-bc98-4359-b46f-af6898379641",
+                "page_number": 2,
+                "evidence_type": "chunk",
+                "quote": "乙账簿 · 重复事实\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\n第一笔设备预付款实际转账金额：人民币450000元。\n但此页为前页以外的重复摘要，不能替代原始甲账簿。\n第二笔设备预付款实际转账金额：人民币480000元。"
+              }
+            ]
+          }
+        }
+      ],
+      "structured_outputs": [
+        {
+          "scope": "s19",
+          "phase": "qa",
+          "schema": "AllowedGroundedAnswer",
+          "output": {
+            "status": "insufficient_evidence",
+            "answer": "",
+            "claims": []
+          },
+          "error": null,
+          "latency_ms": 11282.356
+        }
+      ],
+      "final_status": "insufficient_evidence",
+      "final_validation_status": "model_abstained",
+      "final_refusal_reason": "model_insufficient_evidence"
+    },
+    {
+      "id": "s27",
+      "question": "低清扫描第2页的日期是什么？",
+      "retrieval_evidence": [
+        {
+          "rank": 1,
+          "evidence_id": "b219bbdd-9b50-5a0c-b361-cad288efb996",
+          "doc_key": "mixed",
+          "document_id": "b111b676-d1b5-4734-ad2f-58bd2693311f",
+          "document_version_id": "f7a18bfe-988b-471f-aeff-8ec38fde78af",
+          "filename": "02_mixed_layer.pdf",
+          "page": 2,
+          "text": "合成扫描压力页\nMIX-28附件验收日期：2026年3月11日\n验收人：林琳\n附件状态：尚未最终结算",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "rank": 2,
+          "evidence_id": "ba05d2b2-638c-5827-9909-315bc2912ddb",
+          "doc_key": "long",
+          "document_id": "316de00a-6e6d-4f13-822a-9c12aca418d0",
+          "document_version_id": "f5b0c5ce-5732-4132-8d9b-bcb5078f1cf5",
+          "filename": "06_long_50_pages.pdf",
+          "page": 2,
+          "text": "履行长卷宗 · 记录 02\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 50 页\n海岚设备有限公司第02次进度核验记录。\n关联编号：LG-2026-02；负责部门：现场组3。\n每页均涉及交付、金额、日期、责任人等相似字段。\n本页参考报价：人民币400202元，非交付结算金额。\n本页参考日期：2026年3月3日，非目标交付日期。\n海岚设备有限公司再次核对旧项目摘要，未作最终确认。\n海岚设备有限公司的主体名称在本页重复，但仅一项为目标字段。\n注意：相邻页的相似金额和日期不可替代本页事实。\n本页未记载目标站点的实际交付金额或日期。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "rank": 3,
+          "evidence_id": "87bc9a9a-415d-5008-b0fd-a1f8424277ed",
+          "doc_key": "ocr",
+          "document_id": "fba0363f-b709-4179-8958-6edeb21f9c30",
+          "document_version_id": "693bc87d-bc48-486a-a083-77db8c5cc563",
+          "filename": "01_ocr_confusions.pdf",
+          "page": 1,
+          "text": "合成扫描压力页\n参考码：001115S8B\n金额：人民币1580.50元\n日期：2026/03/07\n核对人：林琳\n状态：尚未支付",
+          "retrieval_sources": [
+            "vector"
+          ]
+        },
+        {
+          "rank": 4,
+          "evidence_id": "b557d6ef-c236-5570-a428-c5c69009ad83",
+          "doc_key": "ocr",
+          "document_id": "fba0363f-b709-4179-8958-6edeb21f9c30",
+          "document_version_id": "693bc87d-bc48-486a-a083-77db8c5cc563",
+          "filename": "01_ocr_confusions.pdf",
+          "page": 2,
+          "text": "合成扫描压力页\n参考码：B8S511100\n金额：人民币8510.05元\n日期：2026-03-08\n经办人：柳钧\n收款单位：北川设备有限公司",
+          "retrieval_sources": [
+            "bm25"
+          ]
+        },
+        {
+          "rank": 5,
+          "evidence_id": "41a304d9-a895-570a-8679-6f5437777efa",
+          "doc_key": "long",
+          "document_id": "316de00a-6e6d-4f13-822a-9c12aca418d0",
+          "document_version_id": "f5b0c5ce-5732-4132-8d9b-bcb5078f1cf5",
+          "filename": "06_long_50_pages.pdf",
+          "page": 29,
+          "text": "履行长卷宗 · 记录 29\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 29 / 50 页\n海岚设备有限公司第29次进度核验记录。\n关联编号：LG-2026-29；负责部门：现场组2。\n每页均涉及交付、金额、日期、责任人等相似字段。\n本页参考报价：人民币402929元，非交付结算金额。\n本页参考日期：2026年6月5日，非目标交付日期。\n海岚设备有限公司再次核对旧项目摘要，未作最终确认。\n海岚设备有限公司的主体名称在本页重复，但仅一项为目标字段。\n注意：相邻页的相似金额和日期不可替代本页事实。\n本页未记载目标站点的实际交付金额或日期。",
+          "retrieval_sources": [
+            "vector"
+          ]
+        }
+      ],
+      "generation_contexts": [
+        {
+          "schema": "AllowedGroundedAnswer",
+          "input": {
+            "question": "低清扫描第2页的日期是什么？",
+            "evidence": [
+              {
+                "citation_id": "E1",
+                "document_name": "02_mixed_layer.pdf",
+                "document_id": "b111b676-d1b5-4734-ad2f-58bd2693311f",
+                "document_version_id": "f7a18bfe-988b-471f-aeff-8ec38fde78af",
+                "page_number": 2,
+                "evidence_type": "chunk",
+                "quote": "合成扫描压力页\nMIX-28附件验收日期：2026年3月11日\n验收人：林琳\n附件状态：尚未最终结算"
+              },
+              {
+                "citation_id": "E2",
+                "document_name": "06_long_50_pages.pdf",
+                "document_id": "316de00a-6e6d-4f13-822a-9c12aca418d0",
+                "document_version_id": "f5b0c5ce-5732-4132-8d9b-bcb5078f1cf5",
+                "page_number": 2,
+                "evidence_type": "chunk",
+                "quote": "履行长卷宗 · 记录 02\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 50 页\n海岚设备有限公司第02次进度核验记录。\n关联编号：LG-2026-02；负责部门：现场组3。\n每页均涉及交付、金额、日期、责任人等相似字段。\n本页参考报价：人民币400202元，非交付结算金额。\n本页参考日期：2026年3月3日，非目标交付日期。\n海岚设备有限公司再次核对旧项目摘要，未作最终确认。\n海岚设备有限公司的主体名称在本页重复，但仅一项为目标字段。\n注意：相邻页的相似金额和日期不可替代本页事实。\n本页未记载目标站点的实际交付金额或日期。"
+              },
+              {
+                "citation_id": "E3",
+                "document_name": "01_ocr_confusions.pdf",
+                "document_id": "fba0363f-b709-4179-8958-6edeb21f9c30",
+                "document_version_id": "693bc87d-bc48-486a-a083-77db8c5cc563",
+                "page_number": 1,
+                "evidence_type": "chunk",
+                "quote": "合成扫描压力页\n参考码：001115S8B\n金额：人民币1580.50元\n日期：2026/03/07\n核对人：林琳\n状态：尚未支付"
+              },
+              {
+                "citation_id": "E4",
+                "document_name": "01_ocr_confusions.pdf",
+                "document_id": "fba0363f-b709-4179-8958-6edeb21f9c30",
+                "document_version_id": "693bc87d-bc48-486a-a083-77db8c5cc563",
+                "page_number": 2,
+                "evidence_type": "chunk",
+                "quote": "合成扫描压力页\n参考码：B8S511100\n金额：人民币8510.05元\n日期：2026-03-08\n经办人：柳钧\n收款单位：北川设备有限公司"
+              },
+              {
+                "citation_id": "E5",
+                "document_name": "06_long_50_pages.pdf",
+                "document_id": "316de00a-6e6d-4f13-822a-9c12aca418d0",
+                "document_version_id": "f5b0c5ce-5732-4132-8d9b-bcb5078f1cf5",
+                "page_number": 29,
+                "evidence_type": "chunk",
+                "quote": "履行长卷宗 · 记录 29\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 29 / 50 页\n海岚设备有限公司第29次进度核验记录。\n关联编号：LG-2026-29；负责部门：现场组2。\n每页均涉及交付、金额、日期、责任人等相似字段。\n本页参考报价：人民币402929元，非交付结算金额。\n本页参考日期：2026年6月5日，非目标交付日期。\n海岚设备有限公司再次核对旧项目摘要，未作最终确认。\n海岚设备有限公司的主体名称在本页重复，但仅一项为目标字段。\n注意：相邻页的相似金额和日期不可替代本页事实。\n本页未记载目标站点的实际交付金额或日期。"
+              }
+            ]
+          }
+        }
+      ],
+      "structured_outputs": [
+        {
+          "scope": "s27",
+          "phase": "qa",
+          "schema": "AllowedGroundedAnswer",
+          "output": {
+            "status": "answered",
+            "answer": "低清扫描第2页的日期是2026-03-08。",
+            "claims": [
+              {
+                "text": "低清扫描第2页的日期是2026-03-08。",
+                "citation_ids": [
+                  "E4"
+                ],
+                "confidence": 1.0
+              }
+            ]
+          },
+          "error": null,
+          "latency_ms": 12261.778
+        },
+        {
+          "scope": "s27",
+          "phase": "qa",
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "partially_supported",
+            "reason": "证据中明确提到了日期为2026-03-08，但页面名称为“合成扫描压力页”，并未提及“低清扫描第2页”，因此只能部分支持该声明。"
+          },
+          "error": null,
+          "latency_ms": 11638.232
+        }
+      ],
+      "final_status": "insufficient_evidence",
+      "final_validation_status": "semantic_validation_failed",
+      "final_refusal_reason": "claim_partially_supported"
+    }
+  ],
+  "change_base_commit": "7fdc349edd6cb63679c4cec181ae37d16019e64d",
+  "business_versions": {
+    "model": "qwen3.7-plus",
+    "prompt": "grounded-qa-citation-alias-v7+claim-support-v1+answer-alignment-v1",
+    "retrieval": "hybrid-rrf-k60-page-token-v2",
+    "embedding": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+    "chunking": "page-char-v1-target500-overlap80-boundary100"
+  },
+  "checks": {
+    "pytest": "173 passed; one existing Starlette/AnyIO deprecation warning",
+    "ruff": "passed",
+    "mypy_strict_src": "passed, 64 source files",
+    "claim_prompt_changed": false,
+    "contradiction_changed": false,
+    "retrieval_order_or_default_k_changed": false
+  }
+}

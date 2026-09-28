@@ -1,0 +1,6 @@
+{"id":"qa-001","question":"王海陈述的付款日期是什么时候？","answer":"2021年6月1日","citations":[{"filename":"01_询问笔录_王海.pdf","page":1,"quote":"2021年6月1日"}]}
+{"id":"qa-002","question":"银行凭证记载的交易日期是什么时候？","answer":"2021年3月5日","citations":[{"filename":"02_银行凭证_扫描件.pdf","page":1,"quote":"交易日期：2021年3月5日"}]}
+{"id":"qa-003","question":"王海陈述支付了多少钱？","answer":"人民币50万元","citations":[{"filename":"01_询问笔录_王海.pdf","page":1,"quote":"人民币50万元"}]}
+{"id":"qa-004","question":"银行凭证记载的交易金额是多少？","answer":"人民币450000元","citations":[{"filename":"02_银行凭证_扫描件.pdf","page":1,"quote":"交易金额：人民币450000元"}]}
+{"id":"qa-005","question":"两份材料记载的付款人是否一致？","answer":"不一致，询问笔录称付款人为王海，银行凭证记载付款人为陈军。","citations":[{"filename":"01_询问笔录_王海.pdf","page":2,"quote":"付款人是王海本人"},{"filename":"02_银行凭证_扫描件.pdf","page":1,"quote":"付款人：陈军"}]}
+{"id":"qa-006","question":"星河科技有限公司是否收到投资款？","answer":"材料存在冲突：王海称公司已收到，银行凭证和核验记录称交易失败且未收到。","citations":[{"filename":"01_询问笔录_王海.pdf","page":1,"quote":"确认收到上述款项"},{"filename":"02_银行凭证_扫描件.pdf","page":1,"quote":"交易状态：失败，未入账"},{"filename":"02_银行凭证_扫描件.pdf","page":2,"quote":"未收到王海支付的上述投资款"}]}

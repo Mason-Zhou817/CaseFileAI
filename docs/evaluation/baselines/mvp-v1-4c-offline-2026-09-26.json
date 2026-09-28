@@ -1,0 +1,1215 @@
+{
+  "change_base_commit": "7fdc349edd6cb63679c4cec181ae37d16019e64d",
+  "mode": "local BGE, gold-gated deterministic QA/alignment/extraction, rule semantic fake; not real-model quality",
+  "reports": {
+    "mvp_v1": {
+      "evaluation_set": "CaseFile AI MVP v1 synthetic scenarios",
+      "run_timestamp": "2026-09-26T13:38:27.146620+00:00",
+      "provider_version": "mvp-v1-gold-evidence-fake-v2",
+      "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+      "retrieval_version": "hybrid-rrf-k60-page-token-v2",
+      "run_mode": "fresh_case",
+      "inputs": {
+        "case_set_sha256": "ba91a4fbb6115ffe38b37298980f9f94cdea4d414cc66402f749f3c48b26b6d3",
+        "questions_sha256": "12693f0afc82700ae6b00a90a887359045e5b348ab111aac2f0b8fff6c852275",
+        "documents": {
+          "bank": "4be45c9d9a7381881a12cde6de6faab15dcf8035ec60cbe58dd2dcc766d256c4",
+          "lease": "e91bc0c4af52bddbb6a552cf47f9c87ca407008dc632a7a37418a773803a7994",
+          "clear_scan": "b5296b253bfac8bf5478dd932f3eb403db5b72954e8e4a28cc1388560e6e78be",
+          "low_scan": "9b797792a2963d0d800878c1f7dfcc00fd951dc4072380d5ec251342ba177ad4",
+          "table": "d84d1727104898fc2a7a0ffafb5aebe92501b7369efdff384eaaed94b5824803",
+          "long": "238a6e66474c24290cdcacd15140abdb54daac1eee6ed92d4e05e1e1feaf6555",
+          "order_v1": "125ed5a6b02c030153c245034b325a9fc99973f5688e27d37ec21fa6e44b6102",
+          "order_v2": "45223ce8fce0f0ce9f1f547f17ff71fe8b29c9b329aae59528ef6e156fe42142"
+        }
+      },
+      "document_checks": [
+        {
+          "doc_key": "bank",
+          "version_of": null,
+          "document_id": "aa78b57f-87c7-4765-a059-44f4a31982ea",
+          "document_version_id": "d1096285-4a8a-44c8-8c16-6f63b6434295",
+          "version_number": 1,
+          "repeat_uploads": 1,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "lease",
+          "version_of": null,
+          "document_id": "c78aec74-595f-46cd-8e28-b2e420d90593",
+          "document_version_id": "26e82b6a-2669-44e7-a5a8-a0733babe95e",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "clear_scan",
+          "version_of": null,
+          "document_id": "9557dad2-6791-41df-8992-0397a88a2c75",
+          "document_version_id": "7a9cddda-0126-4826-905a-f7a3bfdb0c8f",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "low_scan",
+          "version_of": null,
+          "document_id": "92220f29-3a3b-441f-941b-a96b747a9955",
+          "document_version_id": "31990ee7-6c0c-4c85-81b8-65788b8eb747",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "table",
+          "version_of": null,
+          "document_id": "80c408bc-389f-4417-8225-c59f09e51330",
+          "document_version_id": "1d2d2593-88a8-48f3-8e65-1093d7b4e810",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "long",
+          "version_of": null,
+          "document_id": "748de143-2c64-4cb8-8889-1a5a4eb5fbce",
+          "document_version_id": "558da157-bdde-4071-a88e-df02897fa41c",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "order_v1",
+          "version_of": null,
+          "document_id": "6618f438-2a6e-4301-89df-6fcf1f113ae7",
+          "document_version_id": "353138a5-96db-4a4f-8997-0ca9b80e375a",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "order_v2",
+          "version_of": "order_v1",
+          "document_id": "6618f438-2a6e-4301-89df-6fcf1f113ae7",
+          "document_version_id": "b6eb3b44-4790-46eb-9968-a80c61762e05",
+          "version_number": 2,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        }
+      ],
+      "retrieval_k": 5,
+      "total_questions": 30,
+      "answer_status_accuracy": {
+        "numerator": 30,
+        "denominator": 30,
+        "value": 1.0
+      },
+      "correct_abstain_rate": {
+        "numerator": 3,
+        "denominator": 3,
+        "value": 1.0
+      },
+      "retrieval_all_required_hit_at_k": {
+        "numerator": 27,
+        "denominator": 27,
+        "value": 1.0
+      },
+      "retrieval_any_hit_at_k": {
+        "numerator": 27,
+        "denominator": 27,
+        "value": 1.0
+      },
+      "citation_document_accuracy": {
+        "numerator": 29,
+        "denominator": 29,
+        "value": 1.0
+      },
+      "citation_page_accuracy": {
+        "numerator": 29,
+        "denominator": 29,
+        "value": 1.0
+      },
+      "citation_snippet_accuracy": {
+        "numerator": 29,
+        "denominator": 29,
+        "value": 1.0
+      },
+      "answer_match_rate": {
+        "numerator": 27,
+        "denominator": 27,
+        "value": 1.0
+      },
+      "manual_review_count": 0,
+      "failure_count": 0,
+      "latency_ms": {
+        "import_ms": 2947.581,
+        "index_ms": 14473.058,
+        "run_total_ms": 19767.116,
+        "question_total_p50": 64.735,
+        "question_total_p95": 97.288
+      },
+      "metric_notes": {
+        "retrieval_denominator": "answerable questions with completed retrieval only",
+        "citation_denominator": "returned citations for answerable questions only",
+        "answer_match_denominator": "deterministically decidable answered comparisons only",
+        "question_latency": "retrieval through evaluation; excludes shared import and index",
+        "citation_snippet": "lexical gold excerpt match on the gold document and page; not semantic proof"
+      },
+      "index_statistics": {
+        "case_id": "0fb7b6c1-c191-4dc3-b4c4-708b9c8bb4bc",
+        "pages_seen": 22,
+        "document_versions_seen": 8,
+        "chunks_total": 22,
+        "chunks_created": 22,
+        "embeddings_created": 22,
+        "chunking_version": "page-char-v1-target500-overlap80-boundary100",
+        "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c"
+      }
+    },
+    "mvp_stress_v1": {
+      "evaluation_set": "CaseFile AI MVP stress v1 synthetic scenarios",
+      "run_timestamp": "2026-09-26T13:34:29.500495+00:00",
+      "provider_version": "mvp-v1-gold-evidence-fake-v2",
+      "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c",
+      "retrieval_version": "hybrid-rrf-k60-page-token-v2",
+      "run_mode": "fresh_case",
+      "inputs": {
+        "case_set_sha256": "3a587fc260f29edab572ae839c54bf446e97e1e7d3436d14414c98bb7988872c",
+        "questions_sha256": "08e8512001771056883157ff8538d2348512377c8edff966c563114aed4bd33b",
+        "documents": {
+          "ocr": "e7447497119af9c30e6a1236d330eafeba4530bfa1e0c61522b6adb19197b8e2",
+          "mixed": "5c73b36025c340ca5f743794deddc825907720feaa778caf7a66d0a12ba04f4c",
+          "table": "7848318e6073b132b9a62532d2edf70e731839524a9321660b9c95042275c08e",
+          "ledger_a": "6dd200e19d24b9edf006faa193baece54375a4cad8d93675e3f9091dd9175b8d",
+          "ledger_b": "9b32280d5e5802fb13854efc7e14d912c919956dfe39d3b95efc8bb7a6adc073",
+          "long": "c92a996eae95bd83b89bfbf3a7159d6d5d6883eb91f460c1d42992f6af6cfa30",
+          "contract_v1": "15f81c88db84c505db148021511aa921f09cd89f53a2482289e61da6596ffbed",
+          "contract_v2": "59b071699cd009f44cc9bdde5273b3f519341395002277fd182fa4853d5ef4c0",
+          "conflict_a": "68790f9c804830870dcf8b423cc7a0e93dd868cb0422454464435c51a9527ca3",
+          "conflict_b": "5574626116f8fe04778e193ee1bfe410b7cd0b69c121388b7c161af595bdb5dd",
+          "controls": "57689d9d2fc2b4c7417df534e9e7b9600a56d91407b1836623cff5521418c410"
+        }
+      },
+      "document_checks": [
+        {
+          "doc_key": "ocr",
+          "version_of": null,
+          "document_id": "b850c31e-6560-43df-861b-54087c30976b",
+          "document_version_id": "6afd959c-c8dc-4008-ac00-399f1946706a",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "mixed",
+          "version_of": null,
+          "document_id": "b5e3f1b3-d73b-40e5-a398-0338408f4bf6",
+          "document_version_id": "580d6720-127c-4c45-aaa2-4309b4794cb8",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "table",
+          "version_of": null,
+          "document_id": "4338cd17-a069-4f2f-b249-c50f4a36876f",
+          "document_version_id": "b793582c-2f7e-454a-9f2d-8485bbfe98e2",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "ledger_a",
+          "version_of": null,
+          "document_id": "e0dcc48b-fa99-4b5a-b804-1d74c2f9659d",
+          "document_version_id": "6ef9ea85-b866-4526-b8e5-d9045142715c",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "ledger_b",
+          "version_of": null,
+          "document_id": "950ac47a-a15d-42ea-ab07-d06a03535826",
+          "document_version_id": "122f6332-874f-455a-95f3-bd4a8fb4c897",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "long",
+          "version_of": null,
+          "document_id": "f1c445ba-54dc-4275-8b3c-8a1d54df0835",
+          "document_version_id": "6558f8e6-82fe-42eb-9c2b-e78a413c7262",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "contract_v1",
+          "version_of": null,
+          "document_id": "2a4deea1-760e-4b41-bbe8-1030173ab35c",
+          "document_version_id": "c43db3ef-e701-4269-86fb-2db09a8d5eaf",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "contract_v2",
+          "version_of": "contract_v1",
+          "document_id": "2a4deea1-760e-4b41-bbe8-1030173ab35c",
+          "document_version_id": "d8478b74-83ce-4d10-81e4-e5e79efc7196",
+          "version_number": 2,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "conflict_a",
+          "version_of": null,
+          "document_id": "510ce169-5bd8-499e-9f1b-0761c8476a49",
+          "document_version_id": "3f5834d3-c445-4291-8827-0280e3a6cae6",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "conflict_b",
+          "version_of": null,
+          "document_id": "fe06e626-01f3-424f-81b5-119d4659fdab",
+          "document_version_id": "7ade3c2a-5997-4cab-b3f9-3f92c9480942",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        },
+        {
+          "doc_key": "controls",
+          "version_of": null,
+          "document_id": "067afd52-6e7c-4d2e-a8ca-e476040c9233",
+          "document_version_id": "fcb6e794-f8f7-4490-99ba-e3b4e14e9081",
+          "version_number": 1,
+          "repeat_uploads": 0,
+          "duplicate_uploads_passed": true,
+          "historical_pages_preserved": true
+        }
+      ],
+      "retrieval_k": 5,
+      "total_questions": 51,
+      "answer_status_accuracy": {
+        "numerator": 48,
+        "denominator": 51,
+        "value": 0.9412
+      },
+      "correct_abstain_rate": {
+        "numerator": 6,
+        "denominator": 6,
+        "value": 1.0
+      },
+      "retrieval_all_required_hit_at_k": {
+        "numerator": 42,
+        "denominator": 45,
+        "value": 0.9333
+      },
+      "retrieval_any_hit_at_k": {
+        "numerator": 42,
+        "denominator": 45,
+        "value": 0.9333
+      },
+      "citation_document_accuracy": {
+        "numerator": 44,
+        "denominator": 44,
+        "value": 1.0
+      },
+      "citation_page_accuracy": {
+        "numerator": 44,
+        "denominator": 44,
+        "value": 1.0
+      },
+      "citation_snippet_accuracy": {
+        "numerator": 44,
+        "denominator": 44,
+        "value": 1.0
+      },
+      "answer_match_rate": {
+        "numerator": 42,
+        "denominator": 42,
+        "value": 1.0
+      },
+      "manual_review_count": 0,
+      "failure_count": 3,
+      "latency_ms": {
+        "import_ms": 3247.82,
+        "index_ms": 16353.679,
+        "run_total_ms": 25247.205,
+        "question_total_p50": 73.617,
+        "question_total_p95": 119.393
+      },
+      "metric_notes": {
+        "retrieval_denominator": "answerable questions with completed retrieval only",
+        "citation_denominator": "returned citations for answerable questions only",
+        "answer_match_denominator": "deterministically decidable answered comparisons only",
+        "question_latency": "retrieval through evaluation; excludes shared import and index",
+        "citation_snippet": "lexical gold excerpt match on the gold document and page; not semantic proof"
+      },
+      "index_statistics": {
+        "case_id": "9dd7939f-165f-453d-87d2-5a60e4b057b5",
+        "pages_seen": 66,
+        "document_versions_seen": 11,
+        "chunks_total": 66,
+        "chunks_created": 66,
+        "embeddings_created": 66,
+        "chunking_version": "page-char-v1-target500-overlap80-boundary100",
+        "embedding_version": "BAAI/bge-small-zh-v1.5@4e17e244a0fb63bfb78fca8fcf95079fcc664f5c"
+      },
+      "stress": {
+        "stress_gold_sha256": "f34e2b88ed4df59ee1826e912c68cbea31c2215b834798737a524869877ce9a2",
+        "materials": 11,
+        "pages": 66,
+        "questions": 51,
+        "tag_counts": {
+          "abstain": 6,
+          "action": 6,
+          "adjacent_row": 1,
+          "alias": 1,
+          "ambiguous": 1,
+          "ambiguous_char": 2,
+          "amount": 19,
+          "broken_line": 2,
+          "citation_page": 4,
+          "claim_multi_fact": 4,
+          "compatible": 4,
+          "contradiction": 4,
+          "cross_document": 3,
+          "date": 14,
+          "date_separator": 2,
+          "decimal": 2,
+          "distractor_query": 1,
+          "long_doc": 6,
+          "long_end": 1,
+          "long_front": 1,
+          "long_middle": 1,
+          "long_quarter": 1,
+          "long_query": 1,
+          "long_three_quarters": 1,
+          "mentioned_not_answered": 3,
+          "mixed_layer": 2,
+          "multi_evidence": 4,
+          "ocr": 8,
+          "ocr_noise": 5,
+          "paraphrase": 5,
+          "partial_date": 1,
+          "person": 9,
+          "same_fact_multi_page": 1,
+          "short_query": 1,
+          "similar_amount": 3,
+          "similar_entity": 1,
+          "similar_name": 2,
+          "smoke_abstain": 5,
+          "smoke_paraphrase": 5,
+          "smoke_regular": 5,
+          "smoke_table": 5,
+          "table": 6,
+          "time_range": 1,
+          "timeline": 8,
+          "uncertain": 4,
+          "version": 6
+        },
+        "retrieval": {
+          "any_hit_at_1": {
+            "numerator": 36,
+            "denominator": 45,
+            "value": 0.8
+          },
+          "any_hit_at_3": {
+            "numerator": 41,
+            "denominator": 45,
+            "value": 0.9111
+          },
+          "any_hit_at_5": {
+            "numerator": 42,
+            "denominator": 45,
+            "value": 0.9333
+          },
+          "all_required_hit_at_1": {
+            "numerator": 34,
+            "denominator": 45,
+            "value": 0.7556
+          },
+          "all_required_hit_at_3": {
+            "numerator": 41,
+            "denominator": 45,
+            "value": 0.9111
+          },
+          "all_required_hit_at_5": {
+            "numerator": 42,
+            "denominator": 45,
+            "value": 0.9333
+          },
+          "mrr_at_5": 0.8611,
+          "mean_distractors_at_5": 4.022,
+          "missed_gold_ids": [
+            "s21",
+            "s22",
+            "s49"
+          ]
+        },
+        "ocr": {
+          "tokens": [
+            {
+              "token_id": "ocr_o_zero",
+              "category": "O/0",
+              "doc_key": "ocr",
+              "page": 1,
+              "expected": "O0",
+              "preserved": false,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_one_i_l",
+              "category": "1/l/I",
+              "doc_key": "ocr",
+              "page": 1,
+              "expected": "I1l",
+              "preserved": false,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_five_s",
+              "category": "5/S",
+              "doc_key": "ocr",
+              "page": 1,
+              "expected": "5S",
+              "preserved": true,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_eight_b",
+              "category": "8/B",
+              "doc_key": "ocr",
+              "page": 1,
+              "expected": "8B",
+              "preserved": true,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_code_low",
+              "category": "low_resolution_code",
+              "doc_key": "ocr",
+              "page": 2,
+              "expected": "B8S5I1lO0",
+              "preserved": false,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_name_clear",
+              "category": "chinese_name",
+              "doc_key": "ocr",
+              "page": 1,
+              "expected": "林琳",
+              "preserved": true,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_name_low",
+              "category": "blurred_chinese_name",
+              "doc_key": "ocr",
+              "page": 2,
+              "expected": "柳钧",
+              "preserved": true,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_decimal_clear",
+              "category": "decimal_amount",
+              "doc_key": "ocr",
+              "page": 1,
+              "expected": "1580.50",
+              "preserved": true,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_decimal_low",
+              "category": "decimal_amount",
+              "doc_key": "ocr",
+              "page": 2,
+              "expected": "8510.05",
+              "preserved": true,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_date_slash",
+              "category": "date_separator",
+              "doc_key": "ocr",
+              "page": 1,
+              "expected": "2026/03/07",
+              "preserved": true,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "ocr_date_dash",
+              "category": "date_separator",
+              "doc_key": "ocr",
+              "page": 2,
+              "expected": "2026-03-08",
+              "preserved": true,
+              "extraction_method": "ocr"
+            },
+            {
+              "token_id": "mixed_scan_date",
+              "category": "mixed_layer_ocr",
+              "doc_key": "mixed",
+              "page": 2,
+              "expected": "2026年3月11日",
+              "preserved": true,
+              "extraction_method": "ocr"
+            }
+          ],
+          "token_preservation": {
+            "numerator": 9,
+            "denominator": 12,
+            "value": 0.75
+          },
+          "damaged_token_ids": [
+            "ocr_o_zero",
+            "ocr_one_i_l",
+            "ocr_code_low"
+          ]
+        },
+        "qa": {
+          "deterministic_only": true,
+          "false_abstain": [
+            "s21",
+            "s22",
+            "s49"
+          ],
+          "false_abstain_with_all_gold_retrieved": [],
+          "false_answer": [],
+          "provider_failure": []
+        },
+        "citation": {
+          "document_accuracy": {
+            "numerator": 44,
+            "denominator": 44,
+            "value": 1.0
+          },
+          "page_accuracy": {
+            "numerator": 44,
+            "denominator": 44,
+            "value": 1.0
+          },
+          "snippet_accuracy": {
+            "numerator": 44,
+            "denominator": 44,
+            "value": 1.0
+          },
+          "semantic_support_mismatch": null,
+          "manual_review_count": 42
+        },
+        "claim": {
+          "expected_count": 22,
+          "actual_count": 27,
+          "fact_recall": {
+            "numerator": 22,
+            "denominator": 22,
+            "value": 1.0
+          },
+          "source_document_accuracy": {
+            "numerator": 22,
+            "denominator": 22,
+            "value": 1.0
+          },
+          "source_page_accuracy": {
+            "numerator": 22,
+            "denominator": 22,
+            "value": 1.0
+          },
+          "evidence_snippet_accuracy": {
+            "numerator": 22,
+            "denominator": 22,
+            "value": 1.0
+          },
+          "by_category": {
+            "amount": {
+              "numerator": 4,
+              "denominator": 4,
+              "value": 1.0
+            },
+            "date": {
+              "numerator": 10,
+              "denominator": 10,
+              "value": 1.0
+            },
+            "person": {
+              "numerator": 4,
+              "denominator": 4,
+              "value": 1.0
+            },
+            "action": {
+              "numerator": 4,
+              "denominator": 4,
+              "value": 1.0
+            }
+          },
+          "category_accuracy_given_fact": {
+            "numerator": 22,
+            "denominator": 22,
+            "value": 1.0
+          },
+          "atomicity": {
+            "numerator": 27,
+            "denominator": 27,
+            "value": 1.0
+          },
+          "non_atomic_claim_ids": []
+        },
+        "candidate": {
+          "expected_conflicting_pairs": 4,
+          "claim_pairs_ready": 4,
+          "actual_pairs": 39,
+          "annotated_pairs_found": 12,
+          "unlabelled_pairs": 27,
+          "precision": null,
+          "pair_recall": {
+            "numerator": 4,
+            "denominator": 4,
+            "value": 1.0
+          }
+        },
+        "contradiction": {
+          "expected_pairs_all_relations": 12,
+          "decision_accuracy_given_candidate": {
+            "numerator": 8,
+            "denominator": 12,
+            "value": 0.6667
+          },
+          "end_to_end_contradiction_recall": {
+            "numerator": 2,
+            "denominator": 4,
+            "value": 0.5
+          },
+          "by_type": {
+            "amount": {
+              "expected_conflicting_pairs": 1,
+              "candidate_pair_recall": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "decision_accuracy_given_candidate": {
+                "numerator": 3,
+                "denominator": 3,
+                "value": 1.0
+              },
+              "end_to_end_contradiction_recall": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              }
+            },
+            "date": {
+              "expected_conflicting_pairs": 1,
+              "candidate_pair_recall": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "decision_accuracy_given_candidate": {
+                "numerator": 3,
+                "denominator": 3,
+                "value": 1.0
+              },
+              "end_to_end_contradiction_recall": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              }
+            },
+            "person": {
+              "expected_conflicting_pairs": 1,
+              "candidate_pair_recall": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "decision_accuracy_given_candidate": {
+                "numerator": 1,
+                "denominator": 3,
+                "value": 0.3333
+              },
+              "end_to_end_contradiction_recall": {
+                "numerator": 0,
+                "denominator": 1,
+                "value": 0.0
+              }
+            },
+            "action": {
+              "expected_conflicting_pairs": 1,
+              "candidate_pair_recall": {
+                "numerator": 1,
+                "denominator": 1,
+                "value": 1.0
+              },
+              "decision_accuracy_given_candidate": {
+                "numerator": 1,
+                "denominator": 3,
+                "value": 0.3333
+              },
+              "end_to_end_contradiction_recall": {
+                "numerator": 0,
+                "denominator": 1,
+                "value": 0.0
+              }
+            }
+          },
+          "false_contradiction": [],
+          "false_compatible": [],
+          "false_uncertain": [
+            "action_conflict",
+            "action_compatible",
+            "person_conflict",
+            "person_compatible"
+          ]
+        },
+        "timeline": {
+          "expected_events": 10,
+          "event_recall": {
+            "numerator": 10,
+            "denominator": 10,
+            "value": 1.0
+          },
+          "date_accuracy": {
+            "numerator": 10,
+            "denominator": 10,
+            "value": 1.0
+          },
+          "source_accuracy": {
+            "numerator": 10,
+            "denominator": 10,
+            "value": 1.0
+          },
+          "order_accuracy": {
+            "numerator": 44,
+            "denominator": 44,
+            "value": 1.0
+          },
+          "same_date_gold_pairs_excluded_from_order": 1,
+          "duplicate_matched_event_count": 0
+        },
+        "stage_failures": {
+          "parse": {
+            "failure_count": 0,
+            "affected_gold_ids": [],
+            "affected_tags": []
+          },
+          "ocr": {
+            "failure_count": 2,
+            "affected_gold_ids": [
+              "s21",
+              "s22"
+            ],
+            "affected_tags": [
+              "ambiguous_char",
+              "citation_page",
+              "ocr",
+              "ocr_noise"
+            ]
+          },
+          "chunk": {
+            "failure_count": 0,
+            "affected_gold_ids": [],
+            "affected_tags": []
+          },
+          "retrieval": {
+            "failure_count": 1,
+            "affected_gold_ids": [
+              "s49"
+            ],
+            "affected_tags": [
+              "ambiguous",
+              "amount",
+              "short_query"
+            ]
+          },
+          "evidence": {
+            "failure_count": 0,
+            "affected_gold_ids": [],
+            "affected_tags": []
+          },
+          "qa": {
+            "failure_count": 0,
+            "affected_gold_ids": [],
+            "affected_tags": []
+          },
+          "citation": {
+            "failure_count": 0,
+            "affected_gold_ids": [],
+            "affected_tags": []
+          },
+          "claim": {
+            "failure_count": 0,
+            "affected_gold_ids": [],
+            "affected_tags": []
+          },
+          "candidate": {
+            "failure_count": 0,
+            "affected_gold_ids": [],
+            "affected_tags": []
+          },
+          "contradiction": {
+            "failure_count": 4,
+            "affected_gold_ids": [
+              "action_compatible",
+              "action_conflict",
+              "person_compatible",
+              "person_conflict"
+            ],
+            "affected_tags": [
+              "action",
+              "alias",
+              "claim_multi_fact",
+              "compatible",
+              "contradiction",
+              "person"
+            ]
+          },
+          "timeline": {
+            "failure_count": 0,
+            "affected_gold_ids": [],
+            "affected_tags": []
+          }
+        },
+        "top_failure_categories": [
+          {
+            "stage": "contradiction",
+            "failure_count": 4,
+            "affected_gold_ids": [
+              "action_compatible",
+              "action_conflict",
+              "person_compatible",
+              "person_conflict"
+            ],
+            "affected_tags": [
+              "action",
+              "alias",
+              "claim_multi_fact",
+              "compatible",
+              "contradiction",
+              "person"
+            ]
+          },
+          {
+            "stage": "ocr",
+            "failure_count": 2,
+            "affected_gold_ids": [
+              "s21",
+              "s22"
+            ],
+            "affected_tags": [
+              "ambiguous_char",
+              "citation_page",
+              "ocr",
+              "ocr_noise"
+            ]
+          },
+          {
+            "stage": "retrieval",
+            "failure_count": 1,
+            "affected_gold_ids": [
+              "s49"
+            ],
+            "affected_tags": [
+              "ambiguous",
+              "amount",
+              "short_query"
+            ]
+          }
+        ],
+        "long_document": {
+          "doc_key": "long",
+          "pages": 50,
+          "gold_pages": [
+            1,
+            13,
+            25,
+            38,
+            50
+          ],
+          "shared_index_ms": 16353.679,
+          "shared_chunks_total": 66,
+          "long_retrieval": {
+            "count": 6,
+            "p50_ms": 20.046,
+            "p95_ms": 86.364
+          },
+          "other_retrieval": {
+            "count": 45,
+            "p50_ms": 22.542,
+            "p95_ms": 35.48
+          },
+          "long_qa": {
+            "count": 6,
+            "p50_ms": 56.508,
+            "p95_ms": 73.408
+          },
+          "other_qa": {
+            "count": 45,
+            "p50_ms": 49.226,
+            "p95_ms": 75.844
+          },
+          "gold_ranks": {
+            "s14": 1,
+            "s28": 1,
+            "s29": 1,
+            "s30": 1,
+            "s31": 1,
+            "s32": 1
+          },
+          "all_required_hit_at_5": {
+            "numerator": 6,
+            "denominator": 6,
+            "value": 1.0
+          }
+        },
+        "metric_notes": {
+          "qa": "gold-gated FakeLLM, not real-model reliability",
+          "semantic_support": "not deterministically decidable; answered rows need review",
+          "candidate_precision": "gold pairs are not exhaustive; unlabelled is not false",
+          "indexing": "shared index time/chunks include all 11 documents",
+          "failure_counts": "gold records, including dependent downstream records",
+          "retrieval_mrr": "first gold hit in top 5; misses contribute zero"
+        }
+      }
+    },
+    "mvp_v1_downstream": {
+      "evaluation_set": "MVP v1 downstream gold",
+      "gold_sha256": "e254091f5dace9f4fb8551fe3d222752662066c5cbbed811b97d617acea7ada9",
+      "provider_versions": {
+        "qa": "mvp-v1-gold-evidence-fake-v2",
+        "claim": "downstream-extractive-fake-v1",
+        "semantic": "downstream-semantic-rules-v1"
+      },
+      "claim": {
+        "expected_count": 16,
+        "actual_count": 16,
+        "fact_recall": {
+          "numerator": 16,
+          "denominator": 16,
+          "value": 1.0
+        },
+        "source_document_accuracy": {
+          "numerator": 16,
+          "denominator": 16,
+          "value": 1.0
+        },
+        "source_page_accuracy": {
+          "numerator": 16,
+          "denominator": 16,
+          "value": 1.0
+        },
+        "evidence_snippet_accuracy": {
+          "numerator": 16,
+          "denominator": 16,
+          "value": 1.0
+        },
+        "by_category": {
+          "amount": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          },
+          "date": {
+            "numerator": 7,
+            "denominator": 7,
+            "value": 1.0
+          },
+          "person": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          },
+          "action": {
+            "numerator": 3,
+            "denominator": 3,
+            "value": 1.0
+          }
+        }
+      },
+      "candidate": {
+        "expected_conflicting_pairs": 4,
+        "claim_pairs_ready": 4,
+        "actual_pairs": 19,
+        "annotated_pairs_found": 8,
+        "unlabelled_pairs": 11,
+        "precision": null,
+        "pair_recall": {
+          "numerator": 4,
+          "denominator": 4,
+          "value": 1.0
+        }
+      },
+      "contradiction": {
+        "expected_pairs_all_relations": 8,
+        "decision_accuracy_given_candidate": {
+          "numerator": 8,
+          "denominator": 8,
+          "value": 1.0
+        },
+        "end_to_end_contradiction_recall": {
+          "numerator": 4,
+          "denominator": 4,
+          "value": 1.0
+        },
+        "by_type": {
+          "amount": {
+            "expected_conflicting_pairs": 1,
+            "candidate_pair_recall": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "decision_accuracy_given_candidate": {
+              "numerator": 2,
+              "denominator": 2,
+              "value": 1.0
+            },
+            "end_to_end_contradiction_recall": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "date": {
+            "expected_conflicting_pairs": 1,
+            "candidate_pair_recall": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "decision_accuracy_given_candidate": {
+              "numerator": 2,
+              "denominator": 2,
+              "value": 1.0
+            },
+            "end_to_end_contradiction_recall": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "person": {
+            "expected_conflicting_pairs": 1,
+            "candidate_pair_recall": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "decision_accuracy_given_candidate": {
+              "numerator": 2,
+              "denominator": 2,
+              "value": 1.0
+            },
+            "end_to_end_contradiction_recall": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          },
+          "action": {
+            "expected_conflicting_pairs": 1,
+            "candidate_pair_recall": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            },
+            "decision_accuracy_given_candidate": {
+              "numerator": 2,
+              "denominator": 2,
+              "value": 1.0
+            },
+            "end_to_end_contradiction_recall": {
+              "numerator": 1,
+              "denominator": 1,
+              "value": 1.0
+            }
+          }
+        }
+      },
+      "timeline": {
+        "expected_events": 6,
+        "event_recall": {
+          "numerator": 6,
+          "denominator": 6,
+          "value": 1.0
+        },
+        "date_accuracy": {
+          "numerator": 6,
+          "denominator": 6,
+          "value": 1.0
+        },
+        "source_accuracy": {
+          "numerator": 6,
+          "denominator": 6,
+          "value": 1.0
+        },
+        "order_accuracy": {
+          "numerator": 14,
+          "denominator": 14,
+          "value": 1.0
+        },
+        "same_date_gold_pairs_excluded_from_order": 1,
+        "duplicate_matched_event_count": 0
+      },
+      "pipeline": {
+        "first_failure_stage_counts": {
+          "none": 30
+        },
+        "record_count": 30
+      },
+      "metric_notes": {
+        "claim_source_denominator": "fact-matched claims only",
+        "candidate_recall_denominator": "gold contradiction pairs with both facts and sources matched; claim_pairs_ready reports this denominator",
+        "decision_denominator": "gold pairs entering candidate set and evaluated by judge",
+        "end_to_end_denominator": "all gold contradiction pairs",
+        "timeline_recall_denominator": "all gold timeline events",
+        "timeline_order_denominator": "comparable gold event pairs with both events present; ties excluded",
+        "fake_boundary": "gold-gated QA and claim extraction; rule semantic fake for action/person",
+        "business_services": "real claim validation/persistence, candidate generation, amount/date judge, semantic decision safeguards, timeline"
+      },
+      "run_timestamp": "2026-09-26T13:38:29.028917+00:00",
+      "inputs": {
+        "case_set_sha256": "6dd0a3096dc9f54075b41c60d036a074dd1d1e460bcce4c9192bf3535e11eebd",
+        "questions_sha256": "f0c179a2adcde4e407b4f2b9f256c2af6956ef8d6655882d27b99856f967802f",
+        "documents": {
+          "bank": "4be45c9d9a7381881a12cde6de6faab15dcf8035ec60cbe58dd2dcc766d256c4",
+          "lease": "e91bc0c4af52bddbb6a552cf47f9c87ca407008dc632a7a37418a773803a7994",
+          "clear_scan": "b5296b253bfac8bf5478dd932f3eb403db5b72954e8e4a28cc1388560e6e78be",
+          "low_scan": "9b797792a2963d0d800878c1f7dfcc00fd951dc4072380d5ec251342ba177ad4",
+          "table": "d84d1727104898fc2a7a0ffafb5aebe92501b7369efdff384eaaed94b5824803",
+          "long": "238a6e66474c24290cdcacd15140abdb54daac1eee6ed92d4e05e1e1feaf6555",
+          "order_v1": "125ed5a6b02c030153c245034b325a9fc99973f5688e27d37ec21fa6e44b6102",
+          "order_v2": "45223ce8fce0f0ce9f1f547f17ff71fe8b29c9b329aae59528ef6e156fe42142",
+          "dispute": "740f386c7471d421958145210abe757abe89db7a0f600b846245df72f59eeb97"
+        }
+      },
+      "retrieval_k": 5,
+      "qa_failure_count": 0
+    }
+  }
+}

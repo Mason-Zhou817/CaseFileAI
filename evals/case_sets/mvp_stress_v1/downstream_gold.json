@@ -1,0 +1,53 @@
+{
+  "name": "MVP stress v1 downstream gold",
+  "claims": [
+    {"claim_key":"a_amount","question_id":"s37","category":"amount","expected_text_any":["付款记录金额为人民币450000元"],"normalized":{"amount":450000},"source":{"doc_key":"conflict_a","page":1,"snippet":"付款记录金额为人民币450000元"}},
+    {"claim_key":"a_date","question_id":"s37","category":"date","expected_text_any":["付款记录日期为2026年3月1日"],"normalized":{"date":"2026-03-01"},"source":{"doc_key":"conflict_a","page":1,"snippet":"付款记录日期为2026年3月1日"}},
+    {"claim_key":"a_action","question_id":"s38","category":"action","expected_text_any":["付款记录款项已支付"],"normalized":{"action":"paid"},"source":{"doc_key":"conflict_a","page":1,"snippet":"付款记录款项已支付"}},
+    {"claim_key":"a_person","question_id":"s38","category":"person","expected_text_any":["付款记录唯一付款人为北京甲有限公司"],"normalized":{"person":"北京甲有限公司"},"source":{"doc_key":"conflict_a","page":1,"snippet":"付款记录唯一付款人为北京甲有限公司"}},
+    {"claim_key":"b_amount","question_id":"s39","category":"amount","expected_text_any":["付款记录金额为人民币480000元"],"normalized":{"amount":480000},"source":{"doc_key":"conflict_b","page":1,"snippet":"付款记录金额为人民币480000元"}},
+    {"claim_key":"b_date","question_id":"s39","category":"date","expected_text_any":["付款记录日期为2026年3月10日"],"normalized":{"date":"2026-03-10"},"source":{"doc_key":"conflict_b","page":1,"snippet":"付款记录日期为2026年3月10日"}},
+    {"claim_key":"b_action","question_id":"s40","category":"action","expected_text_any":["付款记录款项尚未支付"],"normalized":{"action":"unpaid"},"source":{"doc_key":"conflict_b","page":1,"snippet":"付款记录款项尚未支付"}},
+    {"claim_key":"b_person","question_id":"s40","category":"person","expected_text_any":["付款记录唯一付款人为乙公司"],"normalized":{"person":"乙公司"},"source":{"doc_key":"conflict_b","page":1,"snippet":"付款记录唯一付款人为乙公司"}},
+    {"claim_key":"c_amount_equal","question_id":"s41","category":"amount","expected_text_any":["付款记录金额为人民币45万元"],"normalized":{"amount":450000},"source":{"doc_key":"controls","page":1,"snippet":"付款记录金额为人民币45万元"}},
+    {"claim_key":"c_amount_usd","question_id":"s42","category":"amount","expected_text_any":["付款记录金额为美元450000"],"normalized":{"amount":450000,"currency":"USD"},"source":{"doc_key":"controls","page":1,"snippet":"付款记录金额为美元450000"}},
+    {"claim_key":"c_date_month","question_id":"s43","category":"date","expected_text_any":["付款记录日期为2026年3月"],"normalized":{"date":"2026-03"},"source":{"doc_key":"controls","page":1,"snippet":"付款记录日期为2026年3月"}},
+    {"claim_key":"c_date_other","question_id":"s44","category":"date","expected_text_any":["另一笔付款记录日期为2026年3月10日"],"normalized":{"date":"2026-03-10"},"source":{"doc_key":"controls","page":1,"snippet":"另一笔付款记录日期为2026年3月10日"}},
+    {"claim_key":"c_action_equal","question_id":"s45","category":"action","expected_text_any":["付款记录款项确已支付"],"normalized":{"action":"paid"},"source":{"doc_key":"controls","page":1,"snippet":"付款记录款项确已支付"}},
+    {"claim_key":"c_action_condition","question_id":"s46","category":"action","expected_text_any":["付款记录款项在收到发票后支付"],"normalized":{"action":"conditional"},"source":{"doc_key":"controls","page":1,"snippet":"付款记录款项在收到发票后支付"}},
+    {"claim_key":"c_person_alias","question_id":"s47","category":"person","expected_text_any":["付款记录唯一付款人为甲公司"],"normalized":{"person":"甲公司"},"source":{"doc_key":"controls","page":1,"snippet":"付款记录唯一付款人为甲公司"}},
+    {"claim_key":"c_person_other","question_id":"s48","category":"person","expected_text_any":["另一笔付款记录唯一付款人为乙公司"],"normalized":{"person":"乙公司"},"source":{"doc_key":"controls","page":1,"snippet":"另一笔付款记录唯一付款人为乙公司"}},
+    {"claim_key":"long_front_date","question_id":"s28","category":"date","expected_text_any":["东端站实际交付日期：2026年1月3日"],"normalized":{"date":"2026-01-03"},"source":{"doc_key":"long","page":1,"snippet":"东端站实际交付日期：2026年1月3日"}},
+    {"claim_key":"long_middle_date","question_id":"s30","category":"date","expected_text_any":["中岭站实际交付日期：2026年3月12日"],"normalized":{"date":"2026-03-12"},"source":{"doc_key":"long","page":25,"snippet":"中岭站实际交付日期：2026年3月12日"}},
+    {"claim_key":"long_end_date","question_id":"s32","category":"date","expected_text_any":["终站实际交付日期：2026年5月21日"],"normalized":{"date":"2026-05-21"},"source":{"doc_key":"long","page":50,"snippet":"终站实际交付日期：2026年5月21日"}},
+    {"claim_key":"mixed_native_date","question_id":"s03","category":"date","expected_text_any":["登记日期：2026年3月2日"],"normalized":{"date":"2026-03-02"},"source":{"doc_key":"mixed","page":1,"snippet":"登记日期：2026年3月2日"}},
+    {"claim_key":"mixed_ocr_date","question_id":"s13","category":"date","expected_text_any":["MIX-28附件验收日期：2026年3月11日"],"normalized":{"date":"2026-03-11"},"source":{"doc_key":"mixed","page":2,"snippet":"MIX-28附件验收日期：2026年3月11日"}},
+    {"claim_key":"contract_current_start","question_id":"s51","category":"date","expected_text_any":["2026年4月1日"],"normalized":{"date":"2026-04-01"},"source":{"doc_key":"contract_v2","page":1,"snippet":"租期：2026年4月1日至2027年3月31日"}}
+  ],
+  "conflict_pairs": [
+    {"pair_key":"amount_conflict","claim_a":"a_amount","claim_b":"b_amount","expected_relation":"contradiction","contradiction_type":"amount","note":"同一付款记录金额450000与480000"},
+    {"pair_key":"amount_compatible","claim_a":"a_amount","claim_b":"c_amount_equal","expected_relation":"non_contradiction","contradiction_type":"amount","note":"450000元与45万元相等"},
+    {"pair_key":"amount_uncertain","claim_a":"a_amount","claim_b":"c_amount_usd","expected_relation":"uncertain","contradiction_type":"amount","note":"人民币与美元不可直接比较"},
+    {"pair_key":"date_conflict","claim_a":"a_date","claim_b":"b_date","expected_relation":"contradiction","contradiction_type":"date","note":"同一付款记录日期不同"},
+    {"pair_key":"date_compatible","claim_a":"a_date","claim_b":"c_date_month","expected_relation":"non_contradiction","contradiction_type":"date","note":"2026年3月包含3月1日"},
+    {"pair_key":"date_uncertain","claim_a":"a_date","claim_b":"c_date_other","expected_relation":"uncertain","contradiction_type":"date","note":"另一笔付款记录的日期"},
+    {"pair_key":"action_conflict","claim_a":"a_action","claim_b":"b_action","expected_relation":"contradiction","contradiction_type":"action","note":"已支付与尚未支付"},
+    {"pair_key":"action_compatible","claim_a":"a_action","claim_b":"c_action_equal","expected_relation":"non_contradiction","contradiction_type":"action","note":"确已支付与已支付相容"},
+    {"pair_key":"action_uncertain","claim_a":"a_action","claim_b":"c_action_condition","expected_relation":"uncertain","contradiction_type":"action","note":"收到发票后支付是条件，不证明已支付"},
+    {"pair_key":"person_conflict","claim_a":"a_person","claim_b":"b_person","expected_relation":"contradiction","contradiction_type":"person","note":"同一付款记录唯一付款人不同"},
+    {"pair_key":"person_compatible","claim_a":"a_person","claim_b":"c_person_alias","expected_relation":"non_contradiction","contradiction_type":"person","note":"对照页声明甲公司为北京甲有限公司简称"},
+    {"pair_key":"person_uncertain","claim_a":"a_person","claim_b":"c_person_other","expected_relation":"uncertain","contradiction_type":"person","note":"另一笔付款记录的唯一付款人"}
+  ],
+  "timeline_events": [
+    {"event_key":"event_a","claim_key":"a_date","expected_date":"2026-03-01","date_precision":"exact"},
+    {"event_key":"event_b","claim_key":"b_date","expected_date":"2026-03-10","date_precision":"exact"},
+    {"event_key":"event_month","claim_key":"c_date_month","expected_date":"2026-03","date_precision":"partial"},
+    {"event_key":"event_other","claim_key":"c_date_other","expected_date":"2026-03-10","date_precision":"exact"},
+    {"event_key":"event_long_front","claim_key":"long_front_date","expected_date":"2026-01-03","date_precision":"exact"},
+    {"event_key":"event_long_middle","claim_key":"long_middle_date","expected_date":"2026-03-12","date_precision":"exact"},
+    {"event_key":"event_long_end","claim_key":"long_end_date","expected_date":"2026-05-21","date_precision":"exact"},
+    {"event_key":"event_mixed_native","claim_key":"mixed_native_date","expected_date":"2026-03-02","date_precision":"exact"},
+    {"event_key":"event_mixed_ocr","claim_key":"mixed_ocr_date","expected_date":"2026-03-11","date_precision":"exact"},
+    {"event_key":"event_contract_current","claim_key":"contract_current_start","expected_date":"2026-04-01","date_precision":"exact"}
+  ]
+}

@@ -1,0 +1,457 @@
+{
+  "source_commit": "7fdc349edd6cb63679c4cec181ae37d16019e64d",
+  "observation_date": "2026-09-26",
+  "source": "Retained first-smoke results.jsonl/model_calls.jsonl; not a rerun",
+  "subset": [
+    "s19",
+    "s27",
+    "s01",
+    "s02",
+    "s06",
+    "s09",
+    "s13",
+    "s16",
+    "s17"
+  ],
+  "observations": [
+    {
+      "id": "s19",
+      "actual_status": "answered",
+      "validation_status": "validated",
+      "actual_answer": "第一笔设备预付款实际转账日期为2026年3月1日。",
+      "qa_ms": 21475.563,
+      "structured_calls": 2,
+      "http_calls": 2,
+      "by_schema": {
+        "AllowedGroundedAnswer": 1,
+        "ModelSupportDecision": 1
+      }
+    },
+    {
+      "id": "s27",
+      "actual_status": "answered",
+      "validation_status": "validated",
+      "actual_answer": "第2页的参考日期为2026年3月3日\n第2页未记载目标交付日期",
+      "qa_ms": 30396.372,
+      "structured_calls": 3,
+      "http_calls": 3,
+      "by_schema": {
+        "AllowedGroundedAnswer": 1,
+        "ModelSupportDecision": 2
+      }
+    },
+    {
+      "id": "s01",
+      "actual_status": "answered",
+      "validation_status": "validated",
+      "actual_answer": "甲账簿第一笔设备预付款的实际转账金额是人民币450000元。",
+      "qa_ms": 18564.162,
+      "structured_calls": 2,
+      "http_calls": 2,
+      "by_schema": {
+        "AllowedGroundedAnswer": 1,
+        "ModelSupportDecision": 1
+      }
+    },
+    {
+      "id": "s02",
+      "actual_status": "answered",
+      "validation_status": "validated",
+      "actual_answer": "乙账簿第二笔设备预付款的付款人是北京乙有限公司。",
+      "qa_ms": 14390.729,
+      "structured_calls": 2,
+      "http_calls": 2,
+      "by_schema": {
+        "AllowedGroundedAnswer": 1,
+        "ModelSupportDecision": 1
+      }
+    },
+    {
+      "id": "s06",
+      "actual_status": "answered",
+      "validation_status": "validated",
+      "actual_answer": "结算表R-01对应CT-77的月租金是人民币85000.50元。",
+      "qa_ms": 14126.315,
+      "structured_calls": 2,
+      "http_calls": 2,
+      "by_schema": {
+        "AllowedGroundedAnswer": 1,
+        "ModelSupportDecision": 1
+      }
+    },
+    {
+      "id": "s09",
+      "actual_status": "answered",
+      "validation_status": "validated",
+      "actual_answer": "结算表CT-77设备交接费的付款状态为尚未支付。",
+      "qa_ms": 12317.812,
+      "structured_calls": 2,
+      "http_calls": 2,
+      "by_schema": {
+        "AllowedGroundedAnswer": 1,
+        "ModelSupportDecision": 1
+      }
+    },
+    {
+      "id": "s13",
+      "actual_status": "answered",
+      "validation_status": "validated",
+      "actual_answer": "MIX-28扫描附件的验收日期为2026年3月11日。",
+      "qa_ms": 19333.126,
+      "structured_calls": 2,
+      "http_calls": 2,
+      "by_schema": {
+        "AllowedGroundedAnswer": 1,
+        "ModelSupportDecision": 1
+      }
+    },
+    {
+      "id": "s16",
+      "actual_status": "insufficient_evidence",
+      "validation_status": "model_abstained",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "qa_ms": 2797.307,
+      "structured_calls": 1,
+      "http_calls": 1,
+      "by_schema": {
+        "AllowedGroundedAnswer": 1
+      }
+    },
+    {
+      "id": "s17",
+      "actual_status": "insufficient_evidence",
+      "validation_status": "model_abstained",
+      "actual_answer": "根据当前已索引的卷宗证据，无法可靠回答该问题。",
+      "qa_ms": 7186.787,
+      "structured_calls": 2,
+      "http_calls": 2,
+      "by_schema": {
+        "AllowedGroundedAnswer": 2
+      }
+    }
+  ],
+  "failure_traces": [
+    {
+      "id": "s19",
+      "question": "第一笔设备预付款最终到账日期是哪天？",
+      "expected_status": "insufficient_evidence",
+      "gold_evidence": [],
+      "actual_status": "answered",
+      "actual_answer": "第一笔设备预付款实际转账日期为2026年3月1日。",
+      "validation_status": "validated",
+      "retrieval_evidence": [
+        {
+          "alias": "E1",
+          "rank": 1,
+          "evidence_id": "20616c4d-2582-5393-b99a-45bc81ba84ea",
+          "doc_key": "ledger_a",
+          "document_id": "41a38b22-127c-46b5-ac5b-6772ebaa15a5",
+          "document_version_id": "095e6b0c-b7b6-446c-a5f0-4921df88b06c",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 3,
+          "text": "甲账簿 · 唯一付款记录\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 3 / 3 页\n第一笔设备预付款实际转账金额：人民币450000元。\n第一笔设备预付款实际转账日期：2026年3月1日。\n付款人：北京甲有限公司；经办人：柳钧。\n本页同时记载参考编号 O0I1l5S8B。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "alias": "E2",
+          "rank": 2,
+          "evidence_id": "790620ca-fe28-52fd-9227-1dc5da582c2f",
+          "doc_key": "ledger_b",
+          "document_id": "7fbaad78-ccdc-4dab-94ea-e160521f068a",
+          "document_version_id": "91cd57c6-bfbb-4040-8699-b19170efb7ae",
+          "filename": "05_ledger_beta.pdf",
+          "page": 1,
+          "text": "乙账簿 · 近似主体\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n第一笔设备预付款的收款人为北川设备有限公司。\n第二笔设备预付款付款人为北京乙有限公司。\n第二笔设备预付款实际转账金额：人民币480000元。\n第二笔设备预付款实际转账日期：2026年3月10日。\n经办人柳均与甲账簿经办人柳钧并非同一人。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "alias": "E3",
+          "rank": 3,
+          "evidence_id": "9507533f-6a4c-593b-b45a-367994ec4ce5",
+          "doc_key": "ledger_a",
+          "document_id": "41a38b22-127c-46b5-ac5b-6772ebaa15a5",
+          "document_version_id": "095e6b0c-b7b6-446c-a5f0-4921df88b06c",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 1,
+          "text": "甲账簿 · 多次主体提及\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 3 页\n海岚设备有限公司为第一笔设备预付款的记载主体。\n海岚设备有限公司进行了资料交接。\n海岚设备有限公司等待银行回单。\n海岚设备有限公司已核对合同编号。\n海岚设备有限公司尚未披露付款人出生日期。\n保证金：人民币460000元；这不是设备预付款金额。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "alias": "E4",
+          "rank": 4,
+          "evidence_id": "699ebf49-608f-5f2b-9088-b60244e12a49",
+          "doc_key": "conflict_a",
+          "document_id": "9b1ac5b8-0078-4bbc-a081-4f59baa8bba4",
+          "document_version_id": "670ff6e0-c53b-4c9b-9784-119b1a2abdf5",
+          "filename": "09_conflict_a.pdf",
+          "page": 1,
+          "text": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "alias": "E5",
+          "rank": 5,
+          "evidence_id": "2588704f-376c-55a1-8609-6a3cd182ed8e",
+          "doc_key": "ledger_b",
+          "document_id": "7fbaad78-ccdc-4dab-94ea-e160521f068a",
+          "document_version_id": "91cd57c6-bfbb-4040-8699-b19170efb7ae",
+          "filename": "05_ledger_beta.pdf",
+          "page": 2,
+          "text": "乙账簿 · 重复事实\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\n第一笔设备预付款实际转账金额：人民币450000元。\n但此页为前页以外的重复摘要，不能替代原始甲账簿。\n第二笔设备预付款实际转账金额：人民币480000元。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        }
+      ],
+      "generation_input": {
+        "question": "第一笔设备预付款最终到账日期是哪天？",
+        "evidence": [
+          {
+            "citation_id": "E1",
+            "quote": "甲账簿 · 唯一付款记录\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 3 / 3 页\n第一笔设备预付款实际转账金额：人民币450000元。\n第一笔设备预付款实际转账日期：2026年3月1日。\n付款人：北京甲有限公司；经办人：柳钧。\n本页同时记载参考编号 O0I1l5S8B。"
+          },
+          {
+            "citation_id": "E2",
+            "quote": "乙账簿 · 近似主体\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 2 页\n第一笔设备预付款的收款人为北川设备有限公司。\n第二笔设备预付款付款人为北京乙有限公司。\n第二笔设备预付款实际转账金额：人民币480000元。\n第二笔设备预付款实际转账日期：2026年3月10日。\n经办人柳均与甲账簿经办人柳钧并非同一人。"
+          },
+          {
+            "citation_id": "E3",
+            "quote": "甲账簿 · 多次主体提及\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 3 页\n海岚设备有限公司为第一笔设备预付款的记载主体。\n海岚设备有限公司进行了资料交接。\n海岚设备有限公司等待银行回单。\n海岚设备有限公司已核对合同编号。\n海岚设备有限公司尚未披露付款人出生日期。\n保证金：人民币460000元；这不是设备预付款金额。"
+          },
+          {
+            "citation_id": "E4",
+            "quote": "付款争议陈述 A\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 1 / 1 页\n以下是同一笔付款记录的陈述，尚未经最终裁定。\n付款记录金额为人民币450000元。\n付款记录日期为2026年3月1日。\n付款记录款项已支付。\n付款记录唯一付款人为北京甲有限公司。"
+          },
+          {
+            "citation_id": "E5",
+            "quote": "乙账簿 · 重复事实\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 2 页\n第一笔设备预付款实际转账金额：人民币450000元。\n但此页为前页以外的重复摘要，不能替代原始甲账簿。\n第二笔设备预付款实际转账金额：人民币480000元。"
+          }
+        ]
+      },
+      "model_outputs": [
+        {
+          "schema": "AllowedGroundedAnswer",
+          "output": {
+            "status": "answered",
+            "answer": "材料记载的第一笔设备预付款实际转账日期为2026年3月1日。",
+            "claims": [
+              {
+                "text": "第一笔设备预付款实际转账日期为2026年3月1日。",
+                "citation_ids": [
+                  "E1",
+                  "E4"
+                ],
+                "confidence": 1.0
+              }
+            ]
+          }
+        },
+        {
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "supported",
+            "reason": "证据1明确指出“第一笔设备预付款实际转账日期：2026年3月1日”，证据2也提到“付款记录日期为2026年3月1日”，直接且完整地支持了claim。"
+          }
+        }
+      ],
+      "citation_mapping": [
+        {
+          "evidence_id": "20616c4d-2582-5393-b99a-45bc81ba84ea",
+          "document_id": "41a38b22-127c-46b5-ac5b-6772ebaa15a5",
+          "document_version_id": "095e6b0c-b7b6-446c-a5f0-4921df88b06c",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 3
+        },
+        {
+          "evidence_id": "699ebf49-608f-5f2b-9088-b60244e12a49",
+          "document_id": "9b1ac5b8-0078-4bbc-a081-4f59baa8bba4",
+          "document_version_id": "670ff6e0-c53b-4c9b-9784-119b1a2abdf5",
+          "filename": "09_conflict_a.pdf",
+          "page": 1
+        }
+      ]
+    },
+    {
+      "id": "s27",
+      "question": "低清扫描第2页的日期是什么？",
+      "expected_status": "answered",
+      "gold_evidence": [
+        {
+          "doc_key": "ocr",
+          "page": 2,
+          "snippet": "日期：2026-03-08"
+        }
+      ],
+      "actual_status": "answered",
+      "actual_answer": "第2页的参考日期为2026年3月3日\n第2页未记载目标交付日期",
+      "validation_status": "validated",
+      "retrieval_evidence": [
+        {
+          "alias": "E1",
+          "rank": 1,
+          "evidence_id": "90eafb32-5c6d-56eb-9f73-2cdfefb7eb9e",
+          "doc_key": "mixed",
+          "document_id": "084da6cc-5659-4f99-9321-c112824b5e8a",
+          "document_version_id": "32e18068-969b-439d-999a-56bd0795b02b",
+          "filename": "02_mixed_layer.pdf",
+          "page": 2,
+          "text": "合成扫描压力页\nMIX-28附件验收日期：2026年3月11日\n验收人：林琳\n附件状态：尚未最终结算",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "alias": "E2",
+          "rank": 2,
+          "evidence_id": "a2497b55-6a8b-5ecb-ba66-64bd978205d7",
+          "doc_key": "long",
+          "document_id": "59ab2826-1c2f-4b14-869b-81308fcd75f2",
+          "document_version_id": "c3af6d9a-e6ed-4d54-aa97-0ac47ba5e9b4",
+          "filename": "06_long_50_pages.pdf",
+          "page": 2,
+          "text": "履行长卷宗 · 记录 02\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 50 页\n海岚设备有限公司第02次进度核验记录。\n关联编号：LG-2026-02；负责部门：现场组3。\n每页均涉及交付、金额、日期、责任人等相似字段。\n本页参考报价：人民币400202元，非交付结算金额。\n本页参考日期：2026年3月3日，非目标交付日期。\n海岚设备有限公司再次核对旧项目摘要，未作最终确认。\n海岚设备有限公司的主体名称在本页重复，但仅一项为目标字段。\n注意：相邻页的相似金额和日期不可替代本页事实。\n本页未记载目标站点的实际交付金额或日期。",
+          "retrieval_sources": [
+            "bm25",
+            "vector"
+          ]
+        },
+        {
+          "alias": "E3",
+          "rank": 3,
+          "evidence_id": "b4949bfa-b690-5e05-81ed-7e0827389629",
+          "doc_key": "ocr",
+          "document_id": "e125f5ca-8ca0-498b-8cf4-e85d5a61d353",
+          "document_version_id": "a9f153da-d3ed-4e8e-b2f1-80eca03721f5",
+          "filename": "01_ocr_confusions.pdf",
+          "page": 2,
+          "text": "合成扫描压力页\n参考码：B8S511100\n金额：人民币8510.05元\n日期：2026-03-08\n经办人：柳钧\n收款单位：北川设备有限公司",
+          "retrieval_sources": [
+            "bm25"
+          ]
+        },
+        {
+          "alias": "E4",
+          "rank": 4,
+          "evidence_id": "9fcc09b9-c823-56e3-a4ff-e72aca5d31cf",
+          "doc_key": "ocr",
+          "document_id": "e125f5ca-8ca0-498b-8cf4-e85d5a61d353",
+          "document_version_id": "a9f153da-d3ed-4e8e-b2f1-80eca03721f5",
+          "filename": "01_ocr_confusions.pdf",
+          "page": 1,
+          "text": "合成扫描压力页\n参考码：001115S8B\n金额：人民币1580.50元\n日期：2026/03/07\n核对人：林琳\n状态：尚未支付",
+          "retrieval_sources": [
+            "vector"
+          ]
+        },
+        {
+          "alias": "E5",
+          "rank": 5,
+          "evidence_id": "dc3435a4-19d8-567b-8657-23d34985ba2b",
+          "doc_key": "ledger_a",
+          "document_id": "41a38b22-127c-46b5-ac5b-6772ebaa15a5",
+          "document_version_id": "095e6b0c-b7b6-446c-a5f0-4921df88b06c",
+          "filename": "04_ledger_alpha.pdf",
+          "page": 2,
+          "text": "甲账簿 · 相近金额\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 3 页\n设备预付款预算：人民币455000元，非实际转账金额。\n甲公司是北京甲有限公司的简称。\n柳钧与柳均为不同经办人，不得混同。\n核对日：2026年3月5日；签收日：2026年3月6日。",
+          "retrieval_sources": [
+            "bm25"
+          ]
+        }
+      ],
+      "generation_input": {
+        "question": "低清扫描第2页的日期是什么？",
+        "evidence": [
+          {
+            "citation_id": "E1",
+            "quote": "合成扫描压力页\nMIX-28附件验收日期：2026年3月11日\n验收人：林琳\n附件状态：尚未最终结算"
+          },
+          {
+            "citation_id": "E2",
+            "quote": "履行长卷宗 · 记录 02\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 50 页\n海岚设备有限公司第02次进度核验记录。\n关联编号：LG-2026-02；负责部门：现场组3。\n每页均涉及交付、金额、日期、责任人等相似字段。\n本页参考报价：人民币400202元，非交付结算金额。\n本页参考日期：2026年3月3日，非目标交付日期。\n海岚设备有限公司再次核对旧项目摘要，未作最终确认。\n海岚设备有限公司的主体名称在本页重复，但仅一项为目标字段。\n注意：相邻页的相似金额和日期不可替代本页事实。\n本页未记载目标站点的实际交付金额或日期。"
+          },
+          {
+            "citation_id": "E3",
+            "quote": "合成扫描压力页\n参考码：B8S511100\n金额：人民币8510.05元\n日期：2026-03-08\n经办人：柳钧\n收款单位：北川设备有限公司"
+          },
+          {
+            "citation_id": "E4",
+            "quote": "合成扫描压力页\n参考码：001115S8B\n金额：人民币1580.50元\n日期：2026/03/07\n核对人：林琳\n状态：尚未支付"
+          },
+          {
+            "citation_id": "E5",
+            "quote": "甲账簿 · 相近金额\nCaseFile AI · 全合成压力材料 · 无真实案件数据\n第 2 / 3 页\n设备预付款预算：人民币455000元，非实际转账金额。\n甲公司是北京甲有限公司的简称。\n柳钧与柳均为不同经办人，不得混同。\n核对日：2026年3月5日；签收日：2026年3月6日。"
+          }
+        ]
+      },
+      "model_outputs": [
+        {
+          "schema": "AllowedGroundedAnswer",
+          "output": {
+            "status": "answered",
+            "answer": "第2页的参考日期为2026年3月3日，未记载目标交付日期。",
+            "claims": [
+              {
+                "text": "第2页的参考日期为2026年3月3日",
+                "citation_ids": [
+                  "E2"
+                ],
+                "confidence": 1.0
+              },
+              {
+                "text": "第2页未记载目标交付日期",
+                "citation_ids": [
+                  "E2"
+                ],
+                "confidence": 1.0
+              }
+            ]
+          }
+        },
+        {
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "supported",
+            "reason": "证据中明确提到“第 2 / 50 页”以及“本页参考日期：2026年3月3日”，直接且完整地支持了claim的内容。"
+          }
+        },
+        {
+          "schema": "ModelSupportDecision",
+          "output": {
+            "verdict": "supported",
+            "reason": "证据中明确指出“本页参考日期：2026年3月3日，非目标交付日期”以及“本页未记载目标站点的实际交付金额或日期”，直接且完整地支持了“第2页未记载目标交付日期”的声明。"
+          }
+        }
+      ],
+      "citation_mapping": [
+        {
+          "evidence_id": "a2497b55-6a8b-5ecb-ba66-64bd978205d7",
+          "document_id": "59ab2826-1c2f-4b14-869b-81308fcd75f2",
+          "document_version_id": "c3af6d9a-e6ed-4d54-aa97-0ac47ba5e9b4",
+          "filename": "06_long_50_pages.pdf",
+          "page": 2
+        },
+        {
+          "evidence_id": "a2497b55-6a8b-5ecb-ba66-64bd978205d7",
+          "document_id": "59ab2826-1c2f-4b14-869b-81308fcd75f2",
+          "document_version_id": "c3af6d9a-e6ed-4d54-aa97-0ac47ba5e9b4",
+          "filename": "06_long_50_pages.pdf",
+          "page": 2
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CaseFile AI</title>
+  <link rel="stylesheet" href="/assets/app.css">
+  <script src="/assets/workspace.js" defer></script>
+</head>
+<body>
+  <header><strong>CaseFile AI</strong><span>本地案件分析 · 证据可追溯</span></header>
+  <div class="layout">
+    <aside>
+      <label for="case-select">当前案件</label>
+      <select id="case-select" aria-label="当前案件"></select>
+      <label class="check-label"><input id="include-archived" type="checkbox">显示已归档案件</label>
+      <p id="case-heading" role="status">尚未选择案件</p>
+      <details id="case-management"><summary>当前案件管理</summary><form id="rename-form"><label for="rename-name">案件显示名称</label><input id="rename-name" required maxlength="200"><button data-case-control data-operation="rename">保存名称</button></form><button id="archive-case" type="button" data-case-control data-operation="archive">归档案件</button><p>归档只隐藏日常列表，仍可继续分析；当前版本不支持永久删除。</p></details>
+      <form id="case-form"><label for="case-name">新案件名称</label><input id="case-name" required maxlength="200" placeholder="新案件名称"><button>创建案件</button><span data-operation-message role="status"></span></form>
+      <nav aria-label="主导航">
+        <button data-view="materials">材料与索引</button>
+        <button data-view="qa">提问与引用</button>
+        <button data-view="claims">事实与覆盖检查<small>Claim 与 Coverage</small></button>
+        <button data-view="conflicts">候选与矛盾</button>
+        <button data-view="timeline">时间线<small>Timeline</small></button>
+      </nav>
+    </aside>
+    <main>
+      <div id="status" role="status" aria-live="polite">正在载入案件…</div>
+      <details id="system-panel"><summary>系统状态</summary><button id="system-refresh" type="button">刷新系统状态</button><div id="system-content" aria-live="polite">正在检查本地状态…</div></details>
+      <p id="model-notice" class="notice" data-kind="info" role="status">本地材料处理和检索可独立使用。</p>
+      <details id="data-panel"><summary>数据管理：完整备份 / 恢复</summary><p>完整备份包含所有案件、数据库和全部历史 PDF。配置凭据、日志和模型缓存不进入备份。备份含卷宗数据，请妥善保存。</p><button type="button" id="backup-create">创建完整备份</button><form id="restore-form" class="row"><label for="restore-file">选择完整备份包</label><input id="restore-file" name="file" type="file" accept=".zip,application/zip" required><button>验证备份并预览恢复</button></form><div id="restore-preview"></div><p id="data-operation" role="status" aria-live="polite"></p><div id="data-result"></div></details>
+      <div class="operations" id="case-export"><button type="button" data-action="export-json" data-operation="export-json" data-case-control>导出案件分析 JSON</button><button type="button" data-action="export-markdown" data-operation="export-markdown" data-case-control>导出案件分析 Markdown</button><span data-operation-message role="status"></span></div><p>导出的分析报告可能包含卷宗原文片段和个人/商业信息，请妥善保存。导出完全本地，不调用模型。</p><div id="export-result"></div>
+      <section id="view-materials" class="view"><h1>材料与索引</h1><div id="materials-content"></div></section>
+      <section id="view-qa" class="view" hidden><h1>提问与引用</h1><div id="qa-content"></div></section>
+      <section id="view-claims" class="view" hidden><h1>事实与覆盖检查 <small>Claim / Coverage</small></h1><div id="claims-content"></div></section>
+      <section id="view-conflicts" class="view" hidden><h1>候选与矛盾</h1><div id="conflicts-content"></div></section>
+      <section id="view-timeline" class="view" hidden><h1>时间线 <small>Timeline</small></h1><div id="timeline-content"></div></section>
+    </main>
+  </div>
+</body>
+</html>
