@@ -284,6 +284,10 @@ Windows 默认用户目录为 `%LOCALAPPDATA%\CaseFileAI`，用户数据与程�
 
 ## Windows 快速开始
 
+### 命令行入口
+
+源码环境安装后可运行 `uv run casefile-ai case list`、`document import`、`index build`、`search`、`ask`、`claim`、`contradiction`、`timeline` 和 `export`。核心命令支持 `--json`，与 GUI/API 使用相同案件数据；完整用法、退出码与本地模式见 [CLI 手册](docs/cli.md)。
+
 ### 1. 从源码准备
 
 本公开候选仓库先提供源码，尚未发布 Windows ZIP。此前已完成 Windows 打包与本地运行验证；公开二进制分发须待第三方许可及 notices 核实。

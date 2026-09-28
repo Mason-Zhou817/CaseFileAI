@@ -24,6 +24,7 @@ EDITED_DOCS = (
     ROOT / "README.md",
     GUIDE,
     ROOT / "docs/development.md",
+    ROOT / "docs/cli.md",
     ROOT / "docs/windows-installation.md",
     ROOT / "docs/data-management.md",
 )

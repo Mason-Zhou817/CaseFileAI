@@ -36,6 +36,7 @@ def build(destination: Path | None = None) -> Path:
             "docs/user-guide-zh.md",
             "docs/stage10-task5-acceptance.md",
             "docs/development.md",
+            "docs/cli.md",
             "docs/requirements.md",
             "docs/architecture.md",
             "docs/data-model.md",

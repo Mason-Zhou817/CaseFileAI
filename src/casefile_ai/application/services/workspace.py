@@ -32,6 +32,8 @@ from casefile_ai.domain.exceptions import CaseNotFoundError
 class AnswerCatalog(Protocol):
     def list_case_answers(self, case_id: str) -> tuple[GroundedAnswer, ...]: ...
 
+    def case_id_for_answer(self, answer_id: str) -> str | None: ...
+
 
 class CaseWorkspaceService:
     """Coordinates existing validated services; adds no factual decision rules."""
@@ -73,6 +75,12 @@ class CaseWorkspaceService:
     def extract(self, case_id: str, answer_id: str) -> tuple[ExtractedClaim, ...]:
         self.answer(case_id, answer_id)
         return self._extraction.extract_answer_claims(answer_id)
+
+    def extract_by_answer(self, answer_id: str) -> tuple[ExtractedClaim, ...]:
+        case_id = self._answers.case_id_for_answer(answer_id)
+        if case_id is None:
+            raise CaseNotFoundError("answer not found")
+        return self.extract(case_id, answer_id)
 
     def coverage(self, case_id: str, answer_id: str) -> ClaimCoverageResult:
         self.answer(case_id, answer_id)
