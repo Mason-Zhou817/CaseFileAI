@@ -24,6 +24,7 @@ def build(destination: Path | None = None) -> Path:
             "pyproject.toml",
             "uv.lock",
             "README.md",
+            "THIRD_PARTY_NOTICES.md",
             "config.env.example",
             "Setup CaseFile AI.cmd",
             "Start CaseFile AI.cmd",
