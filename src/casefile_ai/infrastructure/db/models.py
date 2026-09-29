@@ -80,9 +80,7 @@ class DocumentVersionModel(Base):
 
 class MaterialIndexAttemptModel(Base):
     __tablename__ = "material_index_attempts"
-    __table_args__ = (
-        CheckConstraint("outcome IN ('ready', 'failed')", name="safe_index_outcome"),
-    )
+    __table_args__ = (CheckConstraint("outcome IN ('ready', 'failed')", name="safe_index_outcome"),)
     document_version_id: Mapped[str] = mapped_column(
         ForeignKey("document_versions.document_version_id"), primary_key=True
     )
@@ -150,9 +148,7 @@ class EvidenceModel(Base):
 
     evidence_id: Mapped[str] = mapped_column(String(36), primary_key=True)
     case_id: Mapped[str] = mapped_column(ForeignKey("cases.case_id"), nullable=False, index=True)
-    chunk_id: Mapped[str] = mapped_column(
-        ForeignKey("chunks.chunk_id"), nullable=False, index=True
-    )
+    chunk_id: Mapped[str] = mapped_column(ForeignKey("chunks.chunk_id"), nullable=False, index=True)
     quote: Mapped[str] = mapped_column(Text, nullable=False)
     start_offset: Mapped[int] = mapped_column(Integer, nullable=False)
     end_offset: Mapped[int] = mapped_column(Integer, nullable=False)
@@ -183,9 +179,7 @@ class AnswerModel(Base):
     __tablename__ = "answers"
     __table_args__ = (
         UniqueConstraint("question_id", name="uq_answers_question_id"),
-        CheckConstraint(
-            "status IN ('answered', 'insufficient_evidence')", name="valid_status"
-        ),
+        CheckConstraint("status IN ('answered', 'insufficient_evidence')", name="valid_status"),
     )
 
     answer_id: Mapped[str] = mapped_column(String(36), primary_key=True)
@@ -215,12 +209,44 @@ class AnswerModel(Base):
     )
 
 
+class FeedbackModel(Base):
+    __tablename__ = "feedback"
+    __table_args__ = (
+        CheckConstraint(
+            "rating IN ('correct', 'partially_correct', 'incorrect', 'insufficient_evidence')",
+            name="valid_rating",
+        ),
+        CheckConstraint(
+            "category IN ('retrieval', 'answer', 'citation', 'claim', 'other')",
+            name="valid_category",
+        ),
+        CheckConstraint(
+            "review_status IN ('pending', 'approved', 'rejected')", name="valid_review_status"
+        ),
+    )
+
+    feedback_id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    case_id: Mapped[str] = mapped_column(ForeignKey("cases.case_id"), nullable=False, index=True)
+    answer_id: Mapped[str] = mapped_column(
+        ForeignKey("answers.answer_id"), nullable=False, index=True
+    )
+    rating: Mapped[str] = mapped_column(String(32), nullable=False)
+    category: Mapped[str] = mapped_column(String(32), nullable=False)
+    note: Mapped[str] = mapped_column(Text, nullable=False, default="")
+    review_status: Mapped[str] = mapped_column(String(16), nullable=False, default="pending")
+    expected_status: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    expected_answer: Mapped[str | None] = mapped_column(Text, nullable=True)
+    expected_evidence_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    reviewed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, default=utc_now, index=True
+    )
+
+
 class AnswerCitationModel(Base):
     __tablename__ = "answer_citations"
     __table_args__ = (
-        UniqueConstraint(
-            "answer_id", "claim_id", "evidence_id", name="uq_answer_claim_evidence"
-        ),
+        UniqueConstraint("answer_id", "claim_id", "evidence_id", name="uq_answer_claim_evidence"),
         CheckConstraint("citation_order >= 0", name="nonnegative_citation_order"),
     )
 

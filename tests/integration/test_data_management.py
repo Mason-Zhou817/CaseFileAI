@@ -107,6 +107,66 @@ def preview(client: TestClient, data: bytes):
     return client.post("/api/data/restores/preview", files={"file": ("backup.zip", data)})
 
 
+def test_feedback_backup_restore_and_cross_case_validation(
+    populated, tmp_path: Path, caplog: pytest.LogCaptureFixture
+) -> None:
+    client, case, _, _ = populated
+    answer_id = client.get(f"/api/cases/{case}/answers").json()[0]["answer_id"]
+    note = "合成反馈正文不进入日志"
+    response = client.post(
+        f"/api/cases/{case}/feedback",
+        json={
+            "answer_id": answer_id,
+            "rating": "incorrect",
+            "category": "citation",
+            "note": note,
+        },
+    )
+    assert response.status_code == 200, response.text
+    assert response.json()["review_status"] == "pending"
+    assert note not in caplog.text
+    assert client.get(f"/api/cases/{case}/feedback/summary").json()["total"] == 1
+    exported = client.post(f"/api/cases/{case}/exports/json").json()
+    report = client.get(exported["download_url"]).json()
+    assert report["feedback_summary"]["incorrect_by_category"]["citation"] == 1
+    assert note not in json.dumps(report, ensure_ascii=False)
+    client.patch(f"/api/cases/{case}/archive", json={"archived": True})
+    assert client.get(f"/api/cases/{case}/feedback/summary").json()["total"] == 1
+    data = backup(client)
+    with zipfile.ZipFile(BytesIO(data)) as archive:
+        database = tmp_path / "feedback.db"
+        database.write_bytes(archive.read("database/casefile-ai.db"))
+    with sqlite3.connect(database) as connection:
+        assert connection.execute("SELECT note FROM feedback").fetchone()[0] == note
+    restore = preview(client, data)
+    assert restore.status_code == 200, restore.text
+    restored = client.post(
+        f"/api/data/restores/{restore.json()['restore_id']}/confirm",
+        json={"confirmation": "create_new_copy"},
+    )
+    assert restored.status_code == 200, restored.text
+    with sqlite3.connect(restored.json()["database_path"]) as connection:
+        assert connection.execute("SELECT COUNT(*) FROM feedback").fetchone()[0] == 1
+
+    other = client.post("/api/cases", json={"name": "合成其他案件"}).json()["case_id"]
+    with sqlite3.connect(database) as connection:
+        connection.execute(
+            "INSERT INTO cases(case_id,name,status,created_at,updated_at) "
+            "SELECT ?,name,status,created_at,updated_at FROM cases LIMIT 1",
+            (other,),
+        )
+        connection.execute("UPDATE feedback SET case_id=?", (other,))
+
+    def corrupt(files, manifest):
+        files["database/casefile-ai.db"] = database.read_bytes()
+        prior = manifest["database"]["size"]
+        manifest["database"]["sha256"] = sha256(database)
+        manifest["database"]["size"] = database.stat().st_size
+        manifest["total_size"] += database.stat().st_size - prior
+
+    assert preview(client, rewrite(data, corrupt)).status_code == 422
+
+
 def rewrite(data: bytes, change: Any) -> bytes:
     with zipfile.ZipFile(BytesIO(data)) as archive:
         files = {name: archive.read(name) for name in archive.namelist()}
@@ -164,7 +224,7 @@ def test_complete_backup_manifest_history_and_no_secrets(populated) -> None:
     data = backup(client)
     with zipfile.ZipFile(BytesIO(data)) as archive:
         manifest = json.loads(archive.read("manifest.json"))
-        assert manifest["database_schema_version"] == "20260927_0007"
+        assert manifest["database_schema_version"] == "20260929_0008"
         assert manifest["total_file_count"] == 3
         assert len(manifest["files"]) == 2
         assert {Path(x["path"]).name for x in manifest["files"]} == {
@@ -449,7 +509,7 @@ def test_known_older_schema_is_migrated_only_in_new_copy(populated, tmp_path: Pa
     with sqlite3.connect(restored.json()["database_path"]) as connection:
         assert (
             connection.execute("SELECT version_num FROM alembic_version").fetchone()[0]
-            == "20260927_0007"
+            == "20260929_0008"
         )
     with sqlite3.connect(database) as connection:
         assert (

@@ -28,6 +28,7 @@ from casefile_ai.application.contradiction_contracts import ContradictionValidat
 from casefile_ai.application.data_contracts import DataManagementError
 from casefile_ai.application.data_messages import DATA_MESSAGES
 from casefile_ai.application.document_contracts import DocumentNotFoundError, InvalidDocumentError
+from casefile_ai.application.feedback_contracts import FeedbackError
 from casefile_ai.application.material_contracts import (
     IndexInProgressError,
     IndexOperationError,
@@ -38,6 +39,7 @@ from casefile_ai.application.retrieval_contracts import InvalidSearchError, Retr
 from casefile_ai.application.services.case_lifecycle import CaseLifecycleService
 from casefile_ai.application.services.data_management import DataManagementService
 from casefile_ai.application.services.documents import DefaultIngestionService
+from casefile_ai.application.services.feedback import FeedbackService
 from casefile_ai.application.services.materials import MaterialsService
 from casefile_ai.application.services.qa import DefaultQAService
 from casefile_ai.application.services.retrieval import DefaultRetrievalService
@@ -51,6 +53,7 @@ from casefile_ai.infrastructure.safe_logging import SafeLogging, safe_event
 from casefile_ai.interfaces.api.routes.cases import build_case_router
 from casefile_ai.interfaces.api.routes.data_management import build_data_router
 from casefile_ai.interfaces.api.routes.documents import build_document_router
+from casefile_ai.interfaces.api.routes.feedback import build_feedback_router
 from casefile_ai.interfaces.api.routes.qa import build_qa_router
 from casefile_ai.interfaces.api.routes.retrieval import build_retrieval_router
 from casefile_ai.interfaces.api.routes.workspace import build_workspace_router
@@ -68,6 +71,7 @@ def create_app(
     materials_service: MaterialsService | None = None,
     lifecycle_service: CaseLifecycleService | None = None,
     data_management_service: DataManagementService | None = None,
+    feedback_service: FeedbackService | None = None,
     log_manager: SafeLogging | None = None,
     startup_report: Callable[[SystemStatus], None] | None = None,
     instance_id: str | None = None,
@@ -176,6 +180,11 @@ def create_app(
             content={"detail": str(exception)},
         )
 
+    @app.exception_handler(FeedbackError)
+    async def feedback_error(_request: Request, exception: FeedbackError) -> JSONResponse:
+        code = 404 if exception.code.endswith("not_found") else 422
+        return JSONResponse(status_code=code, content={"detail": exception.code})
+
     if production:
         app.include_router(
             build_case_router(
@@ -187,6 +196,7 @@ def create_app(
         app.include_router(build_document_router(factory=lambda: runtime_services().ingestion))
         app.include_router(build_retrieval_router(factory=lambda: runtime_services().retrieval))
         app.include_router(build_qa_router(factory=production_qa))
+        app.include_router(build_feedback_router(factory=lambda: runtime_services().feedback))
         app.include_router(
             build_workspace_router(
                 factory=lambda: runtime_services().workspace,
@@ -213,6 +223,8 @@ def create_app(
             app.include_router(build_retrieval_router(retrieval_service))
         if qa_service is not None:
             app.include_router(build_qa_router(qa_service))
+        if feedback_service is not None:
+            app.include_router(build_feedback_router(feedback_service))
         if workspace_service is not None:
             app.include_router(build_workspace_router(workspace_service))
 

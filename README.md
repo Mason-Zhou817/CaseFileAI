@@ -7,6 +7,10 @@
 CaseFile AI 面向律师、法务及需要核对 PDF / 扫描材料的知识工作场景，整合文档解析、OCR、混合检索、证据约束问答、事实抽取、矛盾分析与时间线整理。
 系统将分析结果绑定到具体文件、文档版本、页码和原文片段，帮助用户回到原始材料核查回答和事实。
 
+## 反馈与数据飞轮
+
+回答卡片可提交本地显式反馈，并查看评分及失败类别统计。人工审核后可用 `casefile-ai feedback export-eval` 导出离线回归样本。持续升级指反馈、人工核准、版本化评测、离线回归、实现改进及新版本发布，不是实时训练或自动改模型。详见 [反馈流程](docs/feedback-data-flywheel.md) 与 [原创性和 AI 使用说明](docs/originality-and-ai-usage.md)。
+
 主要来源链：
 
 ```text
@@ -14,7 +18,7 @@ PDF → 证据（Evidence）→ 候选回答（Answer）→ 引用（Citation）
     → 已验证回答 → 事实（Claim）→ 矛盾分析 / 时间线（Timeline）
 ```
 
-当前版本为 **v1.0.0**，定位为单机辅助分析工具。最终事实核对和专业判断仍由用户基于原始材料完成。
+当前源码版本为 **v1.1.0**，包含 GUI、CLI、MCP 和显式反馈流程；公开仓库尚未提供 Windows 二进制。系统定位为单机辅助分析工具，最终事实核对和专业判断仍由用户基于原始材料完成。
 详细能力与交付边界见 [发布说明](RELEASE_NOTES.md)。
 
 五个核心能力：
@@ -124,8 +128,8 @@ PDF → 证据（Evidence）→ 候选回答（Answer）→ 引用（Citation）
 
 ## 系统架构
 
-GUI / HTTP 和 CLI 调用同一个 `application/service` 层，界面不复制检索、事实判断或引用校验逻辑。
-数据库、解析器、检索与模型适配器通过契约接入；开发 MCP adapter 同样使用服务契约，但正式产品入口尚未接通。
+GUI / HTTP、CLI 和 MCP 调用同一个 `application/service` 层，界面不复制检索、事实判断或引用校验逻辑。
+数据库、解析器、检索与模型适配器通过契约接入；正式 stdio MCP Server 也复用同一服务层。
 
 ```mermaid
 flowchart TB
@@ -222,6 +226,8 @@ Coverage 提供文字覆盖信号，不替代语义支持验证。
 | --- | --- | --- |
 | v1.0.0 封版 Python 回归 | 320 项 Pytest 通过 | 历史封版结果；确定性功能、隔离与异常路径检查 |
 | v1.0.0 前端与静态检查 | 29 项 Node 检查通过；Ruff / strict Mypy 通过 | Node 检查也可能由 Pytest 调用，不加总为 349 个独立测试 |
+| v1.1.0 源码最终自动回归 | 319 passed、1 skipped、1 warning；前端 Node 30 passed | 2026-09-29；跳过 Windows 不可创建的 symlink 检查；源码仓库另有 `docs/teacher-v1.1-final-report.md` |
+| v1.1.0 真实 Qwen 固定 smoke | 7 题：5 answered/validated，2 正确拒答；false answer 0、false abstain 0、provider error 0 | 2026-09-29；隔离全合成案件，金额与日期 Claim 各 1 条；小样本不代表长期错误率 |
 | 离线压力评测集 | 11 份 PDF、66 页、51 题 | 45 道可回答题、6 道负例；固定合成材料与 gold |
 | 离线检索全部必需证据命中@5 | 42/45 | 本地 BGE + BM25 + RRF；gold-gated FakeLLM 用于后续 QA |
 | 真实 Qwen 问题对齐专项 | 正例正确回答 5/6；负例正确拒答 3/3 | 固定 9 题；false abstain 1/6，没有错误 validated 回答 |
@@ -247,7 +253,7 @@ Windows 验收在同一主机的隔离安装/用户目录中进行，复用了�
 模型请求耗时及额外验证调用会带来等待和费用，不将单次缓存或网络条件下的延迟当作性能承诺。
 
 评测方法、固定合成集与复现入口见 [开发者指南](docs/development.md)；发布验证与局限见 [发布说明](RELEASE_NOTES.md)。
-本次 README 整理不重新执行上述真实云模型评测。
+本轮 v1.1.0 在本机产品配置下新增固定 7 题真实 Qwen smoke；上表其他真实云模型专项仍是各自历史子集，不得混作本轮成绩。
 
 ## 技术栈
 
@@ -284,9 +290,36 @@ Windows 默认用户目录为 `%LOCALAPPDATA%\CaseFileAI`，用户数据与程�
 
 ## Windows 快速开始
 
+### 命令行入口
+
+源码环境安装后可运行 `casefile-ai`；开发时在命令前加 `uv run`。例如：
+
+```text
+casefile-ai search --case CASE_ID "付款金额"
+casefile-ai ask --case CASE_ID "付款金额是多少？"
+casefile-ai timeline --case CASE_ID
+```
+
+核心命令支持 `--json`，`casefile-ai version` 显示包版本。GUI、CLI 与 API 使用相同案件数据；完整命令、退出码和本地模式见 [CLI 手册](docs/cli.md)。
+
+支持 MCP 的本地智能体客户端在安装后可启动 `casefile-ai-mcp`；开发环境使用 `uv run casefile-ai-mcp`。当前正式入口提供 **17 个 MCP 工具**，PDF 导入需要设置 `CASEFILE_MCP_IMPORT_ROOTS`，未设置时默认禁用。客户端配置、工具列表与云模型边界见 [MCP 手册](docs/mcp.md)。
+
+反馈用于下个版本的可审计改进流程：
+
+```mermaid
+flowchart LR
+    Usage[使用与问答] --> Feedback[显式反馈]
+    Feedback --> Review[人工审核]
+    Review --> Staging[Eval Staging]
+    Staging --> Regression[离线回归]
+    Regression --> Improvement[下一版本改进]
+```
+
+**No automatic training.** 反馈不会自动改模型或 Prompt；流程和隐私边界见[反馈与数据飞轮](docs/feedback-data-flywheel.md)。
+
 ### 1. 从源码准备
 
-本公开候选仓库先提供源码，尚未发布 Windows ZIP。此前已完成 Windows 打包与本地运行验证；公开二进制分发须待第三方许可及 notices 核实。
+当前公开仓库提供源码，尚未发布 Windows ZIP。此前已完成 v1.0.0 Windows 打包与本地运行验证；公开二进制分发须待第三方许可及 notices 核实。
 在完整源码根目录按照[开发者指南](docs/development.md)准备 uv 环境，也可按[Windows 安装说明](docs/windows-installation.md)从源码运行本地入口。首次安装与模型准备可能需要联网，不是包含全部模型的便携 EXE。
 
 ### 2. 首次准备
@@ -331,7 +364,7 @@ src/casefile_ai/
 ├─ application/      # 应用服务、契约与业务编排
 ├─ domain/           # 领域标识与异常
 ├─ infrastructure/   # 数据库、检索、解析/OCR、模型实现
-├─ interfaces/       # API、Web、CLI、Windows；开发 MCP adapter
+├─ interfaces/       # API、Web、CLI、Windows、MCP
 └─ evaluation/       # 评测框架与阶段诊断
 
 migrations/          # 数据库迁移
@@ -350,13 +383,13 @@ scripts/             # Windows 交付、评测与工具脚本
 - Coverage 是文字覆盖提示，不代表完整案件覆盖。
 - 云模型调用可能超时或受到 429 / 503 等 provider 故障影响；Qwen 当前并非本地部署。
 - 备份与分析导出未加密，需要按内容敏感程度自行保管。
-- 当前仅支持 PDF；v1.0 GUI 不支持永久删除，没有后台任务取消或自动更新。
+- 当前仅支持 PDF；GUI 不支持永久删除，没有后台任务取消或自动更新。
 - 当前是单机工具，不包含多用户账号、企业权限或 RBAC。
-- 正式 MCP 产品入口尚未接通，开发 adapter 不属于可直接使用的 Windows 功能。
+- MCP 仅支持本机 stdio；导入须配置允许目录，远程 MCP 服务不在当前范围。
 
 ## 后续方向
 
-以下是未来方向，**当前 v1.0.0 不包含这些扩展能力**：
+以下是未来方向，**当前 v1.1.0 不包含这些扩展能力**：
 
 - 可选本地 LLM 后端。
 - 大型卷宗的检索与索引性能优化。

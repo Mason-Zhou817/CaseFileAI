@@ -32,6 +32,17 @@ test("abstention is information, validation failure is an error",()=>{
   assert.equal(ui.answerInfo({abstained:true,metadata:{refusal_reason:"citation_invalid"}}).kind,"error");
   assert.equal(ui.answerInfo({abstained:false}).label,"已验证");
 });
+test("feedback form submits the selected real answer and refreshes local counts",async()=>{
+  reset();let submitted;const answer={answer_id:"answer-1",question:"合成问题",answer:"合成回答",claims:[],citations:[],metadata:{}};
+  global.fetch=async (path,options)=>{if(path.endsWith("/feedback") && options?.method==="POST"){submitted=JSON.parse(options.body);return {ok:true,json:async()=>({feedback_id:"feedback-1",review_status:"pending"})};}
+    return {ok:true,json:async()=>path.endsWith("/answers")?[answer]:path.endsWith("/feedback/summary")?{total:1,rating:{correct:0,partially_correct:0,incorrect:1,insufficient_evidence:0},category:{retrieval:0,answer:0,citation:1,claim:0,other:0}}:path.endsWith("/materials")?{documents:[{}],message:"可用",status:"ready"}:system};};
+  const form={dataset:{form:"feedback",answer:"answer-1"},elements:{rating:{value:"incorrect"},category:{value:"citation"},note:{value:"合成页码错误"}}};
+  await ui.submitMain({preventDefault(){},target:form});
+  assert.deepEqual(submitted,{answer_id:"answer-1",rating:"incorrect",category:"citation",note:"合成页码错误"});
+  assert.match(nodes.get("qa-content").innerHTML,/反馈统计：1 条/);
+  assert.match(nodes.get("qa-content").innerHTML,/引用错误/);
+  assert.match(nodes.get("status").textContent,/反馈仅保存在本机/);
+});
 test("incomplete-index explanations use service facts for all three causes",()=>{
   for(const message of ["尚未建立索引","索引需要更新","上次索引失败"]){const result=ui.answerInfo({metadata:{refusal_reason:"index_incomplete"}},{status:"failed",message});assert.equal(result.kind,"warning");assert.equal(result.message,message);}
   assert.match(ui.answerInfo({metadata:{refusal_reason:"index_incomplete"}},{status:"ready"}).message,/重新提问/);
@@ -69,7 +80,7 @@ test("system paths and restore instructions use actual safe config path and esca
 });
 test("late citation metadata cannot render a previous case",async()=>{
   reset();const wait=deferred();const answer={question:"旧案件",answer:"旧事实",claims:[{text:"旧事实",citation_ids:["E"]}],citations:[{evidence_id:"E",document_id:"doc",document_version_id:"v1"}]};
-  global.fetch=async path=>path.startsWith("/api/documents/")?wait.promise:{ok:true,json:async()=>path.endsWith("/answers")?[answer]:{documents:[{}],status:"ready",message:"可用"}};
+  global.fetch=async path=>path.startsWith("/api/documents/")?wait.promise:{ok:true,json:async()=>path.endsWith("/answers")?[answer]:path.endsWith("/feedback/summary")?{total:0,rating:{correct:0,partially_correct:0,incorrect:0,insufficient_evidence:0},category:{retrieval:0,answer:0,citation:0,claim:0,other:0}}:{documents:[{}],status:"ready",message:"可用"}};
   const pending=ui.refresh("qa",ui.context());await new Promise(resolve=>setImmediate(resolve));ui.setState({current:"B",epoch:2});document.getElementById("qa-content").innerHTML="新案件";wait.resolve({ok:true,json:async()=>({latest:version,versions:[version]})});await pending;assert.equal(nodes.get("qa-content").innerHTML,"新案件");
 });
 test("temporary semantic failures survive GET merge, are labeled and suppress raw reason",()=>{

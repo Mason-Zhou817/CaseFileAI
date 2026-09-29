@@ -364,6 +364,14 @@ class SqlAlchemyQARepository:
             answer = session.get(AnswerModel, answer_id)
             return self._hydrate_answer(session, answer, cache_hit=False) if answer else None
 
+    def case_id_for_answer(self, answer_id: str) -> str | None:
+        with session_scope(self._factory) as session:
+            return session.scalar(
+                select(QuestionModel.case_id)
+                .join(AnswerModel, AnswerModel.question_id == QuestionModel.question_id)
+                .where(AnswerModel.answer_id == answer_id)
+            )
+
     def list_case_answers(self, case_id: str) -> tuple[GroundedAnswer, ...]:
         with session_scope(self._factory) as session:
             self._require_case(session, case_id)

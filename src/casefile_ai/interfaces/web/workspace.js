@@ -200,11 +200,11 @@ async function refresh(name, ctx=context()) {
     const materials=await request(url(id,"/materials"));
     html=`<p>导入 PDF 时已完成文本解析 / OCR。建立或更新索引只处理已有文本，不会重新执行 OCR。</p>${uploadForm()}<div class="operations"><button data-action="index" data-operation="index" data-blocked="${!materials.documents.length || materials.status === "processing"}">${escapeHtml(materials.action_label)}</button><span data-operation-message role="status"></span></div><p class="notice" data-kind="${materials.status === "failed" ? "error" : materials.status === "ready" ? "success" : "warning"}">${escapeHtml(materials.label)} · ${escapeHtml(materials.message)}</p><h2>材料</h2>${materials.documents.map(materialCard).join("") || "<p>尚无材料。请导入 PDF；索引建立后即可检索。</p>"}<h2>检索</h2><form data-form="search" class="row"><label for="search-query">检索案件材料</label><input id="search-query" name="query" required maxlength="1000"><button data-operation="search" data-blocked="${materials.status !== "ready"}">检索</button><span data-operation-message role="status"></span></form><div id="search-results"></div>`;
   } else if (name === "qa") {
-    const [answers,materials]=await Promise.all([request(url(id,"/answers")),request(url(id,"/materials"))]);
+    const [answers,materials,feedbackSummary]=await Promise.all([request(url(id,"/answers")),request(url(id,"/materials")),request(url(id,"/feedback/summary"))]);
     const versions=await sourceVersions(answers.flatMap(a=>a.citations));
-    html=`${!materials.documents.length ? "<p>本案尚无材料，请先导入 PDF 并建立索引。</p>" : `<p>${escapeHtml(materials.message)}</p>`}<form data-form="ask" class="row"><label for="question">询问材料中的事实</label><input id="question" name="question" required maxlength="1000"><button data-operation="ask" data-blocked="${!materials.documents.length}">提问</button><span data-operation-message role="status"></span></form><h2>回答历史</h2>${answers.map(a=>{
+    html=`${!materials.documents.length ? "<p>本案尚无材料，请先导入 PDF 并建立索引。</p>" : `<p>${escapeHtml(materials.message)}</p>`}<form data-form="ask" class="row"><label for="question">询问材料中的事实</label><input id="question" name="question" required maxlength="1000"><button data-operation="ask" data-blocked="${!materials.documents.length}">提问</button><span data-operation-message role="status"></span></form><details id="feedback-summary"><summary>反馈统计：${Number(feedbackSummary.total)} 条</summary><p>正确 ${Number(feedbackSummary.rating.correct)} · 部分正确 ${Number(feedbackSummary.rating.partially_correct)} · 错误 ${Number(feedbackSummary.rating.incorrect)} · 证据不足 ${Number(feedbackSummary.rating.insufficient_evidence)}</p><p>检索 ${Number(feedbackSummary.category.retrieval)} · 回答 ${Number(feedbackSummary.category.answer)} · 引用 ${Number(feedbackSummary.category.citation)} · 事实 ${Number(feedbackSummary.category.claim)} · 其他 ${Number(feedbackSummary.category.other)}</p><p>引用错误 ${Number(feedbackSummary.incorrect_by_category?.citation||0)}</p></details><h2>回答历史</h2>${answers.map(a=>{
       const info=answerInfo(a,materials);
-      return `<article class="card"><h3>${escapeHtml(a.question)}</h3><p class="notice" data-kind="${info.kind}"><b>${info.label}</b> · ${escapeHtml(info.message)}</p><p>${escapeHtml(a.answer)}</p>${a.claims.map(c=>claim(c,a.citations.filter(e=>c.citation_ids.includes(e.evidence_id)),versions)).join("")}${technical(`Answer：${escapeHtml(a.answer_id)} · ${Math.round(a.metadata?.total_ms||0)} ms`)}</article>`;
+      return `<article class="card"><h3>${escapeHtml(a.question)}</h3><p class="notice" data-kind="${info.kind}"><b>${info.label}</b> · ${escapeHtml(info.message)}</p><p>${escapeHtml(a.answer)}</p>${a.claims.map(c=>claim(c,a.citations.filter(e=>c.citation_ids.includes(e.evidence_id)),versions)).join("")}<details><summary>反馈此回答</summary><form data-form="feedback" data-answer="${escapeHtml(a.answer_id)}"><label>评价 <select name="rating"><option value="correct">正确</option><option value="partially_correct">部分正确</option><option value="incorrect">错误</option><option value="insufficient_evidence">证据不足</option></select></label><label>问题类别 <select name="category"><option value="answer">回答</option><option value="retrieval">检索</option><option value="citation">引用</option><option value="claim">事实</option><option value="other">其他</option></select></label><label>备注 <input name="note" maxlength="2000"></label><button data-operation="feedback">提交反馈</button><span data-operation-message role="status"></span></form><p>反馈仅保存在本机，用于后续人工复核与评测改进。</p></details>${technical(`Answer：${escapeHtml(a.answer_id)} · ${Math.round(a.metadata?.total_ms||0)} ms`)}</article>`;
     }).join("")||"<p>暂无回答。导入材料并建立索引后，可以提出第一个问题；AI 问答需要配置并明确启用。</p>"}`;
   } else if (name === "claims") {
     const [answers,claims]=await Promise.all([request(url(id,"/answers")),request(url(id,"/claims"))]);
@@ -249,6 +249,12 @@ function submitMain(event) {
       await refresh("qa",ctx); if(!valid(ctx)) return;
       const materials=await request(url(ctx.id,"/materials")); if(!valid(ctx)) return;
       const info=answerInfo(result,materials); status(`${info.label}：${info.message}`,info.kind);
+    });
+  }
+  if (form.dataset.form === "feedback") {
+    const payload={answer_id:form.dataset.answer,rating:form.elements.rating.value,category:form.elements.category.value,note:form.elements.note.value};
+    return run("feedback","提交反馈",id=>request(url(id,"/feedback"),post(payload)),async ctx=>{
+      await refresh("qa",ctx); if(valid(ctx)) status("反馈仅保存在本机，用于后续人工复核与评测改进。","success");
     });
   }
   if (form.dataset.form === "search") {
@@ -307,7 +313,7 @@ function bootstrap() {
 // Dependency-free tests execute the same functions used by the browser.
 if (typeof module !== "undefined" && module.exports) module.exports = {
   errorInfo, answerInfo, modelNotice, mergeResults, materialCard, versionHistory, contradictionCard, evidence, sourceVersions, refreshSystem,
-  run, refresh, syncBusy, submitCase, selectCase, valid, context,
+  run, refresh, syncBusy, submitCase, submitMain, selectCase, valid, context,
   setState: state=>{current=state.current; epoch=state.epoch; caseNames=new Map(state.names || [[current,"合成测试案件"]]);caseRecords=new Map(state.records || []);},
   pending, loads
 };

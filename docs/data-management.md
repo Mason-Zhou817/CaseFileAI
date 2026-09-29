@@ -7,7 +7,7 @@
 
 ## 实施前数据审计
 
-当前 Alembic head 为 `20260927_0007`。`cases.status` 已存在，默认 `active`，因此归档复用该字段，无新增迁移。稳定 ID、原 contract、算法版本与缓存版本不变；新增数据管理 contract 独立放在 `application/data_contracts.py`。
+任务 3 当时的 Alembic head 为 `20260927_0007`。`cases.status` 已存在，默认 `active`，因此归档复用该字段，无新增迁移。稳定 ID、原 contract、算法版本与缓存版本不变；新增数据管理 contract 独立放在 `application/data_contracts.py`。当前 head 与 Feedback 的变更见 [反馈与数据飞轮](feedback-data-flywheel.md)。
 
 | 数据 | 持久化关系 |
 | --- | --- |
@@ -25,7 +25,7 @@
 
 在当前案件附近输入名称并保存。API 和 application service 都验证去除首尾空格后非空、最长 200 字符，不要求全局唯一。只更新名称与更新时间，案件 ID 和来源记录不变；成功后同步案件列表、当前标题和浏览器标题。
 
-归档将 `status` 设置为 `archived`，恢复归档设置为 `active`。默认 GUI、CLI 与开发 MCP adapter 案件列表只返回 active；正式 MCP 入口尚未接通。GUI 勾选“显示已归档案件”后可选择已归档案件。归档案件仍可读材料、原文件、历史问答、引用、事实、矛盾和时间线，也可继续处理 / 分析 / 导出。UI 明确说明这一行为。没有案件或文档永久删除 API、按钮或 cascade 删除。
+归档将 `status` 设置为 `archived`，恢复归档设置为 `active`。默认 GUI、CLI 与 MCP 案件列表只返回 active；在本任务验收时正式 MCP 入口尚未接通，后续 v1.1-B 已接通。GUI 勾选“显示已归档案件”后可选择已归档案件。归档案件仍可读材料、原文件、历史问答、引用、事实、矛盾和时间线，也可继续处理 / 分析 / 导出。UI 明确说明这一行为。没有案件或文档永久删除 API、按钮或 cascade 删除。
 
 ## 完整备份与分析导出的区别
 
@@ -66,7 +66,7 @@ manifest 使用封闭字段模型：
 | 字段 | 含义 |
 | --- | --- |
 | backup_format_version | 当前为 1 |
-| application_version | 创建时应用版本，当前 1.0.0 |
+| application_version | 创建时应用版本，当前源码为 1.1.0；旧备份保留创建时的历史版本 |
 | created_at | 含时区的 UTC ISO 时间 |
 | database_schema_version | 创建时 Alembic revision |
 | database | 数据库相对路径、SHA-256、字节数 |

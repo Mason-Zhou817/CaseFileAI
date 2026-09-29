@@ -556,7 +556,7 @@ def test_wheel_contains_resources_and_runs_cli_from_isolated_environment(deliver
             len(
                 [name for name in names if "/migrations/versions/" in name and name.endswith(".py")]
             )
-            == 7
+            == len(list((ROOT / "migrations/versions").glob("*.py")))
         )
         assert all(
             f"casefile_ai/interfaces/web/{name}" in names

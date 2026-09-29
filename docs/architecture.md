@@ -36,7 +36,7 @@ separate local adapter handles embeddings. Application services depend only on
 
 ## MVP storage
 
-- SQLite stores metadata, FTS content, analysis records, feedback, and small vectors.
+- SQLite stores metadata, FTS content, analysis records, explicit local feedback, and small vectors.
 - Original PDFs and rendered page images live under the configured data directory.
 - Vector similarity may use NumPy for the MVP dataset size; no separate vector database is required.
 - Derived records are versioned rather than overwritten when parser, chunking, prompt, model, or embedding versions change.

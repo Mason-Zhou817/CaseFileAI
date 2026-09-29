@@ -95,6 +95,7 @@ class AnalysisExport(ClosedModel):
     candidates: list[dict[str, Any]]
     contradictions: list[dict[str, Any]]
     timeline: list[dict[str, Any]]
+    feedback_summary: dict[str, Any] = Field(default_factory=dict)
     notices: list[str]
 
 

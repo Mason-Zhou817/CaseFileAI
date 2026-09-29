@@ -11,6 +11,7 @@ from typing import BinaryIO, Literal
 from uuid import uuid4
 
 from casefile_ai.application.data_contracts import (
+    AnalysisExport,
     Artifact,
     BackupBackend,
     DataManagementError,
@@ -69,11 +70,15 @@ class DataManagementService:
         return self._register(identifier, directory, path, "backup")
 
     def export_analysis(self, case_id: str, format: Literal["json", "markdown"]) -> Artifact:
-        report = self._exports.read(case_id)
+        report = self.read_analysis(case_id)
         identifier, directory, path = self._artifact(format)
         text = report.model_dump_json(indent=2) if format == "json" else render_markdown(report)
         path.write_text(text, encoding="utf-8")
         return self._register(identifier, directory, path, format)
+
+    def read_analysis(self, case_id: str) -> AnalysisExport:
+        """Read saved case analysis without a model call or creating an artifact."""
+        return self._exports.read(case_id)
 
     def download(self, identifier: str) -> tuple[Path, Artifact]:
         directory = self._directory("artifacts", identifier)
