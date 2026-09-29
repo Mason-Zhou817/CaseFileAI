@@ -13,11 +13,13 @@ from casefile_ai.application.data_contracts import AnalysisExport, ExportDocumen
 from casefile_ai.application.services.case_lifecycle import CaseLifecycleService
 from casefile_ai.application.services.claim_coverage import DefaultClaimCoverageService
 from casefile_ai.application.services.conflict_candidates import DefaultConflictCandidateService
+from casefile_ai.application.services.feedback import FeedbackService
 from casefile_ai.application.services.timeline import DefaultTimelineService
 from casefile_ai.infrastructure.data_snapshot import snapshot_database
 from casefile_ai.infrastructure.db.claims import SqlAlchemyClaimRepository
 from casefile_ai.infrastructure.db.contradictions import SqlAlchemyContradictionRepository
 from casefile_ai.infrastructure.db.documents import SqlAlchemyDocumentRepository
+from casefile_ai.infrastructure.db.feedback import SqlAlchemyFeedbackRepository
 from casefile_ai.infrastructure.db.models import AnswerModel, ClaimModel, PageModel, QuestionModel
 from casefile_ai.infrastructure.db.qa import SqlAlchemyQARepository
 from casefile_ai.infrastructure.db.repositories import SqlAlchemyCaseRepository
@@ -175,6 +177,9 @@ class SqliteAnalysisReader:
             candidates=candidates,
             contradictions=contradictions,
             timeline=timeline,
+            feedback_summary=FeedbackService(
+                SqlAlchemyFeedbackRepository(factory)
+            ).get_feedback_summary(case_id),
             notices=[
                 PRIVACY_NOTICE,
                 "这是 CaseFile AI 当前已保存分析结果，不代表系统已穷尽卷宗所有事实。",

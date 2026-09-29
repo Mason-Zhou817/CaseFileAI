@@ -14,6 +14,7 @@ from casefile_ai.application.services.conflict_candidates import DefaultConflict
 from casefile_ai.application.services.contradictions import DefaultContradictionService
 from casefile_ai.application.services.data_management import DataManagementService
 from casefile_ai.application.services.documents import DefaultIngestionService
+from casefile_ai.application.services.feedback import FeedbackService
 from casefile_ai.application.services.materials import MaterialsService
 from casefile_ai.application.services.qa import DefaultQAService
 from casefile_ai.application.services.retrieval import DefaultRetrievalService
@@ -26,6 +27,7 @@ from casefile_ai.infrastructure.backup_storage import SqliteBackupStorage
 from casefile_ai.infrastructure.db.claims import SqlAlchemyClaimRepository
 from casefile_ai.infrastructure.db.contradictions import SqlAlchemyContradictionRepository
 from casefile_ai.infrastructure.db.documents import SqlAlchemyDocumentRepository
+from casefile_ai.infrastructure.db.feedback import SqlAlchemyFeedbackRepository
 from casefile_ai.infrastructure.db.materials import SqlAlchemyMaterialRepository
 from casefile_ai.infrastructure.db.migration import expected_revision, migrate_database
 from casefile_ai.infrastructure.db.qa import SqlAlchemyQARepository
@@ -74,6 +76,7 @@ class ApplicationRuntime:
     materials: MaterialsService
     lifecycle: CaseLifecycleService
     data_management: DataManagementService
+    feedback: FeedbackService
     _closed: bool = False
 
     def require_model(self) -> None:
@@ -178,6 +181,7 @@ def build_application_runtime(settings: Settings, logs: SafeLogging) -> Applicat
             materials,
             lifecycle,
             data_management,
+            FeedbackService(SqlAlchemyFeedbackRepository(factory)),
         )
     except BaseException:
         if llm is not None:

@@ -47,6 +47,8 @@ def build(destination: Path | None = None) -> Path:
             "docs/contradictions-timeline.md",
             "docs/stage10-task2-acceptance.md",
             "docs/data-management.md",
+            "docs/feedback-data-flywheel.md",
+            "docs/originality-and-ai-usage.md",
             "docs/stage10-task4-acceptance.md",
             "docs/assets/github/01-material-index.png",
             "docs/assets/github/02-grounded-qa.png",

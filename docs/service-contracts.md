@@ -84,8 +84,16 @@ build_timeline(case_id, changed_claim_ids?) -> TimelineResult
 ## FeedbackService
 
 ```text
-submit_feedback(case_id, target_type, target_id, rating?, corrected_value?, reason?)
+submit_feedback(case_id, answer_id, rating, category, note="")
+list_feedback(case_id?)
+get_feedback_summary(case_id?)
+export_feedback_review_dataset(destination, case_id?)
+review_feedback(feedback_id, status, expected_status?, expected_answer?, expected_evidence?)
+export_approved_eval_dataset(destination, case_set_path, case_id)
 ```
+
+Feedback is stored locally against a persisted Answer. Approval requires runner-compatible
+expected status, answer and evidence. Review export and eval staging are explicit CLI actions.
 
 ## Failure contract
 

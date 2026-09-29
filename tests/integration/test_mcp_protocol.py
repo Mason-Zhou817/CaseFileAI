@@ -22,6 +22,8 @@ TOOLS = {
     "get_index_status",
     "search_evidence",
     "ask_case",
+    "submit_answer_feedback",
+    "get_feedback_summary",
     "extract_claims",
     "list_claims",
     "run_contradiction_analysis",
@@ -70,7 +72,7 @@ async def test_installed_entrypoint_stdio_start_and_exit(tmp_path: Path) -> None
         async with ClientSession(*streams) as session:
             initialized = await session.initialize()
             assert initialized.server_info.name == "casefile-ai"
-            assert len((await session.list_tools()).tools) == 15
+            assert len((await session.list_tools()).tools) == 17
             assert (await call(session, "list_cases"))["data"] == []
             assert (await call(session, "get_system_status"))["ok"]
 
@@ -98,10 +100,11 @@ async def test_mcp_stdio_workflow_and_security(tmp_path: Path) -> None:
             for item in listed.tools:
                 assert item.input_schema["type"] == "object"
                 assert item.input_schema.get("additionalProperties") is False
-                if item.name in {
-                    "ask_case", "extract_claims", "run_contradiction_analysis"
-                }:
+                if item.name in {"ask_case", "extract_claims", "run_contradiction_analysis"}:
                     assert "May invoke configured cloud model" in (item.description or "")
+                if item.name in {"submit_answer_feedback", "get_feedback_summary"}:
+                    assert "locally" in (item.description or "")
+                    assert "never automatically used for model training" in (item.description or "")
             search_schema = next(
                 item.input_schema for item in listed.tools if item.name == "search_evidence"
             )
@@ -142,9 +145,7 @@ async def test_mcp_stdio_workflow_and_security(tmp_path: Path) -> None:
             imported = await call(session, "import_document", case_id=first, path=str(pdf))
             assert imported["ok"], imported
             document_id = imported["data"]["document_id"]
-            assert (await call(
-                session, "import_document", case_id=first, path=str(next_pdf)
-            ))["ok"]
+            assert (await call(session, "import_document", case_id=first, path=str(next_pdf)))["ok"]
             assert (await call(session, "list_documents", case_id=second))["data"] == []
             indexed = await call(session, "build_index", case_id=first)
             assert indexed["ok"], indexed
@@ -166,6 +167,29 @@ async def test_mcp_stdio_workflow_and_security(tmp_path: Path) -> None:
             answer = await call(session, "ask_case", case_id=first, question="交易金额是多少？")
             assert answer["ok"] and answer["data"]["status"] == "answered", answer
             answer_id = answer["data"]["answer_id"]
+            feedback = await call(
+                session,
+                "submit_answer_feedback",
+                case_id=first,
+                answer_id=answer_id,
+                rating="incorrect",
+                category="citation",
+                note="合成页码错误",
+            )
+            assert feedback["ok"] and feedback["data"]["review_status"] == "pending"
+            summary = await call(session, "get_feedback_summary", case_id=first)
+            assert summary["data"]["category"]["citation"] == 1
+            cross_feedback = await call(
+                session,
+                "submit_answer_feedback",
+                case_id=second,
+                answer_id=answer_id,
+                rating="incorrect",
+                category="citation",
+            )
+            assert (
+                not cross_feedback["ok"] and cross_feedback["error"]["code"] == "cross_case_answer"
+            )
             assert answer["data"]["citations"][0]["document_id"] == document_id
             cross = await call(session, "extract_claims", case_id=second, answer_id=answer_id)
             assert not cross["ok"] and cross["error"]["code"] == "not_found"
@@ -175,18 +199,26 @@ async def test_mcp_stdio_workflow_and_security(tmp_path: Path) -> None:
                 session, "ask_case", case_id=first, question="第二笔交易金额是多少？"
             )
             assert second_answer["ok"], second_answer
-            assert (await call(
-                session, "extract_claims", case_id=first,
-                answer_id=second_answer["data"]["answer_id"],
-            ))["ok"]
+            assert (
+                await call(
+                    session,
+                    "extract_claims",
+                    case_id=first,
+                    answer_id=second_answer["data"]["answer_id"],
+                )
+            )["ok"]
             date_answer = await call(
                 session, "ask_case", case_id=first, question="付款日期是什么？"
             )
             assert date_answer["ok"], date_answer
-            assert (await call(
-                session, "extract_claims", case_id=first,
-                answer_id=date_answer["data"]["answer_id"],
-            ))["ok"]
+            assert (
+                await call(
+                    session,
+                    "extract_claims",
+                    case_id=first,
+                    answer_id=date_answer["data"]["answer_id"],
+                )
+            )["ok"]
             assert (await call(session, "list_claims", case_id=first))["data"]
             conflicts = await call(session, "run_contradiction_analysis", case_id=first)
             assert conflicts["ok"] and conflicts["data"], conflicts

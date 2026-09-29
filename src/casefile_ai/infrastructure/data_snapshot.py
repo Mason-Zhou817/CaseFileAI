@@ -156,6 +156,22 @@ def validate_database(path: Path, *, current_schema: bool = True) -> dict[str, i
                 "SELECT a.*, q.case_id FROM answers a JOIN questions q USING(question_id)"
             )
         }
+        if "feedback" in tables:
+            for item in connection.execute("SELECT * FROM feedback"):
+                answer = answers.get(item["answer_id"])
+                if answer is None or answer["case_id"] != item["case_id"]:
+                    raise DataManagementError("database_references")
+                if (item["review_status"] == "pending") != (item["reviewed_at"] is None):
+                    raise DataManagementError("database_references")
+                if item["review_status"] == "approved":
+                    if not item["expected_status"] or item["expected_evidence_json"] is None:
+                        raise DataManagementError("database_references")
+                    try:
+                        evidence = json.loads(item["expected_evidence_json"])
+                    except (TypeError, ValueError):
+                        raise DataManagementError("database_references") from None
+                    if not isinstance(evidence, list):
+                        raise DataManagementError("database_references")
         source_claims: dict[str, set[str]] = {}
         declared_citations: dict[tuple[str, str], set[str]] = {}
         for answer_id, answer in answers.items():

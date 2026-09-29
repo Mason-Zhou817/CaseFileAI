@@ -203,6 +203,26 @@ def build_server(
 
         return _result(run, case_id=case_id)
 
+    @server.tool(name="submit_answer_feedback", structured_output=True)
+    def submit_answer_feedback(
+        case_id: str, answer_id: str,
+        rating: Literal["correct", "partially_correct", "incorrect", "insufficient_evidence"],
+        category: Literal["retrieval", "answer", "citation", "claim", "other"],
+        note: str = "",
+    ) -> dict[str, Any]:
+        """Store feedback locally; it is never automatically used for model training."""
+        return _result(
+            lambda: runtime.feedback.submit_feedback(case_id, answer_id, rating, category, note),
+            case_id=case_id,
+        )
+
+    @server.tool(name="get_feedback_summary", structured_output=True)
+    def get_feedback_summary(case_id: str) -> dict[str, Any]:
+        """Read feedback counts locally; feedback is never automatically used for model training."""
+        return _result(
+            lambda: runtime.feedback.get_feedback_summary(case_id), case_id=case_id
+        )
+
     @server.tool(name="extract_claims", structured_output=True)
     def extract_claims(case_id: str, answer_id: str) -> dict[str, Any]:
         """Extract validated case claims. May invoke configured cloud model."""

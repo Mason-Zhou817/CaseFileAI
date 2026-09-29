@@ -26,6 +26,7 @@ from casefile_ai.application.contradiction_contracts import ContradictionValidat
 from casefile_ai.application.data_contracts import DataManagementError
 from casefile_ai.application.data_messages import DATA_MESSAGES
 from casefile_ai.application.document_contracts import DocumentNotFoundError, InvalidDocumentError
+from casefile_ai.application.feedback_contracts import FeedbackError
 from casefile_ai.application.material_contracts import IndexInProgressError, IndexOperationError
 from casefile_ai.application.qa_contracts import InvalidQuestionError, QAUnavailableError
 from casefile_ai.application.retrieval_contracts import InvalidSearchError, RetrievalIndexError
@@ -50,24 +51,39 @@ class JsonErrorGroup(TyperGroup):
         **extra: Any,
     ) -> Any:
         supplied = list(sys.argv[1:] if args is None else args)
-        options = supplied[:supplied.index("--")] if "--" in supplied else supplied
+        options = supplied[: supplied.index("--")] if "--" in supplied else supplied
         if "--json" not in options:
             return super().main(
-                args=args, prog_name=prog_name, complete_var=complete_var,
-                standalone_mode=standalone_mode, windows_expand_args=windows_expand_args,
+                args=args,
+                prog_name=prog_name,
+                complete_var=complete_var,
+                standalone_mode=standalone_mode,
+                windows_expand_args=windows_expand_args,
                 **extra,
             )
         try:
             result = super().main(
-                args=args, prog_name=prog_name, complete_var=complete_var,
-                standalone_mode=False, windows_expand_args=windows_expand_args,
+                args=args,
+                prog_name=prog_name,
+                complete_var=complete_var,
+                standalone_mode=False,
+                windows_expand_args=windows_expand_args,
                 **extra,
             )
         except ClickException:
-            typer.echo(json.dumps({
-                "ok": False,
-                "error": {"code": "invalid_arguments", "message": "命令参数无效，请查看 --help。"},
-            }, ensure_ascii=False), err=True)
+            typer.echo(
+                json.dumps(
+                    {
+                        "ok": False,
+                        "error": {
+                            "code": "invalid_arguments",
+                            "message": "命令参数无效，请查看 --help。",
+                        },
+                    },
+                    ensure_ascii=False,
+                ),
+                err=True,
+            )
             if standalone_mode:
                 raise SystemExit(2) from None
             return 2
@@ -76,16 +92,20 @@ class JsonErrorGroup(TyperGroup):
         return result
 
 
-app = typer.Typer(cls=JsonErrorGroup, help="本地卷宗分析 CLI",
-                  pretty_exceptions_show_locals=False)
+app = typer.Typer(cls=JsonErrorGroup, help="本地卷宗分析 CLI", pretty_exceptions_show_locals=False)
 case_app = typer.Typer(help="案件管理")
 document_app = typer.Typer(help="PDF 材料管理")
 index_app = typer.Typer(help="本地索引")
 claim_app = typer.Typer(help="已验证回答的事实抽取")
 contradiction_app = typer.Typer(help="矛盾判断")
+feedback_app = typer.Typer(help="本地回答反馈与人工审核")
 for name, group in (
-    ("case", case_app), ("document", document_app), ("index", index_app),
-    ("claim", claim_app), ("contradiction", contradiction_app),
+    ("case", case_app),
+    ("document", document_app),
+    ("index", index_app),
+    ("claim", claim_app),
+    ("contradiction", contradiction_app),
+    ("feedback", feedback_app),
 ):
     app.add_typer(group, name=name)
 
@@ -104,7 +124,8 @@ def _startup_report(item: SystemStatus, host: str, port: int) -> None:
     typer.echo(f"OCR：{'已准备' if ocr_ready else '未就绪'}")
     provider = item.qa_provider
     label = (
-        "未配置" if not provider.configured
+        "未配置"
+        if not provider.configured
         else ("已配置，尚未验证连接" if provider.enabled else "已配置，外发未启用")
     )
     typer.echo(f"模型服务：{label}")
@@ -167,6 +188,23 @@ def _emit(value: Any, json_mode: bool, human: Callable[[Any], str] | None = None
 
 
 def _failure(exc: Exception) -> tuple[int, str, str]:
+    if isinstance(exc, FeedbackError):
+        messages = {
+            "invalid_rating": "反馈评分无效。",
+            "invalid_category": "问题类别无效。",
+            "note_too_long": "备注超过 2000 字。",
+            "case_not_found": "案件不存在。",
+            "answer_not_found": "回答不存在。",
+            "cross_case_answer": "回答不属于指定案件。",
+            "feedback_not_found": "反馈不存在。",
+            "already_reviewed": "反馈已审核；审核结果不能直接覆盖。",
+            "invalid_review_status": "审核状态无效。",
+            "incomplete_gold": "人工核准样本缺少有效预期答案或证据。",
+            "invalid_case_set": "评测 case set 无效。",
+            "unknown_doc_key": "证据 doc_key 不在 case set 中。",
+            "no_approved_feedback": "没有可导出的已核准反馈。",
+        }
+        return (3 if exc.code.endswith("not_found") else 2, exc.code, messages[exc.code])
     provider = provider_failure(exc)
     if provider is not None:
         return 5, provider.category, MESSAGES[provider.category]
@@ -220,8 +258,13 @@ def _execute(
     except Exception as exc:
         code, category, message = _failure(exc)
         if json_mode:
-            typer.echo(json.dumps({"ok": False, "error": {"code": category, "message": message}},
-                                  ensure_ascii=False), err=True)
+            typer.echo(
+                json.dumps(
+                    {"ok": False, "error": {"code": category, "message": message}},
+                    ensure_ascii=False,
+                ),
+                err=True,
+            )
         else:
             typer.echo(f"错误：{message} [{category}]", err=True)
         raise typer.Exit(code) from None
@@ -233,13 +276,19 @@ def _execute(
 
 
 def _case_create(name: str, description: str | None, json_mode: bool) -> None:
-    _execute(lambda runtime: runtime.cases.service.create_case(name, description), json_mode,
-             lambda data: f"{data['case_id']}\t{data['name']}")
+    _execute(
+        lambda runtime: runtime.cases.service.create_case(name, description),
+        json_mode,
+        lambda data: f"{data['case_id']}\t{data['name']}",
+    )
 
 
 def _case_list(json_mode: bool) -> None:
-    _execute(lambda runtime: runtime.cases.service.list_cases(), json_mode,
-             lambda rows: "\n".join(f"{row['case_id']}\t{row['name']}" for row in rows))
+    _execute(
+        lambda runtime: runtime.cases.service.list_cases(),
+        json_mode,
+        lambda rows: "\n".join(f"{row['case_id']}\t{row['name']}" for row in rows),
+    )
 
 
 @case_app.command("create")
@@ -269,40 +318,50 @@ def case_list_legacy(json: bool = False) -> None:
 @document_app.command("list")
 def document_list(case: str = typer.Option(..., "--case"), json: bool = False) -> None:
     """列出案件材料及当前版本。"""
+
     def run(runtime: ApplicationRuntime) -> Any:
         runtime.cases.service.get_case(case)
         return runtime.ingestion.list_documents(case)
+
     _execute(run, json)
 
 
 @document_app.command("import")
 def document_import(
-    path: Path, case: str = typer.Option(..., "--case"),
-    document: str | None = None, json: bool = False,
+    path: Path,
+    case: str = typer.Option(..., "--case"),
+    document: str | None = None,
+    json: bool = False,
 ) -> None:
     """导入 PDF；可用 --document 为已有材料添加版本。"""
+
     def run(runtime: ApplicationRuntime) -> Any:
         runtime.cases.service.get_case(case)
         with path.open("rb") as stream:
             return runtime.ingestion.upload_document(case, stream, path.name, document)
+
     _execute(run, json)
 
 
 @index_app.command("build")
 def index_build(case: str = typer.Option(..., "--case"), json: bool = False) -> None:
     """建立或更新本地索引。"""
+
     def run(runtime: ApplicationRuntime) -> Any:
         runtime.cases.service.get_case(case)
         return runtime.retrieval.index_case(case)
+
     _execute(run, json)
 
 
 @index_app.command("status")
 def index_status(case: str = typer.Option(..., "--case"), json: bool = False) -> None:
     """查看与 GUI 相同的材料索引状态。"""
+
     def run(runtime: ApplicationRuntime) -> Any:
         runtime.cases.service.get_case(case)
         return runtime.materials.snapshot(case)
+
     _execute(run, json)
 
 
@@ -321,23 +380,32 @@ class _IndexNotReady(RuntimeError):
 
 @app.command()
 def search(
-    query: str, case: str = typer.Option(..., "--case"),
-    limit: int = typer.Option(10, min=1, max=50), json: bool = False,
+    query: str,
+    case: str = typer.Option(..., "--case"),
+    limit: int = typer.Option(10, min=1, max=50),
+    json: bool = False,
 ) -> None:
     """在当前案件的已索引证据中进行混合检索。"""
+
     def run(runtime: ApplicationRuntime) -> Any:
         _ready(runtime, case)
         return runtime.retrieval.search(case, query, limit=limit)
-    _execute(run, json, lambda rows: "\n\n".join(
-        f"#{item['rank']} {item['filename']} · version {item['document_version_id']} "
-        f"· 第 {item['page_number']} 页 · score {item['score']:.4f}\n{item['text']}"
-        for item in rows
-    ))
+
+    _execute(
+        run,
+        json,
+        lambda rows: "\n\n".join(
+            f"#{item['rank']} {item['filename']} · version {item['document_version_id']} "
+            f"· 第 {item['page_number']} 页 · score {item['score']:.4f}\n{item['text']}"
+            for item in rows
+        ),
+    )
 
 
 @app.command()
 def ask(question: str, case: str = typer.Option(..., "--case"), json: bool = False) -> None:
     """完整证据约束问答，包括引用和对齐校验。"""
+
     def run(runtime: ApplicationRuntime) -> Any:
         runtime.cases.service.get_case(case)
         runtime.require_model()
@@ -346,23 +414,30 @@ def ask(question: str, case: str = typer.Option(..., "--case"), json: bool = Fal
         data = asdict(answer)
         data["status"] = "insufficient_evidence" if answer.abstained else "answered"
         return data
-    _execute(run, json, lambda data: (
-        f"状态：{data['status']}\n回答：{data['answer']}\n"
-        f"Answer ID：{data['answer_id']}\n"
-        f"原因：{data['metadata']['refusal_reason'] or '无'}\n"
-        + "\n".join(
-            f"引用：{item['filename']} 第 {item['page_number']} 页 · {item['quote']}"
-            for item in data["citations"]
-        )
-    ))
+
+    _execute(
+        run,
+        json,
+        lambda data: (
+            f"状态：{data['status']}\n回答：{data['answer']}\n"
+            f"Answer ID：{data['answer_id']}\n"
+            f"原因：{data['metadata']['refusal_reason'] or '无'}\n"
+            + "\n".join(
+                f"引用：{item['filename']} 第 {item['page_number']} 页 · {item['quote']}"
+                for item in data["citations"]
+            )
+        ),
+    )
 
 
 @claim_app.command("extract")
 def claim_extract(answer: str = typer.Option(..., "--answer"), json: bool = False) -> None:
     """从指定已验证 Answer 提取 Claim。"""
+
     def run(runtime: ApplicationRuntime) -> Any:
         runtime.require_model()
         return runtime.workspace.extract_by_answer(answer)
+
     _execute(run, json)
 
 
@@ -375,9 +450,11 @@ def claim_list(case: str = typer.Option(..., "--case"), json: bool = False) -> N
 @contradiction_app.command("run")
 def contradiction_run(case: str = typer.Option(..., "--case"), json: bool = False) -> None:
     """运行矛盾判断；不确定结果保留 uncertain。"""
+
     def run(runtime: ApplicationRuntime) -> Any:
         runtime.require_semantic_model(case)
         return runtime.workspace.detect(case)
+
     _execute(run, json)
 
 
@@ -401,6 +478,7 @@ def export(
     json: bool = False,
 ) -> None:
     """导出案件分析。--output 只创建新文件，不覆盖已有文件。"""
+
     def run(runtime: ApplicationRuntime) -> Any:
         runtime.cases.service.get_case(case)
         artifact = runtime.data_management.export_analysis(case, format)
@@ -411,10 +489,16 @@ def export(
                 destination.write(content)
             return {"format": format, "written": True, "bytes": len(content.encode("utf-8"))}
         return {"format": format, "content": json_loads(content) if format == "json" else content}
-    _execute(run, json, lambda data: (
-        f"已写入新文件（{data['bytes']} bytes）。" if data.get("written") else
-        (json_dumps(data["content"]) if format == "json" else str(data["content"]))
-    ))
+
+    _execute(
+        run,
+        json,
+        lambda data: (
+            f"已写入新文件（{data['bytes']} bytes）。"
+            if data.get("written")
+            else (json_dumps(data["content"]) if format == "json" else str(data["content"]))
+        ),
+    )
 
 
 def json_loads(value: str) -> Any:
@@ -423,3 +507,93 @@ def json_loads(value: str) -> Any:
 
 def json_dumps(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False, indent=2)
+
+
+@feedback_app.command("add")
+def feedback_add(
+    case: str = typer.Option(..., "--case"),
+    answer: str = typer.Option(..., "--answer"),
+    rating: str = typer.Option(..., "--rating"),
+    category: str = typer.Option(..., "--category"),
+    note: str = "",
+    json: bool = False,
+) -> None:
+    """针对已有 Answer 提交仅保存在本机的反馈。"""
+    _execute(
+        lambda runtime: runtime.feedback.submit_feedback(case, answer, rating, category, note), json
+    )
+
+
+@feedback_app.command("list")
+def feedback_list(case: str | None = None, json: bool = False) -> None:
+    """列出本地反馈；归档案件仍可通过 --case 查询。"""
+    _execute(lambda runtime: runtime.feedback.list_feedback(case), json)
+
+
+@feedback_app.command("summary")
+def feedback_summary(case: str | None = None, json: bool = False) -> None:
+    """按评分、类别与审核状态汇总反馈。"""
+    _execute(lambda runtime: runtime.feedback.get_feedback_summary(case), json)
+
+
+@feedback_app.command("export")
+def feedback_export(
+    output: Path = typer.Option(..., "--output"),  # noqa: B008
+    case: str | None = None,
+    json: bool = False,
+) -> None:
+    """显式导出待审 JSONL；可能含问题、回答与证据片段。"""
+    if not json:
+        typer.echo("注意：导出可能包含卷宗问题、回答和证据片段，请人工检查后再分享。", err=True)
+    _execute(
+        lambda runtime: {
+            "count": runtime.feedback.export_feedback_review_dataset(output, case),
+            "output": str(output),
+            "warning": "可能包含卷宗问题、回答和证据片段，请人工检查后再分享。",
+        },
+        json,
+    )
+
+
+@feedback_app.command("review")
+def feedback_review(
+    feedback: str = typer.Option(..., "--feedback"),  # noqa: B008
+    status: Literal["approved", "rejected"] = typer.Option(..., "--status"),
+    expected_status: str | None = None,
+    expected_answer: str | None = None,
+    expected_evidence: Path | None = None,
+    json: bool = False,
+) -> None:
+    """人工审核；批准需提供 runner 所需的预期状态、答案和证据 JSON 文件。"""
+
+    def run(runtime: ApplicationRuntime) -> Any:
+        evidence = (
+            None
+            if expected_evidence is None
+            else json_loads(expected_evidence.read_text(encoding="utf-8"))
+        )
+        return runtime.feedback.review_feedback(
+            feedback, status, expected_status, expected_answer, evidence
+        )
+
+    _execute(run, json)
+
+
+@feedback_app.command("export-eval")
+def feedback_export_eval(
+    output: Path = typer.Option(..., "--output"),  # noqa: B008
+    case_set: Path = typer.Option(..., "--case-set"),  # noqa: B008
+    case: str = typer.Option(..., "--case"),
+    json: bool = False,
+) -> None:
+    """仅将人工核准样本导出到独立 staging JSONL，不修改正式评测集。"""
+    if not json:
+        typer.echo("注意：评测样本可能包含案件问题和证据，请人工检查后再分享。", err=True)
+    _execute(
+        lambda runtime: {
+            "count": runtime.feedback.export_approved_eval_dataset(output, case_set, case),
+            "output": str(output),
+            "warning": "评测样本可能包含案件问题和证据，请人工检查后再分享。",
+        },
+        json,
+    )

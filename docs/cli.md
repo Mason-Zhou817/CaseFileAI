@@ -35,7 +35,13 @@ uv run casefile-ai contradiction list --case <case_id>
 uv run casefile-ai timeline --case <case_id>
 uv run casefile-ai export --case <case_id> --format json --output .\analysis.json
 uv run casefile-ai export --case <case_id> --format markdown --output .\analysis.md
+uv run casefile-ai feedback add --case <case_id> --answer <answer_id> --rating incorrect --category citation --note "引用页码错误"
+uv run casefile-ai feedback list --case <case_id>
+uv run casefile-ai feedback summary --case <case_id>
+uv run casefile-ai feedback export --case <case_id> --output .\feedback-review.jsonl
 ```
+
+人工核准和 `feedback export-eval` 的字段与步骤见 [反馈与数据飞轮](feedback-data-flywheel.md)。反馈默认仅保存在本机；导出文件可能包含案件内容，请人工检查后再分享。
 
 `case-create` 和 `case-list` 保留为旧命令别名，仍接受原有参数。`document import` 使用 GUI 相同的 PDF 解析、OCR、SHA 去重和版本服务；使用 `--document` 时只为该案件内的指定材料追加新版本，跨案件 document ID 会被拒绝。`index status` 返回 `not_indexed`、`ready`、`stale`、`processing` 或 `failed`，并附每个材料版本的状态。索引未就绪时 `search` 和 `ask` 退出码为 4；`ask` 在索引就绪后仍可能因证据不足返回 `insufficient_evidence`，这属于正常结果。
 

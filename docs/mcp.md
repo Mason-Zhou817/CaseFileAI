@@ -42,6 +42,8 @@ Windows 开发模式也可将 `command` 设为 `uv`，`args` 设为 `["run", "ca
 | `get_index_status` | 读取案件索引状态 | 否 |
 | `search_evidence` | 检索案件证据及来源 | 否 |
 | `ask_case` | 证据约束问答及引用验证 | 是 |
+| `submit_answer_feedback` | 对真实 Answer 提交本地显式反馈；不自动训练 | 否 |
+| `get_feedback_summary` | 读取指定案件的本地反馈统计 | 否 |
 | `extract_claims` | 从指定案件的已验证 Answer 抽取 Claim | 是 |
 | `list_claims` | 列出已保存的 Claim | 否 |
 | `run_contradiction_analysis` | 运行矛盾判断 | 行为、主体语义判断时可能调用 |
@@ -49,6 +51,8 @@ Windows 开发模式也可将 `command` 设为 `uv`，`args` 设为 `["run", "ca
 | `get_timeline` | 从已保存 Claim 读取时间线 | 否 |
 | `export_case_analysis` | 直接返回 JSON / Markdown 分析内容 | 否 |
 | `get_system_status` | 返回脱敏健康状态，可选案件索引状态 | 否 |
+
+反馈由应用服务写入本地 SQLite，不自动上传或用于模型训练；人工审核和评测提升仅在 CLI。MCP 客户端可能自行转发工具结果，使用前仍需检查客户端配置。
 
 本地索引和检索可能需要首次下载或加载本地嵌入模型；扫描件导入可能需要本地 OCR。问答、Claim 和部分矛盾判断只有在用户明确配置并启用模型调用后才可能外发。MCP 客户端本身也可能把工具结果送给其所用模型；请检查该客户端的数据处理方式，并仅使用合成或人工脱敏材料。
 

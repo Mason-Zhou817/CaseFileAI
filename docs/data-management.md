@@ -7,7 +7,7 @@
 
 ## 实施前数据审计
 
-当前 Alembic head 为 `20260927_0007`。`cases.status` 已存在，默认 `active`，因此归档复用该字段，无新增迁移。稳定 ID、原 contract、算法版本与缓存版本不变；新增数据管理 contract 独立放在 `application/data_contracts.py`。
+任务 3 当时的 Alembic head 为 `20260927_0007`。`cases.status` 已存在，默认 `active`，因此归档复用该字段，无新增迁移。稳定 ID、原 contract、算法版本与缓存版本不变；新增数据管理 contract 独立放在 `application/data_contracts.py`。当前 head 与 Feedback 的变更见 [反馈与数据飞轮](feedback-data-flywheel.md)。
 
 | 数据 | 持久化关系 |
 | --- | --- |
