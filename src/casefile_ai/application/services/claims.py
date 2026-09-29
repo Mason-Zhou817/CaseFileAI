@@ -69,18 +69,50 @@ _DATE = re.compile(r"\d{4}年\d{1,2}月\d{1,2}日|\d{4}[-/]\d{1,2}[-/]\d{1,2}")
 _AMOUNT = re.compile(r"\d+(?:\.\d+)?\s*(?:亿|万|千)?元")
 
 
-def _extractive_kind(source_text: str, claim_text: str, model_kind: ClaimKind) -> ClaimKind:
+def _extractive_kind(
+    source_text: str, claim_text: str, model_kind: ClaimKind, *, scoped_amount: bool = False
+) -> ClaimKind:
     if extractive_positions(source_text, claim_text) is None:
         raise ClaimExtractionError("claim text lacks ordered verbatim answer provenance")
     has_date = bool(_DATE.search(claim_text))
     has_amount = bool(_AMOUNT.search(claim_text))
     if has_date and has_amount:
+        if scoped_amount and model_kind == "amount":
+            return "amount"
         raise ClaimExtractionError("claim combines date and amount facts")
     if has_date:
         return "date"
     if has_amount:
         return "amount"
     return model_kind
+
+
+def _date_scoped_amount(
+    question: str,
+    source_text: str,
+    proposed: list[ModelAtomicClaim],
+    aliases: tuple[str, ...],
+) -> ModelAtomicClaim | None:
+    """Keep an explicitly requested date attached to a single amount fact.
+
+    The candidate still goes through the normal extractive, evidence and quality
+    checks. Ambiguous multi-date or multi-amount answers keep the model output.
+    """
+    asked = _DATE.search(question)
+    dates = _DATE.findall(source_text)
+    amounts = _AMOUNT.findall(source_text)
+    amount_candidates = [item for item in proposed if item.kind == "amount"]
+    if (
+        "金额" not in question
+        or asked is None
+        or dates != [asked.group()]
+        or len(amounts) != 1
+        or len(amount_candidates) != 1
+        or any(item.kind not in {"date", "amount"} for item in proposed)
+        or _AMOUNT.findall(amount_candidates[0].text) != amounts
+    ):
+        return None
+    return ModelAtomicClaim(text=source_text, kind="amount", citation_ids=list(aliases))
 
 
 class DefaultClaimExtractionService:
@@ -144,7 +176,14 @@ class DefaultClaimExtractionService:
                 raise ClaimExtractionError("claim model output invalid") from exc
             except Exception as exc:
                 raise ClaimExtractionError("claim extraction model unavailable") from exc
-            for atomic in model_result.claims:
+            proposed = list(model_result.claims)
+            scoped_amount = _date_scoped_amount(
+                answer.question, source.text, proposed, tuple(alias_to_citation)
+            )
+            if scoped_amount is not None:
+                proposed = [scoped_amount]
+            for atomic in proposed:
+                is_scoped_amount = atomic is scoped_amount
                 if not atomic.citation_ids or any(
                     alias not in alias_to_citation for alias in atomic.citation_ids
                 ):
@@ -153,7 +192,10 @@ class DefaultClaimExtractionService:
                     atomic = ModelAtomicClaim.model_validate(atomic.model_dump())
                 except ValidationError as exc:
                     raise ClaimExtractionError("claim model output invalid") from exc
-                kind = _extractive_kind(source.text, atomic.text, atomic.kind)
+                kind = _extractive_kind(
+                    source.text, atomic.text, atomic.kind,
+                    scoped_amount=is_scoped_amount,
+                )
                 selected: tuple[AnswerCitation, ...] = tuple(
                     alias_to_citation[alias] for alias in atomic.citation_ids
                 )
