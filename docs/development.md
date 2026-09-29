@@ -1,6 +1,6 @@
 # CaseFile AI 开发者指南
 
-本文面向维护者；普通用户请从 [中文用户手册](user-guide-zh.md) 开始。当前包版本 1.0.0，Python 为 3.12；Windows 交付固定 Python / uv 版本见 `scripts/windows-runtime.json`，依赖解析结果由 `uv.lock` 锁定。
+本文面向维护者；普通用户请从 [中文用户手册](user-guide-zh.md) 开始。当前包版本 1.1.0，Python 为 3.12；Windows 交付固定 Python / uv 版本见 `scripts/windows-runtime.json`，依赖解析结果由 `uv.lock` 锁定。
 
 以下开发命令需要完整源码 checkout。普通用户 ZIP 不分发开发测试、评估数据、构建脚本或开发 `.env.example`；不要在安装目录照抄这些开发命令。
 

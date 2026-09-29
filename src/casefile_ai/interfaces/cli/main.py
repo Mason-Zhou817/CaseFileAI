@@ -16,6 +16,7 @@ import uvicorn
 from typer._click.exceptions import ClickException
 from typer.core import TyperGroup
 
+from casefile_ai import __version__
 from casefile_ai.application.bootstrap import (
     ApplicationRuntime,
     build_application_runtime,
@@ -108,6 +109,12 @@ for name, group in (
     ("feedback", feedback_app),
 ):
     app.add_typer(group, name=name)
+
+
+@app.command()
+def version(json: bool = False) -> None:
+    """Show the installed CaseFile AI package version."""
+    _emit({"version": __version__}, json, lambda data: f"CaseFile AI {data['version']}")
 
 
 def _prepare(settings: Settings) -> None:

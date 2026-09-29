@@ -2,7 +2,7 @@
 
 适用读者：第一次使用本工具的 Windows 用户，以及律师、法务、法学生和研究人员。本文按当前界面编写，不要求理解编程或数据库。
 
-**版本说明**：当前程序版本为 **1.0.0**。本公开候选仅提供源码，尚无可下载的 Windows ZIP；下文安装包操作说明记录已验证的本地流程，`CaseFileAI-1.0.0-windows.zip` 并未作为公开附件发布。工具定位为单机、本地优先、证据可追溯；发布能力与限制见 [发布说明](../RELEASE_NOTES.md)。安装细节见 [Windows 安装说明](windows-installation.md)，备份细节见 [数据管理说明](data-management.md)。
+**版本说明**：当前源码程序版本为 **1.1.0**。公开仓库仅提供源码，尚无可下载的 Windows ZIP；下文安装包操作说明记录已验证的本地流程，`CaseFileAI-1.1.0-windows.zip` 尚未公开发布或经过独立安装验收。工具定位为单机、本地优先、证据可追溯；发布能力与限制见 [发布说明](../RELEASE_NOTES.md)。安装细节见 [Windows 安装说明](windows-installation.md)，备份细节见 [数据管理说明](data-management.md)。
 
 第一次使用的顺序：**Setup → Prepare Models → Start → 创建案件 → 导入 PDF → 建立索引 → 检索 → 按需配置 AI → 提问并核对引用 → 抽取事实与分析 → 备份 → Stop**。
 

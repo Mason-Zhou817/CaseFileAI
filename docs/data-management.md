@@ -66,7 +66,7 @@ manifest 使用封闭字段模型：
 | 字段 | 含义 |
 | --- | --- |
 | backup_format_version | 当前为 1 |
-| application_version | 创建时应用版本，当前 1.0.0 |
+| application_version | 创建时应用版本，当前源码为 1.1.0；旧备份保留创建时的历史版本 |
 | created_at | 含时区的 UTC ISO 时间 |
 | database_schema_version | 创建时 Alembic revision |
 | database | 数据库相对路径、SHA-256、字节数 |

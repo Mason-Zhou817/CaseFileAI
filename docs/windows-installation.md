@@ -4,7 +4,7 @@
 
 本交付采用 Python + uv 管理环境和轻量本地入口，面向 Windows x64。无需管理员权限，不是单文件 exe，不安装系统服务或托盘，不实现自动更新。AI 判断与来源规则不变。
 
-普通用户的案件与材料操作见 [中文用户手册](user-guide-zh.md)。当前程序版本为 1.0.0，发布能力与限制见 [发布说明](../RELEASE_NOTES.md)。开发构建、测试和内部架构见 [开发者指南](development.md)。
+普通用户的案件与材料操作见 [中文用户手册](user-guide-zh.md)。当前源码程序版本为 1.1.0，发布能力与限制见 [发布说明](../RELEASE_NOTES.md)。开发构建、测试和内部架构见 [开发者指南](development.md)。
 
 ## 第一次准备
 
@@ -110,7 +110,7 @@ launcher.log 为安全 JSON，只记录时间、阶段、结果 / 类别、PID�
 
 ## 构建与交付边界
 
-开发者使用 `uv build --wheel` 构建 package；wheel 纳入全部 7 个迁移、Alembic env / template、web HTML / JS / CSS、CLI entry 与 package metadata。运行时不需要仓库 alembic.ini，资源由 package 定位。`uv run python scripts/build_windows_delivery.py` 生成 `dist/CaseFileAI-1.0.0-windows.zip`；按白名单打包程序源码、对应版本 wheel、锁文件、入口、用户手册和发布说明，不含 `.env`、案件、日志、venv 或模型缓存，并包含文件 SHA 清单。
+开发者使用 `uv build --wheel` 构建 package；wheel 纳入全部 8 个迁移、Alembic env / template、web HTML / JS / CSS、CLI entry 与 package metadata。运行时不需要仓库 alembic.ini，资源由 package 定位。`uv run python scripts/build_windows_delivery.py` 可生成 `dist/CaseFileAI-1.1.0-windows.zip`；按白名单打包程序源码、对应版本 wheel、锁文件、入口、用户手册和发布说明，不含 `.env`、案件、日志、venv 或模型缓存，并包含文件 SHA 清单。当前不公开此二进制包。
 
 MCP contract / adapter 测试保留，但正式 `casefile-ai-mcp` 入口尚未接通，明确属于开发 / 未来功能，不属于本 Windows MVP 交付。本任务没有顺带实现 MCP。
 

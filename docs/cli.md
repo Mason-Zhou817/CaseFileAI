@@ -1,4 +1,4 @@
-# CaseFile AI CLI v1.1-A
+# CaseFile AI CLI v1.1.0
 
 CLI 和 GUI/API 使用同一套本地案件数据与 application service。以下命令在完整源码目录运行；安装后的环境可省略 `uv run`。目前仍是源码交付，没有发布新的 Windows ZIP。
 
@@ -20,6 +20,7 @@ uv run casefile-ai --help
 
 ```powershell
 uv run casefile-ai case list
+uv run casefile-ai version
 uv run casefile-ai case create "合成付款争议"
 uv run casefile-ai document list --case <case_id>
 uv run casefile-ai document import --case <case_id> .\synthetic.pdf

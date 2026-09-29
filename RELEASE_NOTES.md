@@ -1,6 +1,10 @@
-# CaseFile AI v1.0.0 源码说明
+# CaseFile AI v1.1.0 源码说明
 
-原 v1.0.0 封版日期：2026-09-27。本公开候选仅提供净化后的源码快照，尚未创建 GitHub Release，也未发布 Windows ZIP。原封版 ZIP 的本地验证记录见下文；公开二进制分发待第三方许可与 notices 审查。
+v1.1.0 包含正式 CLI、正式本地 stdio MCP（17 个工具）及本地显式反馈与人工审核、离线评测 staging 流程。当前仅提供源码；本分支为教师最终验收准备，尚未 merge、push 或创建 v1.1.0 tag。最终验收报告位于源码仓库的 `docs/teacher-v1.1-final-report.md`。
+
+## v1.0.0 历史封版记录
+
+原 v1.0.0 封版日期：2026-09-27。当时公开的是净化后的源码快照，没有 GitHub Release 或 Windows ZIP。原封版 ZIP 的本地验证记录见下文；公开二进制分发仍待第三方许可与 notices 审查。
 
 CaseFile AI v1.0.0 是单机、本地优先、证据可追溯的卷宗分析工具。适合整理材料与辅助核对；最终事实核对和专业判断仍由用户基于原始材料完成。
 
@@ -37,7 +41,7 @@ RC 与最终包的验收报告、构建来源及最终校验值分别保存于�
 
 ## 安装与更新
 
-当前公开候选请从源码按[开发者指南](docs/development.md)准备和启动。以下 ZIP 操作仅描述已在本地验证的私有 v1.0.0 交付流程，不构成公开下载承诺：完整解压 `CaseFileAI-1.0.0-windows.zip` 后依次运行 Setup、Prepare Models、Start，结束时运行 Stop；该私有 ZIP 含对应 wheel、锁定环境所需源码、配置模板、中文手册和入口。
+当前公开仓库请从源码按[开发者指南](docs/development.md)准备和启动。以下 ZIP 操作仅描述已在本地验证的私有 v1.0.0 交付流程，不构成公开下载承诺：完整解压 `CaseFileAI-1.0.0-windows.zip` 后依次运行 Setup、Prepare Models、Start，结束时运行 Stop；该私有 ZIP 含对应 wheel、锁定环境所需源码、配置模板、中文手册和入口。
 
 更新前先 Stop 与完整备份，再替换程序目录并执行 Setup / Start。用户目录 `%LOCALAPPDATA%\CaseFileAI` 与程序分离；不要删除用户目录。RC 旧版本备份已用于最终 1.0.0 数据兼容验证，不覆盖原案件。
 

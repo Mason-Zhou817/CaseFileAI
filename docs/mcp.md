@@ -1,4 +1,4 @@
-# CaseFile AI MCP（本地 stdio）
+# CaseFile AI MCP v1.1.0（本地 stdio）
 
 CaseFile AI MCP 让支持 Model Context Protocol 的智能体通过进程调用现有案件服务。它复用 GUI / CLI 的案件、导入、索引、证据约束问答、Claim、矛盾和导出服务，不提供远程网络监听。MCP 客户端必须能在本机启动子进程。
 
