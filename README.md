@@ -227,6 +227,7 @@ Coverage 提供文字覆盖信号，不替代语义支持验证。
 | v1.0.0 封版 Python 回归 | 320 项 Pytest 通过 | 历史封版结果；确定性功能、隔离与异常路径检查 |
 | v1.0.0 前端与静态检查 | 29 项 Node 检查通过；Ruff / strict Mypy 通过 | Node 检查也可能由 Pytest 调用，不加总为 349 个独立测试 |
 | v1.1.0 源码最终自动回归 | 319 passed、1 skipped、1 warning；前端 Node 30 passed | 2026-09-29；跳过 Windows 不可创建的 symlink 检查；源码仓库另有 `docs/teacher-v1.1-final-report.md` |
+| v1.1.0 真实 Qwen 固定 smoke | 7 题：5 answered/validated，2 正确拒答；false answer 0、false abstain 0、provider error 0 | 2026-09-29；隔离全合成案件，金额与日期 Claim 各 1 条；小样本不代表长期错误率 |
 | 离线压力评测集 | 11 份 PDF、66 页、51 题 | 45 道可回答题、6 道负例；固定合成材料与 gold |
 | 离线检索全部必需证据命中@5 | 42/45 | 本地 BGE + BM25 + RRF；gold-gated FakeLLM 用于后续 QA |
 | 真实 Qwen 问题对齐专项 | 正例正确回答 5/6；负例正确拒答 3/3 | 固定 9 题；false abstain 1/6，没有错误 validated 回答 |
@@ -252,7 +253,7 @@ Windows 验收在同一主机的隔离安装/用户目录中进行，复用了�
 模型请求耗时及额外验证调用会带来等待和费用，不将单次缓存或网络条件下的延迟当作性能承诺。
 
 评测方法、固定合成集与复现入口见 [开发者指南](docs/development.md)；发布验证与局限见 [发布说明](RELEASE_NOTES.md)。
-本轮 v1.1.0 没有可用的 Qwen 凭据，因此没有重跑上述真实云模型评测；不能把历史成绩当成本轮 smoke。
+本轮 v1.1.0 在本机产品配置下新增固定 7 题真实 Qwen smoke；上表其他真实云模型专项仍是各自历史子集，不得混作本轮成绩。
 
 ## 技术栈
 

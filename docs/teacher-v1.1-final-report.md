@@ -35,9 +35,20 @@ Codex CLI 的初次非交互运行受本机客户端工具调用批准设置影�
 
 ## 真实 Qwen 最终 smoke
 
-**未执行。** 本轮进程环境没有 Qwen API key；本机默认配置仅见 `CASEFILE_LLM_ENABLED`，没有 endpoint、model 或 key。正式 CLI 与 MCP 都安全返回 `model_not_configured`。历史真实 Qwen 记录不能替代 v1.1-D 的 5–8 题最终 smoke。故本轮 `answered`、`validated`、`abstained`、false answer、false abstain、provider error **均无可报告的 v1.1-D 真实模型分母**，不应写成 0。待本人提供可用配置后仅用固定合成金额、日期、无证据、Claim、Citation、Question/Field/Source Alignment 题组跑一次，并记录逐题结果。小样本零 false answer 也不代表不会幻觉。
+2026-09-29 使用本机已有**产品模式配置**，在独立临时数据目录创建全合成案件并导入 `tests/fixtures/synthetic_case/01_询问笔录_王海.pdf`（2 页）。正式 `Settings → build_application_runtime → OpenAICompatibleLLMProvider → DefaultQAService` 路径确认 provider 已启用且配置完整。源码模式默认读取仓库 `.env`，此前隔离 CLI/MCP 测试显式使用不存在的配置文件，所以返回 `model_not_configured`；这不代表本机产品配置缺失。测试只读取产品配置供运行时使用，没有复制凭据到仓库或输出密钥、完整 endpoint。7 题按预定顺序各执行一次，未重刷失败题。
 
-固定题组使用 `tests/fixtures/synthetic_case/01_询问笔录_王海.pdf`，不改题重试：①“王海支付的投资款金额是多少？”（50 万元，第 1 页）；②“王海转账支付投资款的日期是哪天？”（2021-06-01，第 1 页）；③“谁是收款主体？”（星河科技有限公司，第 1/2 页）；④“根据补充说明第 2 页，付款人是谁？”（王海，第 2 页，检查来源对齐）；⑤“李明是否代替王海付款？”（没有，第 2 页，检查否定/主体）；⑥“银行流水记载的最终入账时刻是几点？”（材料无银行流水时刻，应拒答，不能把公司当日确认收到等同具体时刻）；⑦“投资款的约定年利率是多少？”（无证据，应拒答）。对①②的已验证回答尝试 Claim 抽取，逐条核对 Citation 的文件、版本、页码、原文和问题/字段/来源对齐。只做一次固定运行，按题记录回答、验证、拒答、错误回答、错误拒答与 provider error；不为追求数字反复重跑失败题。
+| 指标 | 本轮真实 Qwen 结果 |
+| --- | --- |
+| 固定问题 | 7；可回答 5、无证据 2 |
+| answered / validated | **5 / 5** |
+| abstained | **2**，均为预期无证据题 |
+| false answer / false abstain | **0 / 0**，仅限此固定小样本 |
+| provider error / 其他运行错误 | **0 / 0** |
+| Citation legality | 5/5 已回答题通过：Evidence ID 属于该轮、文件与版本/页匹配、引用原文位于实际 PDF 页、Claim 引用均绑定返回 Citation |
+| Question / Field / Source Alignment | 5/5 已回答题的服务验证状态为 `validated`；指定补充说明第 2 页的付款人题只引用第 2 页，否定/主体题引用均来自第 2 页 |
+| Claim 抽取 | 金额与日期两个已验证 Answer 各抽取 1 条；类别分别为 `amount`、`date`，2/2 来源绑定合法 |
+
+逐题结果：①金额 50 万元，answered/validated，引用第 1 页；②付款日 2021-06-01，answered/validated，引用第 1 页；③收款主体星河科技有限公司，answered/validated，引用第 1、2 页；④限定补充说明第 2 页的付款人王海，answered/validated，只引用第 2 页；⑤李明未代付、付款人为王海，answered/validated，两条引用均在第 2 页；⑥银行流水最终入账**时刻**无证据，正确拒答；⑦约定年利率无证据，正确拒答。回答总耗时依次约 28.9、36.9、30.2、32.0、39.6、3.9、6.3 秒，仅为本机本次观测，不能当作性能承诺。**7 题小样本中没有观察到错误回答，不意味着系统永不幻觉。**
 
 ## 稳定、安全与可观测性
 
